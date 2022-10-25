@@ -1,0 +1,18 @@
+#SERVER PORT
+server:
+  port: 9095
+
+#EUREKA CLIENT CONFIGURATION
+spring:
+  application:
+    name: dd3-ms-login-v1
+
+# register with eureka
+eureka:
+  client:
+    register-with-eureka: true
+    fetch-registry: true
+    service-url:
+      defaultZone: http://localhost:8761/eureka/
+  instance:
+    hostname: localhost
