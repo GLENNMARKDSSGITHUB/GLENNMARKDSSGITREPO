@@ -42,8 +42,9 @@ public class ActorsController {
     @GetMapping("/display-actors.do")
     public String displayActors(){
         logger.debug("ActorsController | displayActors | Start ");
-        DssCommonMessageDetails commonMsgDtl = actorsService.displayActors();
+        DssCommonMessageDetails commonMsgDtl = new DssCommonMessageDetails();
         try{
+            commonMsgDtl = actorsService.displayActors();
             if(commonMsgDtl.isSuccess()){
                 List<Actors> actorList = (List<Actors>) commonMsgDtl.getObjList();
                 commonMsgDtl.setContent(commonUtil.gsonToJsonString(actorList));
@@ -64,9 +65,9 @@ public class ActorsController {
         logger.debug("ActorsController | searchActorByActorName | Start");
         String firstName = request.getParameter("firstName");
         String lastName = request.getParameter("lastName");
-        logger.debug("ActorsController | searchActorByActorName | firstName : " + firstName + " lastName : " + lastName);
-        DssCommonMessageDetails commonMsgDtl = actorsService.searchActorByActorName(firstName, lastName);
+        DssCommonMessageDetails commonMsgDtl = new DssCommonMessageDetails();
         try{
+            commonMsgDtl = actorsService.searchActorByActorName(firstName, lastName);
             if(commonMsgDtl.isSuccess()){
                 List<Actors> actorList = (List<Actors>) commonMsgDtl.getObjList();
                 commonMsgDtl.setContent(commonUtil.gsonToJsonString(actorList));

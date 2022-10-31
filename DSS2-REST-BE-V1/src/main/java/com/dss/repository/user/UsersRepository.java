@@ -17,6 +17,9 @@ public interface UsersRepository extends JpaRepository<Users, Long> {
     @Query(value = "SELECT * FROM DSS_USERS WHERE EMAIL = :email", nativeQuery = true)
     List<Users> findUserByEmail(@Param("email") String email);
 
+    @Query(value = "SELECT * FROM DSS_USERS WHERE EMAIL = :email", nativeQuery = true)
+    Users findUserByEmailAddress(@Param("email") String email);
+
     @Query(value = "SELECT * FROM DSS_USERS WHERE CELLPHONE_NO = :cellphoneNumber", nativeQuery = true)
     List<Users> findUserByCellphoneNumber(@Param("cellphoneNumber") String cellphoneNumber);
 

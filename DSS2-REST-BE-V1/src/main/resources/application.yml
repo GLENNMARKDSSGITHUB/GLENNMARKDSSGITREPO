@@ -9,6 +9,8 @@ spring:
       exclude: static/**,public/**
   application:
     name: dds2-rest-be-v1
+  main:
+    allow-bean-definition-overriding: true
 
   #SPRING DATASOURCE CONFIGURATION
   datasource:

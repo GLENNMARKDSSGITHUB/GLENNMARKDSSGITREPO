@@ -53,6 +53,11 @@ public class UsersDTO {
         this.userRoles = userRoles;
     }
 
+    public UsersDTO(String email, String password) {
+        this.email = email;
+        this.password = password;
+    }
+
     public String getDssUserId() {
         return dssUserId;
     }
