@@ -1,48 +1,55 @@
-package com.dss.dto;
+package com.dss.dto.actors;
 
 import java.util.Date;
-import java.util.List;
 
-public class UsersDTO {
+public class ActorsDTO {
 
-    private String dssUserId;
+    private String actorId;
+
+    private String movieId;
     private String firstName;
     private String lastName;
-    private String email;
-    private String password;
-    private String status;
-    private String cellphoneNumber;
+    private String gender;
+    private int age;
+    private String movieCast;
+    private String role;
     private Date creationDate;
     private String createdBy;
     private Date lastModificationDate;
     private String lastModifiedBy;
 
-    private List<RolesDTO> userRoles;
-
-    public UsersDTO() {
+    public ActorsDTO() {
     }
 
-    public UsersDTO(String dssUserId, String firstName, String lastName, String email, String password, String status, String cellphoneNumber, Date creationDate, String createdBy, Date lastModificationDate, String lastModifiedBy, List<RolesDTO> userRoles) {
-        this.dssUserId = dssUserId;
+    public ActorsDTO(String actorId, String movieId, String firstName, String lastName, String gender, int age, String movieCast, String role, Date creationDate, String createdBy, Date lastModificationDate, String lastModifiedBy) {
+        this.actorId = actorId;
+        this.movieId = movieId;
         this.firstName = firstName;
         this.lastName = lastName;
-        this.email = email;
-        this.password = password;
-        this.status = status;
-        this.cellphoneNumber = cellphoneNumber;
+        this.gender = gender;
+        this.age = age;
+        this.movieCast = movieCast;
+        this.role = role;
         this.creationDate = creationDate;
         this.createdBy = createdBy;
         this.lastModificationDate = lastModificationDate;
         this.lastModifiedBy = lastModifiedBy;
-        this.userRoles = userRoles;
     }
 
-    public String getDssUserId() {
-        return dssUserId;
+    public String getActorId() {
+        return actorId;
     }
 
-    public void setDssUserId(String dssUserId) {
-        this.dssUserId = dssUserId;
+    public void setActorId(String actorId) {
+        this.actorId = actorId;
+    }
+
+    public String getMovieId() {
+        return movieId;
+    }
+
+    public void setMovieId(String movieId) {
+        this.movieId = movieId;
     }
 
     public String getFirstName() {
@@ -61,36 +68,36 @@ public class UsersDTO {
         this.lastName = lastName;
     }
 
-    public String getEmail() {
-        return email;
+    public String getGender() {
+        return gender;
     }
 
-    public void setEmail(String email) {
-        this.email = email;
+    public void setGender(String gender) {
+        this.gender = gender;
     }
 
-    public String getPassword() {
-        return password;
+    public int getAge() {
+        return age;
     }
 
-    public void setPassword(String password) {
-        this.password = password;
+    public void setAge(int age) {
+        this.age = age;
     }
 
-    public String getStatus() {
-        return status;
+    public String getMovieCast() {
+        return movieCast;
     }
 
-    public void setStatus(String status) {
-        this.status = status;
+    public void setMovieCast(String movieCast) {
+        this.movieCast = movieCast;
     }
 
-    public String getCellphoneNumber() {
-        return cellphoneNumber;
+    public String getRole() {
+        return role;
     }
 
-    public void setCellphoneNumber(String cellphoneNumber) {
-        this.cellphoneNumber = cellphoneNumber;
+    public void setRole(String role) {
+        this.role = role;
     }
 
     public Date getCreationDate() {
@@ -125,29 +132,21 @@ public class UsersDTO {
         this.lastModifiedBy = lastModifiedBy;
     }
 
-    public List<RolesDTO> getUserRoles() {
-        return userRoles;
-    }
-
-    public void setUserRoles(List<RolesDTO> userRoles) {
-        this.userRoles = userRoles;
-    }
-
     @Override
     public String toString() {
-        return "UsersDTO{" +
-                "dssUserId='" + dssUserId + '\'' +
+        return "ActorsDTO{" +
+                "actorId='" + actorId + '\'' +
+                ", movieId='" + movieId + '\'' +
                 ", firstName='" + firstName + '\'' +
                 ", lastName='" + lastName + '\'' +
-                ", email='" + email + '\'' +
-                ", password='" + password + '\'' +
-                ", status='" + status + '\'' +
-                ", cellphoneNumber='" + cellphoneNumber + '\'' +
+                ", gender='" + gender + '\'' +
+                ", age=" + age +
+                ", movieCast='" + movieCast + '\'' +
+                ", role='" + role + '\'' +
                 ", creationDate=" + creationDate +
                 ", createdBy='" + createdBy + '\'' +
                 ", lastModificationDate=" + lastModificationDate +
                 ", lastModifiedBy='" + lastModifiedBy + '\'' +
-                ", userRoles=" + userRoles +
                 '}';
     }
 }

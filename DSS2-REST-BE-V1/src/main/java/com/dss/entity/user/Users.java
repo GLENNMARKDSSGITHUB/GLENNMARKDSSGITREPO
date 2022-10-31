@@ -1,8 +1,7 @@
-package com.dss.entity;
+package com.dss.entity.user;
 
+import com.dss.entity.roles.Roles;
 import lombok.*;
-import org.hibernate.annotations.NotFound;
-import org.hibernate.annotations.NotFoundAction;
 
 import javax.persistence.*;
 import java.util.Date;
@@ -33,6 +32,9 @@ public class Users {
     @Column(name = "PASSWORD", nullable = false)
     private String password;
 
+    @Column(name = "OLD_PASSWORD")
+    private String oldPassword;
+
     @Column(name = "STATUS", length = 15, nullable = false)
     private String status;
 
@@ -51,12 +53,22 @@ public class Users {
     @Column(name = "LAST_MODIFIED_BY", length = 100)
     private String lastModifiedBy;
 
-    @ManyToMany
-    @JoinTable(
-            name = "USER_ROLES",
-            joinColumns = @JoinColumn(name = "DSS_USER_ID"),
-            inverseJoinColumns = @JoinColumn(name = "DSS_ROLE_ID"))
-    @NotFound(action = NotFoundAction.IGNORE)
+    @OneToMany(mappedBy = "user")
     @ToString.Exclude
     private List<Roles> userRoles;
+
+    public Users(String dssUserId, String firstName, String lastName, String email, String password, String oldPassword, String status, String cellphoneNumber, Date creationDate, String createdBy, Date lastModificationDate, String lastModifiedBy) {
+        this.dssUserId = dssUserId;
+        this.firstName = firstName;
+        this.lastName = lastName;
+        this.email = email;
+        this.password = password;
+        this.oldPassword = oldPassword;
+        this.status = status;
+        this.cellphoneNumber = cellphoneNumber;
+        this.creationDate = creationDate;
+        this.createdBy = createdBy;
+        this.lastModificationDate = lastModificationDate;
+        this.lastModifiedBy = lastModifiedBy;
+    }
 }

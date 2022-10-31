@@ -1,4 +1,4 @@
-package com.dss.util.common;
+package com.dss.util.utils;
 
 import com.google.gson.*;
 import org.apache.commons.lang.StringUtils;
@@ -11,8 +11,8 @@ import java.time.format.DateTimeFormatter;
 import java.util.List;
 import java.util.regex.Pattern;
 
-public class DigiStreamCommonUtility {
-    private static final Logger logger = LoggerFactory.getLogger(DigiStreamCommonUtility.class);
+public class DssCommonUtility {
+    private static final Logger logger = LoggerFactory.getLogger(DssCommonUtility.class);
 
     public String gsonToJsonString(List<?> e){
         Gson gson = new GsonBuilder().setPrettyPrinting().registerTypeAdapter(LocalDate.class, new LocaleDateAdapter()).create();

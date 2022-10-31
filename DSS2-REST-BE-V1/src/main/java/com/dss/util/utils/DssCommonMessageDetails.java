@@ -1,9 +1,9 @@
-package com.dss.util.common;
+package com.dss.util.utils;
 
 import java.util.List;
 import java.util.Map;
 
-public class DigiStreamCommonMessageDetails {
+public class DssCommonMessageDetails {
 
     private String header;
     private String content;

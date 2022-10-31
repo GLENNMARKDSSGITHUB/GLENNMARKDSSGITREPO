@@ -1,13 +1,13 @@
 package com.dss.service.registration;
 
-import com.dss.dto.UsersDTO;
-import com.dss.util.common.DigiStreamCommonMessageDetails;
+import com.dss.dto.user.UsersDTO;
+import com.dss.util.utils.DssCommonMessageDetails;
 
 public interface RegistrationService {
 
-    DigiStreamCommonMessageDetails addRegistration(UsersDTO user);
-    DigiStreamCommonMessageDetails displayRegistrations();
-    DigiStreamCommonMessageDetails searchRegistrationByEmail(String email);
-    DigiStreamCommonMessageDetails updateRegistration(UsersDTO user);
-    DigiStreamCommonMessageDetails deleteRegistration(String email, String password);
+    DssCommonMessageDetails registerAccount(UsersDTO user);
+    DssCommonMessageDetails displayRegistrations();
+    DssCommonMessageDetails searchRegistrationByEmail(String email);
+    DssCommonMessageDetails changePassword(String email, String newPassword, String confirmPassword);
+    DssCommonMessageDetails deleteAccount(String email, String password);
 }
