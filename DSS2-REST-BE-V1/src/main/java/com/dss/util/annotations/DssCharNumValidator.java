@@ -1,12 +1,11 @@
 /**
- * This validator interface checks if password is a combination of at least
- * an uppercase and lowercase alphabet, a digit and a spacial character
+ * This validator interface checks if the username contains number or special characters
  * @package com.dss.util.validators
- * @interface DssPasswordValidator
+ * @interface DssCharNumValidator
  * @author Glen Mark T Anduiza
  */
 
-package com.dss.util.validators;
+package com.dss.util.annotations;
 
 import javax.validation.Constraint;
 import javax.validation.Payload;
@@ -15,8 +14,9 @@ import java.lang.annotation.*;
 @Documented
 @Retention(RetentionPolicy.RUNTIME)
 @Target(ElementType.FIELD)
-@Constraint(validatedBy = DssPasswordValidatorImpl.class)
-public @interface DssPasswordValidator {
+@Constraint(validatedBy = DssCharNumValidatorImpl.class)
+public @interface DssCharNumValidator {
+
     String message() default "";
 
     Class<?>[] groups() default {};

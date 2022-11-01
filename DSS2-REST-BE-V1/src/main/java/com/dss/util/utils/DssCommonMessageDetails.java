@@ -3,6 +3,12 @@ package com.dss.util.utils;
 import java.util.List;
 import java.util.Map;
 
+/**
+ * @author Glen Mark T Anduiza
+ * @version 1.0
+ * @since 10/31/2022
+ */
+
 public class DssCommonMessageDetails {
 
     private String header;

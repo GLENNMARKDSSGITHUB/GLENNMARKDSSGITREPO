@@ -1,5 +1,11 @@
 package com.dss.util.utils;
 
+/**
+ * @author Glen Mark T Anduiza
+ * @version 1.0
+ * @since 10/31/2022
+ */
+
 public class CommonStringUtility {
 
     /*=================================CUSTOM REGEX PATTERNS==================================*/
@@ -8,12 +14,17 @@ public class CommonStringUtility {
     public static final String REGEX_PATTERN_PASSWORD = "^.*(?=.{8,})(?=.*\\d.*\\d)(?=.*[a-z].*[a-z])(?=.*[A-Z].*[A-Z])(?=.*[!@#$%^&*+=].*[!@#$%^&*+=]).*$";
 
     /*========================CUSTOMIZED ERROR MESSAGE FOR ADD REGISTRATION====================*/
-    public static String ERR_CODE_001_CHECK_FIELDS = "Please check the fields.";
-    public static String ERR_CODE_001_CELL_NO_TAKEN = "The cellphone number %s has already been taken.";
-    public static String ERR_CODE_001_EMAIL_TAKEN = "The email address %s has already been taken.";
-    public static String ERR_CODE_001_ALPHABET_ALLOWED = "Only alphabetical characters allowed.";
-    public static String ERR_CODE_001_INVALID_EMAIL = "Please enter a valid email address.";
-    public static String ERR_CODE_001_PASSWORD_ALLOWED = "Password must have at least an uppercase and lowercase alphabet, a digit and a special character!";
+    public static final String  ERR_CODE_001_REQ_FIRSTNAME = "First name is mandatory";
+    public static final String  ERR_CODE_001_REQ_LASTNAME = "Last name is mandatory";
+    public static final String  ERR_CODE_001_REQ_PASSWORD = "Password is mandatory";
+    public static final String  ERR_CODE_001_REQ_STATUS = "Password is mandatory";
+    public static final String  ERR_CODE_001_REQ_CELLPHONE_NO = "Cellphone number is mandatory";
+
+    public static final String ERR_CODE_001_CELL_NO_TAKEN = "Cellphone number has already been taken.";
+    public static final String ERR_CODE_001_EMAIL_TAKEN = "Email address has already been taken.";
+    public static final String ERR_CODE_001_ALPHABET_ALLOWED = "Only alphabetical characters allowed.";
+    public static final String ERR_CODE_001_INVALID_EMAIL = "Please enter a valid email.";
+    public static final String ERR_CODE_001_PASSWORD_ALLOWED = "Password must have at least an uppercase and lowercase alphabet, a digit and a special character";
 
     /*========================CUSTOMIZED ERROR MESSAGE FOR DISPLAY REGISTRATION====================*/
     public static String ERR_CODE_002_NO_DISPLAY_RECORDS = "There are no records to display.";

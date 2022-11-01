@@ -6,7 +6,7 @@
  * @author Glen Mark T Anduiza
  */
 
-package com.dss.util.validators;
+package com.dss.util.annotations;
 
 import javax.validation.Constraint;
 import javax.validation.Payload;

@@ -5,7 +5,7 @@
  * @author Glen Mark T Anduiza
  */
 
-package com.dss.util.validators;
+package com.dss.util.annotations;
 
 import com.dss.entity.user.Users;
 import com.dss.repository.user.UsersRepository;

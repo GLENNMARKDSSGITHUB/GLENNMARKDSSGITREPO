@@ -3,6 +3,12 @@ package com.dss.util.utils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
+/**
+ * @author Glen Mark T Anduiza
+ * @version 1.0
+ * @since 10/31/2022
+ */
+
 public class DssCommonMethods {
     private static final Logger logger = LoggerFactory.getLogger(DssCommonMethods.class);
 
