@@ -8,6 +8,12 @@ import org.springframework.stereotype.Repository;
 
 import java.util.List;
 
+/**
+ * @author Glen Mark T Anduiza
+ * @version 1.0
+ * @since 10/31/2022
+ */
+
 @Repository
 public interface ActorsRepository  extends JpaRepository<Actors, String> {
 
