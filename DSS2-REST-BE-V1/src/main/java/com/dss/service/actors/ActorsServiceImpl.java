@@ -18,6 +18,12 @@ import org.springframework.stereotype.Service;
 import java.util.Date;
 import java.util.List;
 
+/**
+ * @author Glen Mark T Anduiza
+ * @version 1.0
+ * @since 10/31/2022
+ */
+
 @Service
 public class ActorsServiceImpl implements ActorsService{
     private static final Logger logger = LoggerFactory.getLogger(ActorsServiceImpl.class);

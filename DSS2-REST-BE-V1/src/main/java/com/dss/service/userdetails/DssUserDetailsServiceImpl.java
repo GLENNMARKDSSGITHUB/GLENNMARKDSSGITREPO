@@ -1,4 +1,4 @@
-package com.dss.service.auth;
+package com.dss.service.userdetails;
 
 import com.dss.entity.user.Users;
 import com.dss.repository.user.UsersRepository;
@@ -8,6 +8,12 @@ import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
+
+/**
+ * @author Glen Mark T Anduiza
+ * @version 1.0
+ * @since 10/31/2022
+ */
 
 @Service
 public class DssUserDetailsServiceImpl implements UserDetailsService {

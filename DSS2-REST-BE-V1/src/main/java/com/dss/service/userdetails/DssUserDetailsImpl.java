@@ -1,4 +1,4 @@
-package com.dss.service.auth;
+package com.dss.service.userdetails;
 
 import com.dss.entity.user.Users;
 import org.springframework.security.core.GrantedAuthority;
@@ -8,11 +8,17 @@ import org.springframework.security.core.userdetails.UserDetails;
 import java.util.Collection;
 import java.util.Collections;
 
-public class AuthUserDetailsImpl implements UserDetails {
+/**
+ * @author Glen Mark T Anduiza
+ * @version 1.0
+ * @since 10/31/2022
+ */
+
+public class DssUserDetailsImpl implements UserDetails {
 
     private Users user;
 
-    public AuthUserDetailsImpl(Users user) {
+    public DssUserDetailsImpl(Users user) {
         super();
         this.user = user;
     }
