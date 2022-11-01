@@ -16,7 +16,7 @@ import org.springframework.stereotype.Service;
 
 @Service
 @Slf4j
-public class AuthenticationServiceImpl implements AuthenticationService {
+public class LoginAuthenticationServiceImpl implements LoginAuthenticationService {
     private final DssCommonMessageDetails commonMsgDtl = new DssCommonMessageDetails();
     private final BCryptPasswordEncoder encoder = new BCryptPasswordEncoder(12);
 
@@ -31,7 +31,7 @@ public class AuthenticationServiceImpl implements AuthenticationService {
             if(user != null){
                 if(encoder.matches(password, user.getPassword())){
                     commonMsgDtl.setContent("Welcome to Digistream Express!");
-                    commonMsgDtl.setSuccess(false);
+                    commonMsgDtl.setSuccess(true);
                     log.error("AuthUserDetailsServiceImpl | login | getContent : " + commonMsgDtl.getContent());
                 }else{
                     commonMsgDtl.setContent("The password you’ve entered is incorrect.");
