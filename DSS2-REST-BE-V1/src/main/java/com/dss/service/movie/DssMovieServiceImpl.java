@@ -1,9 +1,12 @@
 package com.dss.service.movie;
 
 import com.dss.dto.movie.DssMovieDTO;
+import com.dss.entity.actors.Actors;
 import com.dss.entity.movie.DssMovie;
+import com.dss.entity.reviews.Reviews;
 import com.dss.repository.actors.ActorsRepository;
 import com.dss.repository.movie.DssMovieRepository;
+import com.dss.repository.reviews.ReviewsRepository;
 import com.dss.transformer.movie.DssMovieTransformer;
 import com.dss.util.utils.CommonStringUtility;
 import com.dss.util.utils.DssCommonMessageDetails;
@@ -29,6 +32,9 @@ public class DssMovieServiceImpl implements DssMovieService {
     private final DssMovieTransformer transformer = new DssMovieTransformer();
     private final DssCommonMessageDetails commonMsgDtl = new DssCommonMessageDetails();
     private final DssCommonMethods commonMethods = new DssCommonMethods();
+
+    @Autowired
+    private ReviewsRepository reviewsRepository;
 
     @Autowired
     private DssMovieRepository dssMovieRepository;
@@ -127,7 +133,14 @@ public class DssMovieServiceImpl implements DssMovieService {
         try{
             List<DssMovie> movieList = dssMovieRepository.findDssMovieByMovieTitle(movieTitle);
             if(!movieList.isEmpty()){
-                actorsRepository.deleteAll(movieList.get(0).getMovieActors());
+                List<Reviews> reviewsList = movieList.get(0).getMovieReviews();
+                if(!reviewsList.isEmpty()){
+                    reviewsRepository.deleteAll(reviewsList);
+                }
+                List<Actors> actorsList = movieList.get(0).getMovieActors();
+                if(!actorsList.isEmpty()){
+                    actorsRepository.deleteAll(actorsList);
+                }
                 dssMovieRepository.delete(movieList.get(0));
                 commonMsgDtl.setContent(String.format(CommonStringUtility.SUCCESS_CODE_003_DELETE_MOV, movieTitle));
                 commonMsgDtl.setSuccess(true);
