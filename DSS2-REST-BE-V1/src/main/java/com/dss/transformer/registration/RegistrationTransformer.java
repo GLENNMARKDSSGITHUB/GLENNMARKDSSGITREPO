@@ -8,11 +8,17 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 
 import java.util.ArrayList;
 import java.util.Collections;
+import java.util.Date;
 import java.util.List;
+
+/**
+ * @author Glen Mark T Anduiza
+ * @version 1.0
+ * @since 10/31/2022
+ */
 
 public class RegistrationTransformer {
     private final BCryptPasswordEncoder encoder = new BCryptPasswordEncoder(12);
-
 
     public List<Roles> populateRolesRegistration(UsersDTO userDto, Users user){
         return Collections.singletonList(new Roles(
@@ -32,8 +38,8 @@ public class RegistrationTransformer {
                 null,
                 userDto.getStatus(),
                 userDto.getCellphoneNumber(),
-                userDto.getCreationDate(),
-                userDto.getCreatedBy(),
+                new Date(),
+                UserRoles.ROLE_ADMIN.getStrRole(),
                 userDto.getLastModificationDate(),
                 userDto.getLastModifiedBy()
         );

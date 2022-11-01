@@ -12,6 +12,12 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
+/**
+ * @author Glen Mark T Anduiza
+ * @version 1.0
+ * @since 10/31/2022
+ */
+
 public class DssMovieTransformer {
     private static final Logger logger = LoggerFactory.getLogger(DssMovieTransformer.class);
 
