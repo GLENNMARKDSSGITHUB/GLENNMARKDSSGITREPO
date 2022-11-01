@@ -2,10 +2,15 @@ package com.dss.dto.actors;
 
 import java.util.Date;
 
+/**
+ * @author Glen Mark T Anduiza
+ * @version 1.0
+ * @since 10/31/2022
+ */
+
 public class ActorsDTO {
 
     private String actorId;
-
     private String movieId;
     private String firstName;
     private String lastName;

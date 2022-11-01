@@ -1,31 +1,38 @@
 package com.dss.dto.user;
 
 import com.dss.dto.roles.RolesDTO;
-import com.dss.util.validators.*;
+import com.dss.util.annotations.*;
+import com.dss.util.utils.CommonStringUtility;
 
 import java.util.Date;
 import java.util.List;
 
+/**
+ * @author Glen Mark T Anduiza
+ * @version 1.0
+ * @since 10/31/2022
+ */
+
 public class UsersDTO {
 
     private String dssUserId;
-    @DssNullValidator(message = "First name is mandatory")
-    @DssCharNumValidator(message = "Only alphabetical characters allowed.")
+    @DssNullValidator(message = CommonStringUtility.ERR_CODE_001_REQ_FIRSTNAME)
+    @DssCharNumValidator(message = CommonStringUtility.ERR_CODE_001_ALPHABET_ALLOWED)
     private String firstName;
-    @DssNullValidator(message = "Last name is mandatory")
-    @DssCharNumValidator(message = "Only alphabetical characters allowed.")
+    @DssNullValidator(message = CommonStringUtility.ERR_CODE_001_REQ_LASTNAME)
+    @DssCharNumValidator(message = CommonStringUtility.ERR_CODE_001_ALPHABET_ALLOWED)
     private String lastName;
-    @DssEmailValidator(message = "Please enter a valid email")
-    @DssEmailTakenValidator(message = "Email address has already been taken.")
+    @DssEmailValidator(message = CommonStringUtility.ERR_CODE_001_INVALID_EMAIL)
+    @DssEmailTakenValidator(message = CommonStringUtility.ERR_CODE_001_EMAIL_TAKEN)
     private String email;
-    @DssNullValidator(message = "Password is mandatory")
-    @DssPasswordValidator(message = "Password must have at least an uppercase and lowercase alphabet, a digit and a special character")
+    @DssNullValidator(message = CommonStringUtility.ERR_CODE_001_REQ_PASSWORD )
+    @DssPasswordValidator(message = CommonStringUtility.ERR_CODE_001_PASSWORD_ALLOWED)
     private String password;
     private String oldPassword;
-    @DssNullValidator(message = "Status is mandatory")
+    @DssNullValidator(message = CommonStringUtility.ERR_CODE_001_REQ_STATUS)
     private String status;
-    @DssNullValidator(message = "Cellphone number is mandatory")
-    @DssPhoneNoTakenValidator(message = "Cellphone number has already been taken.")
+    @DssNullValidator(message = CommonStringUtility.ERR_CODE_001_REQ_CELLPHONE_NO)
+    @DssPhoneNoTakenValidator(message = CommonStringUtility.ERR_CODE_001_CELL_NO_TAKEN)
     private String cellphoneNumber;
     private Date creationDate;
     private String createdBy;

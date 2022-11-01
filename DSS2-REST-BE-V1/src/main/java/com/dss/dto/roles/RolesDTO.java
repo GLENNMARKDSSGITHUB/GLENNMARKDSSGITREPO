@@ -1,5 +1,11 @@
 package com.dss.dto.roles;
 
+/**
+ * @author Glen Mark T Anduiza
+ * @version 1.0
+ * @since 10/31/2022
+ */
+
 public class RolesDTO {
 
     private String dssRoleId;
