@@ -1,7 +1,7 @@
 package com.dss.controller.auth;
 
 import com.dss.dto.user.UsersDTO;
-import com.dss.service.auth.AuthenticationService;
+import com.dss.service.auth.LoginAuthenticationService;
 import com.dss.util.utils.DssCommonMessageDetails;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -21,7 +21,7 @@ import org.springframework.web.bind.annotation.RestController;
 @Slf4j
 public class LoginAuthenticationController {
     @Autowired
-    private AuthenticationService authUserDetailsService;
+    private LoginAuthenticationService loginAuthenticationService;
 
     @GetMapping("/login.do")
     public String login(@RequestBody UsersDTO userDto){
@@ -30,7 +30,7 @@ public class LoginAuthenticationController {
         String password = userDto.getPassword();
         DssCommonMessageDetails commonMsgDtl = new DssCommonMessageDetails();
         try{
-            commonMsgDtl = authUserDetailsService.login(email, password);
+            commonMsgDtl = loginAuthenticationService.login(email, password);
             if(commonMsgDtl.isSuccess()){
                 log.debug("AuthenticationController | login | getContent : " + commonMsgDtl.getContent());
             }else{
