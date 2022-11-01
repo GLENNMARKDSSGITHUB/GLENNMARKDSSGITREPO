@@ -5,6 +5,12 @@ import lombok.*;
 
 import javax.persistence.*;
 
+/**
+ * @author Glen Mark T Anduiza
+ * @version 1.0
+ * @since 10/31/2022
+ */
+
 @Entity
 @Table(name = "DSS_ROLES")
 @Getter

@@ -6,6 +6,12 @@ import lombok.*;
 import javax.persistence.*;
 import java.util.Date;
 
+/**
+ * @author Glen Mark T Anduiza
+ * @version 1.0
+ * @since 10/31/2022
+ */
+
 @Entity
 @Table(name = "DSS_REVIEWS")
 @Getter
