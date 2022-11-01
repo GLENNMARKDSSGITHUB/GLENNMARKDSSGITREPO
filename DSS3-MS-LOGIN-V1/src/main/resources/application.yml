@@ -4,8 +4,13 @@ server:
 
 #SPRING APPLICATION NAME
 spring:
+  devtools:
+    restart:
+      exclude: static/**,public/**
   application:
     name: dds3-ms-login-v1
+  main:
+    allow-bean-definition-overriding: true
 
   #SPRING DATASOURCE CONFIGURATION
   datasource:
