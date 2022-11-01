@@ -1,27 +1,27 @@
 package com.dss.controller.auth;
 
-import com.dss.controller.actors.ActorsController;
 import com.dss.dto.user.UsersDTO;
-import com.dss.service.auth.AuthUserDetailsService;
+import com.dss.service.auth.AuthenticationService;
 import com.dss.util.utils.DssCommonMessageDetails;
 import lombok.extern.slf4j.Slf4j;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import javax.servlet.http.HttpServletRequest;
+/**
+ * @author Glen Mark T Anduiza
+ * @version 1.0
+ * @since 10/31/2022
+ */
 
 @RestController
 @RequestMapping("/API")
-public class AuthenticationController {
-    private static final Logger log = LoggerFactory.getLogger(AuthenticationController.class);
-
+@Slf4j
+public class LoginAuthenticationController {
     @Autowired
-    private AuthUserDetailsService authUserDetailsService;
+    private AuthenticationService authUserDetailsService;
 
     @GetMapping("/login.do")
     public String login(@RequestBody UsersDTO userDto){
@@ -43,7 +43,4 @@ public class AuthenticationController {
         }
         return commonMsgDtl.getContent();
     }
-
-
-
 }

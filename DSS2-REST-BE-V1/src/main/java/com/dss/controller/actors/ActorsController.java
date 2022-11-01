@@ -5,114 +5,121 @@ import com.dss.entity.actors.Actors;
 import com.dss.service.actors.ActorsService;
 import com.dss.util.utils.DssCommonMessageDetails;
 import com.dss.util.utils.DssCommonUtility;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import javax.servlet.http.HttpServletRequest;
 import java.util.List;
 
+/**
+ * @author Glen Mark T Anduiza
+ * @version 1.0
+ * @since 10/31/2022
+ */
+
 @SuppressWarnings("unchecked")
 @RestController
 @RequestMapping("/API/actor")
+@Slf4j
 public class ActorsController {
-    private static final Logger logger = LoggerFactory.getLogger(ActorsController.class);
     private final DssCommonUtility commonUtil = new DssCommonUtility();
 
     @Autowired
     private ActorsService actorsService;
 
     @PostMapping("/add-actor.do")
-    public String addActor(@RequestBody ActorsDTO actorsDto){
-        logger.debug("ActorsController | addActor | Start ");
-        logger.debug("ActorsController | addActor | actorDTO: " + actorsDto.toString());
+    public ResponseEntity<String> addActor(@RequestBody ActorsDTO actorsDto){
+        log.debug("ActorsController | addActor | Start ");
+        log.debug("ActorsController | addActor | actorDTO: " + actorsDto.toString());
         DssCommonMessageDetails commonMsgDtl = new DssCommonMessageDetails();
         try{
             commonMsgDtl = actorsService.addActor(actorsDto);
-            logger.debug(commonMsgDtl.getContent());
+            log.debug(commonMsgDtl.getContent());
         }catch(Exception ex){
-            logger.error("ActorsController | addActor | Error msg : " + ex.getMessage());
+            log.error("ActorsController | addActor | Error msg : " + ex.getMessage());
         }finally{
-            logger.debug("ActorsController | addActor | End ");
+            log.debug("ActorsController | addActor | End ");
         }
-        return commonMsgDtl.getContent();
+        return new ResponseEntity<>(commonMsgDtl.getContent(), HttpStatus.OK);
     }
 
     @GetMapping("/display-actors.do")
-    public String displayActors(){
-        logger.debug("ActorsController | displayActors | Start ");
-        DssCommonMessageDetails commonMsgDtl = new DssCommonMessageDetails();
+    public ResponseEntity<List<Actors>> displayActors(){
+        log.debug("ActorsController | displayActors | Start ");
+        List<Actors> actorList = null;
         try{
-            commonMsgDtl = actorsService.displayActors();
+            DssCommonMessageDetails commonMsgDtl = actorsService.displayActors();
             if(commonMsgDtl.isSuccess()){
-                List<Actors> actorList = (List<Actors>) commonMsgDtl.getObjList();
+                actorList = (List<Actors>) commonMsgDtl.getObjList();
                 commonMsgDtl.setContent(commonUtil.gsonToJsonString(actorList));
-                logger.debug("RegistrationController | displayActors | registrations : \n" + commonUtil.gsonToJsonString(actorList));
+                log.debug("RegistrationController | displayActors | registrations : \n" + commonUtil.gsonToJsonString(actorList));
             }else{
-                logger.error("ActorsController | displayActors  | actors : " + commonMsgDtl.getContent());
+                log.error("ActorsController | displayActors  | actors : " + commonMsgDtl.getContent());
             }
         }catch (Exception ex){
-            logger.error("ActorsController | displayActors | Error msg : " + ex.getMessage());
+            log.error("ActorsController | displayActors | Error msg : " + ex.getMessage());
         }finally{
-            logger.debug("ActorsController | displayActors | End ");
+            log.debug("ActorsController | displayActors | End ");
         }
-        return commonMsgDtl.getContent();
+        return new ResponseEntity<>(actorList, HttpStatus.OK);
     }
 
     @GetMapping("/search-actor.do")
-    public String searchActorByActorName(HttpServletRequest request){
-        logger.debug("ActorsController | searchActorByActorName | Start");
+    public ResponseEntity<List<Actors>> searchActorByActorName(HttpServletRequest request){
+        log.debug("ActorsController | searchActorByActorName | Start");
         String firstName = request.getParameter("firstName");
         String lastName = request.getParameter("lastName");
-        DssCommonMessageDetails commonMsgDtl = new DssCommonMessageDetails();
+        List<Actors> actorList = null;
         try{
-            commonMsgDtl = actorsService.searchActorByActorName(firstName, lastName);
+            DssCommonMessageDetails commonMsgDtl = actorsService.searchActorByActorName(firstName, lastName);
             if(commonMsgDtl.isSuccess()){
-                List<Actors> actorList = (List<Actors>) commonMsgDtl.getObjList();
+                actorList = (List<Actors>) commonMsgDtl.getObjList();
                 commonMsgDtl.setContent(commonUtil.gsonToJsonString(actorList));
-                logger.debug("RegistrationController | searchActorByActorName | registration : \n" + commonUtil.gsonToJsonString(actorList));
+                log.debug("RegistrationController | searchActorByActorName | registration : \n" + commonUtil.gsonToJsonString(actorList));
             }else{
-                logger.error("ActorsController | searchActorByActorName  | actors : " + commonMsgDtl.getContent());
+                log.error("ActorsController | searchActorByActorName  | actors : " + commonMsgDtl.getContent());
             }
         }catch (Exception ex){
-            logger.error("ActorsController | searchActorByActorName | Error msg : " + ex.getMessage());
+            log.error("ActorsController | searchActorByActorName | Error msg : " + ex.getMessage());
         }finally{
-            logger.debug("ActorsController | searchActorByActorName | End ");
+            log.debug("ActorsController | searchActorByActorName | End ");
         }
-        return commonMsgDtl.getContent();
+        return new ResponseEntity<>(actorList, HttpStatus.OK);
     }
 
     @PutMapping("/update-actor.do")
-    public String updateActor(@RequestBody ActorsDTO actorsDto){
-        logger.debug("ActorsController | updateActor | Start ");
-        logger.debug("ActorsController | updateActor |  : " + actorsDto.toString());
+    public ResponseEntity<String> updateActor(@RequestBody ActorsDTO actorsDto){
+        log.debug("ActorsController | updateActor | Start ");
+        log.debug("ActorsController | updateActor |  : " + actorsDto.toString());
         DssCommonMessageDetails commonMsgDtl = new DssCommonMessageDetails();
         try{
             commonMsgDtl = actorsService.updateActor(actorsDto);
-            logger.debug(commonMsgDtl.getContent());
+            log.debug(commonMsgDtl.getContent());
         }catch (Exception ex){
-            logger.error("ActorsController | updateActor | Error msg : " + ex.getMessage());
+            log.error("ActorsController | updateActor | Error msg : " + ex.getMessage());
         }finally{
-            logger.debug("ActorsController | updateActor | End ");
+            log.debug("ActorsController | updateActor | End ");
         }
-        return commonMsgDtl.getContent();
+        return new ResponseEntity<>(commonMsgDtl.getContent(), HttpStatus.OK);
     }
 
     @DeleteMapping("/delete-actor.do")
-    public String deleteActor(HttpServletRequest request){
-        logger.debug("ActorsController | deleteActor | Start ");
+    public ResponseEntity<String> deleteActor(HttpServletRequest request){
+        log.debug("ActorsController | deleteActor | Start ");
         String firstName = request.getParameter("firstName");
         String lastName = request.getParameter("lastName");
         DssCommonMessageDetails commonMsgDtl = new DssCommonMessageDetails();
         try{
             commonMsgDtl = actorsService.deleteActor(firstName, lastName);
-            logger.debug("ActorsController | deleteActor | getContent : " + commonMsgDtl.getContent());
+            log.debug("ActorsController | deleteActor | getContent : " + commonMsgDtl.getContent());
         }catch (Exception ex){
-            logger.error("ActorsController | deleteActor | Error msg : " + ex.getMessage());
+            log.error("ActorsController | deleteActor | Error msg : " + ex.getMessage());
         }finally{
-            logger.debug("ActorsController | deleteActor | End ");
+            log.debug("ActorsController | deleteActor | End ");
         }
-        return commonMsgDtl.getContent();
+        return new ResponseEntity<>(commonMsgDtl.getContent(), HttpStatus.OK);
     }
 }
