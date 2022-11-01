@@ -20,6 +20,12 @@ import org.springframework.stereotype.Component;
 
 import java.util.*;
 
+/**
+ * @author Glen Mark T Anduiza
+ * @version 1.0
+ * @since 10/31/2022
+ */
+
 @Component
 public class DatabaseSeeder {
 
