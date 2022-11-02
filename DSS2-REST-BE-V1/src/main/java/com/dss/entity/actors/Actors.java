@@ -57,7 +57,7 @@ public class Actors {
     @Column(name = "LAST_MODIFIED_BY", length = 100)
     private String lastModifiedBy;
 
-    @ManyToOne
+    @ManyToOne(cascade = {CascadeType.MERGE, CascadeType.PERSIST, CascadeType.REFRESH})
     private DssMovie dss;
 
     public Actors(String actorId, String movieId, String firstName, String lastName, String gender, int age, String movieCast, String role, Date creationDate, String createdBy, Date lastModificationDate, String lastModifiedBy, DssMovie dss) {

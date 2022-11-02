@@ -49,7 +49,7 @@ Reviews {
     @Column(name = "LAST_MODIFIED_BY", length = 100)
     private String lastModifiedBy;
 
-    @ManyToOne
+    @ManyToOne(cascade = {CascadeType.MERGE, CascadeType.PERSIST, CascadeType.REFRESH})
     private DssMovie dss;
 
     public Reviews(String reviewId, String movieId, int rate, String reviewHeadline, String reviewContent, Date creationDate, String createdBy, Date lastModificationDate, String lastModifiedBy, DssMovie dss) {

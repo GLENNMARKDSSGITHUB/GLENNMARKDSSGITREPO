@@ -26,7 +26,7 @@ public class Roles {
     @Column(name = "USER_ROLE", length = 20, nullable = false)
     private String userRole;
 
-    @ManyToOne
+    @ManyToOne(cascade = {CascadeType.MERGE, CascadeType.PERSIST, CascadeType.REFRESH})
     private Users user;
 
     public Roles(String dssRoleId, String userRole) {
