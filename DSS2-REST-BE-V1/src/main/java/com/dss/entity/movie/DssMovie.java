@@ -1,3 +1,9 @@
+/**
+ * @author Glen Mark T Anduiza
+ * @version 1.0
+ * @since 10/31/2022
+ */
+
 package com.dss.entity.movie;
 
 import com.dss.entity.actors.Actors;
@@ -9,9 +15,7 @@ import java.util.Date;
 import java.util.List;
 
 /**
- * @author Glen Mark T Anduiza
- * @version 1.0
- * @since 10/31/2022
+ * This is an Entity Class for DssMovie
  */
 
 @Entity

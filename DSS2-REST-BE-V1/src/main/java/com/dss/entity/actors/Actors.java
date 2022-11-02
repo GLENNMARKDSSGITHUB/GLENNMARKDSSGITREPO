@@ -12,6 +12,11 @@ import lombok.*;
 import javax.persistence.*;
 import java.util.Date;
 
+/**
+ * This is an Entity Class for Actors
+ */
+
+
 @Entity
 @Table(name = "DSS_ACTORS")
 @Getter
