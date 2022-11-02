@@ -1,3 +1,9 @@
+/**
+ * @author Glen Mark T Anduiza
+ * @version 1.0
+ * @since 10/31/2022
+ */
+
 package com.dss.controller.registration;
 
 import com.dss.dto.user.UsersDTO;
@@ -18,9 +24,7 @@ import javax.validation.Valid;
 import java.util.List;
 
 /**
- * @author Glen Mark T Anduiza
- * @version 1.0
- * @since 10/31/2022
+ * This class is a controller layer for DSS Registrations
  */
 
 @SuppressWarnings("unchecked")
@@ -33,6 +37,12 @@ public class RegistrationController {
     @Autowired
     private RegistrationService registrationService;
 
+    /** Returns a ResponseEntity<String> value if the admin user successfully adds the account registration or not.
+     * @param userDto userDto
+     * @param result BindingResult
+     * @return ResponseEntity<>(commonMsgDtl.getContent(), HttpStatus.OK)
+     * @see #addRegistration(UsersDTO, BindingResult)
+     */
     @PostMapping("/add-registration.do")
     public ResponseEntity<String> addRegistration(@Valid @RequestBody UsersDTO userDto, BindingResult result){
         log.debug("RegistrationController | addRegistration | Start");
@@ -59,6 +69,10 @@ public class RegistrationController {
         return new ResponseEntity<>(commonMsgDtl.getContent(), HttpStatus.OK);
     }
 
+    /** Returns a list of ResponseEntity<List<Users>>
+     * @return ResponseEntity<>(userList, HttpStatus.OK);
+     * @see #displayRegistration()
+     */
     @GetMapping("/display-registrations.do")
     public ResponseEntity<List<Users>> displayRegistration(){
         log.debug("RegistrationController | displayRegistration | Start");
@@ -80,6 +94,11 @@ public class RegistrationController {
         return new ResponseEntity<>(userList, HttpStatus.OK);
     }
 
+    /** Returns a specific user account in a form of ResponseEntity<List<Users>>
+     * @param request HttpServletRequest
+     * @return ResponseEntity<>(userList, HttpStatus.OK);
+     * @see #searchRegistration(HttpServletRequest)
+     */
     @GetMapping("/search-registration.do")
     public ResponseEntity<List<Users>> searchRegistration(HttpServletRequest request){
         log.debug("RegistrationController | searchRegistration | Start");
@@ -102,6 +121,11 @@ public class RegistrationController {
         return new ResponseEntity<>(userList, HttpStatus.OK);
     }
 
+    /** Returns a ResponseEntity<String> value if the admin user successfully changes the account password or not.
+     * @param request HttpServletRequest
+     * @return ResponseEntity<>(commonMsgDtl.getContent(), HttpStatus.OK)
+     * @see #changePassword(HttpServletRequest)
+     */
     @PutMapping("/change-password.do")
     public ResponseEntity<String> changePassword(HttpServletRequest request){
         log.debug("RegistrationController | changePassword | Start");
@@ -124,6 +148,11 @@ public class RegistrationController {
         return new ResponseEntity<>(commonMsgDtl.getContent(), HttpStatus.OK);
     }
 
+    /** Returns a ResponseEntity<String> value if the admin user successfully deletes the account registration or not.
+     * @param request HttpServletRequest
+     * @return ResponseEntity<>(commonMsgDtl.getContent(), HttpStatus.OK)
+     * @see #deleteAccount(HttpServletRequest)
+     */
     @DeleteMapping("/delete-account.do")
     public ResponseEntity<String> deleteAccount(HttpServletRequest request){
         log.debug("RegistrationController | deactivateAccount | Start");

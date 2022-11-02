@@ -1,3 +1,9 @@
+/**
+ * @author Glen Mark T Anduiza
+ * @version 1.0
+ * @since 10/31/2022
+ */
+
 package com.dss.controller.reviews;
 
 import com.dss.dto.reviews.ReviewsDTO;
@@ -15,9 +21,7 @@ import javax.servlet.http.HttpServletRequest;
 import java.util.List;
 
 /**
- * @author Glen Mark T Anduiza
- * @version 1.0
- * @since 10/31/2022
+ * This class is a controller layer for DSS Reviews
  */
 
 @SuppressWarnings("unchecked")
@@ -31,6 +35,11 @@ public class ReviewsController {
     @Autowired
     private ReviewsService reviewsService;
 
+    /** Returns a ResponseEntity<String> value if the admin user successfully adds the movie review or not.
+     * @param reviewsDto reviewsDto
+     * @return ResponseEntity<>(commonMsgDtl.getContent(), HttpStatus.OK)
+     * @see #addReview(ReviewsDTO)
+     */
     @PostMapping("/add-review.do")
     public ResponseEntity<String> addReview(@RequestBody ReviewsDTO reviewsDto){
         log.debug("ReviewsController | addReview | Start");
@@ -47,6 +56,10 @@ public class ReviewsController {
         return new ResponseEntity<>(commonMsgDtl.getContent(), HttpStatus.OK);
     }
 
+    /** Returns a list of ResponseEntity<List<Reviews>>
+     * @return ResponseEntity<>(userList, HttpStatus.OK);
+     * @see #displayReviews()
+     */
     @GetMapping("/display-reviews.do")
     public ResponseEntity<List<Reviews>> displayReviews(){
         log.debug("ReviewsController | displayReviews | Start");
@@ -68,6 +81,11 @@ public class ReviewsController {
         return new ResponseEntity<>(reviewsList, HttpStatus.OK);
     }
 
+    /** Returns a specific movie review in a form of ResponseEntity<List<Reviews>>
+     * @param request HttpServletRequest
+     * @return ResponseEntity<>(userList, HttpStatus.OK);
+     * @see #searchReview(HttpServletRequest request)
+     */
     @GetMapping("/search-review.do")
     public ResponseEntity<List<Reviews>> searchReview(HttpServletRequest request){
         log.debug("ReviewsController | searchReview | Start");
@@ -90,6 +108,11 @@ public class ReviewsController {
         return new ResponseEntity<>(reviewsList, HttpStatus.OK);
     }
 
+    /** Returns a ResponseEntity<String> value if the admin user successfully updates the movie review or not.
+     * @param reviewsDto reviewsDto
+     * @return ResponseEntity<>(commonMsgDtl.getContent(), HttpStatus.OK)
+     * @see #updateReview(ReviewsDTO)
+     */
     @PutMapping("/update-review.do")
     public ResponseEntity<String> updateReview(@RequestBody ReviewsDTO reviewsDto){
         log.debug("ReviewsController | updateReview | Start");

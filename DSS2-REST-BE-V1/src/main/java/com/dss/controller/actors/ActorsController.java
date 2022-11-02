@@ -1,3 +1,9 @@
+/**
+ * @author Glen Mark T Anduiza
+ * @version 1.0
+ * @since 10/31/2022
+ */
+
 package com.dss.controller.actors;
 
 import com.dss.dto.actors.ActorsDTO;
@@ -15,9 +21,7 @@ import javax.servlet.http.HttpServletRequest;
 import java.util.List;
 
 /**
- * @author Glen Mark T Anduiza
- * @version 1.0
- * @since 10/31/2022
+ * This class is a controller layer for DSS Actors
  */
 
 @SuppressWarnings("unchecked")
@@ -30,6 +34,11 @@ public class ActorsController {
     @Autowired
     private ActorsService actorsService;
 
+    /** Returns a ResponseEntity<String> value if the admin user successfully adds the movie actor or not.
+     * @param actorsDto actorsDto
+     * @return ResponseEntity<>(commonMsgDtl.getContent(), HttpStatus.OK)
+     * @see #addActor(ActorsDTO)
+     */
     @PostMapping("/add-actor.do")
     public ResponseEntity<String> addActor(@RequestBody ActorsDTO actorsDto){
         log.debug("ActorsController | addActor | Start ");
@@ -46,6 +55,10 @@ public class ActorsController {
         return new ResponseEntity<>(commonMsgDtl.getContent(), HttpStatus.OK);
     }
 
+    /** Returns a list of ResponseEntity<List<Actors>>
+     * @return ResponseEntity<>(actorList, HttpStatus.OK)
+     * @see #displayActors()
+     */
     @GetMapping("/display-actors.do")
     public ResponseEntity<List<Actors>> displayActors(){
         log.debug("ActorsController | displayActors | Start ");
@@ -67,6 +80,11 @@ public class ActorsController {
         return new ResponseEntity<>(actorList, HttpStatus.OK);
     }
 
+    /** Returns a specific movie actor in a form of ResponseEntity<List<Actors>>
+     * @param request HttpServletRequest
+     * @return ResponseEntity<>(actorList, HttpStatus.OK)
+     * @see #searchActorByActorName(HttpServletRequest)
+     */
     @GetMapping("/search-actor.do")
     public ResponseEntity<List<Actors>> searchActorByActorName(HttpServletRequest request){
         log.debug("ActorsController | searchActorByActorName | Start");
@@ -90,6 +108,11 @@ public class ActorsController {
         return new ResponseEntity<>(actorList, HttpStatus.OK);
     }
 
+    /** Returns a ResponseEntity<String> value if the admin user successfully updates the movie actor or not.
+     * @param actorsDto actorsDto
+     * @return ResponseEntity<>(commonMsgDtl.getContent(), HttpStatus.OK)
+     * @see #updateActor(ActorsDTO)
+     */
     @PutMapping("/update-actor.do")
     public ResponseEntity<String> updateActor(@RequestBody ActorsDTO actorsDto){
         log.debug("ActorsController | updateActor | Start ");
@@ -106,6 +129,11 @@ public class ActorsController {
         return new ResponseEntity<>(commonMsgDtl.getContent(), HttpStatus.OK);
     }
 
+    /** Returns a ResponseEntity<String> value if the admin user successfully deletes the movie actor or not.
+     * @param request HttpServletRequest
+     * @return ResponseEntity<>(commonMsgDtl.getContent(), HttpStatus.OK)
+     * @see #updateActor(ActorsDTO)
+     */
     @DeleteMapping("/delete-actor.do")
     public ResponseEntity<String> deleteActor(HttpServletRequest request){
         log.debug("ActorsController | deleteActor | Start ");

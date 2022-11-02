@@ -1,3 +1,9 @@
+/**
+ * @author Glen Mark T Anduiza
+ * @version 1.0
+ * @since 10/31/2022
+ */
+
 package com.dss.controller.movie;
 
 import com.dss.dto.movie.DssMovieDTO;
@@ -15,9 +21,7 @@ import javax.servlet.http.HttpServletRequest;
 import java.util.List;
 
 /**
- * @author Glen Mark T Anduiza
- * @version 1.0
- * @since 10/31/2022
+ * This class is a controller layer for DSS Movies
  */
 
 @SuppressWarnings("unchecked")
@@ -31,6 +35,11 @@ public class DssMovieController {
     @Autowired
     private DssMovieService dssMovieService;
 
+    /** Returns a ResponseEntity<String> value if the admin user successfully adds the movie or not.
+     * @param movieDto movieDto
+     * @return ResponseEntity<>(commonMsgDtl.getContent(), HttpStatus.OK)
+     * @see #addDigiStreamMovie(DssMovieDTO)
+     */
     @PostMapping("/add-digistreammovie.do")
     public ResponseEntity<String> addDigiStreamMovie(@RequestBody DssMovieDTO movieDto){
         log.debug("DigiStreamMovieController | addDigiStreamMovie | Start");
@@ -47,6 +56,10 @@ public class DssMovieController {
         return new ResponseEntity<>(commonMsgDtl.getContent(), HttpStatus.OK);
     }
 
+    /** Returns a list of ResponseEntity<List<DssMovie>>
+     * @return ResponseEntity<>(actorList, HttpStatus.OK)
+     * @see #displayDigiStreamMovie()
+     */
     @GetMapping("/display-digistreammovie.do")
     public ResponseEntity<List<DssMovie>> displayDigiStreamMovie(){
         log.debug("DigiStreamMovieController | displayDigiStreamMovie | Start");
@@ -68,6 +81,10 @@ public class DssMovieController {
         return new ResponseEntity<>(dssMovies, HttpStatus.OK);
     }
 
+    /** Returns a specific movie in a form of ResponseEntityResponseEntity<List<DssMovie>>
+     * @return ResponseEntity<>(actorList, HttpStatus.OK)
+     * @see #searchDigiStreamMovie(HttpServletRequest)
+     */
     @GetMapping("/search-digistreammovie.do")
     public ResponseEntity<List<DssMovie>> searchDigiStreamMovie(HttpServletRequest request){
         log.debug("DigiStreamMovieController | searchDigiStreamMovie | End");
@@ -90,6 +107,11 @@ public class DssMovieController {
         return new ResponseEntity<>(dssMovies, HttpStatus.OK);
     }
 
+    /** Returns a ResponseEntity<String> value if the admin user successfully updates the movie or not.
+     * @param movieDto movieDto
+     * @return ResponseEntity<>(commonMsgDtl.getContent(), HttpStatus.OK)
+     * @see #updateDigiStreamMovie(DssMovieDTO)
+     */
     @PutMapping("/update-digistreammovie.do")
     public ResponseEntity<String> updateDigiStreamMovie(@RequestBody DssMovieDTO movieDto){
         log.debug("DigiStreamMovieController | updateDigiStreamMovie | End");
@@ -105,6 +127,11 @@ public class DssMovieController {
         return new ResponseEntity<>(commonMsgDtl.getContent(), HttpStatus.OK);
     }
 
+    /** Returns a ResponseEntity<String> value if the admin user successfully deletes the movie or not.
+     * @param request HttpServletRequest
+     * @return ResponseEntity<>(commonMsgDtl.getContent(), HttpStatus.OK)
+     * @see #deleteDigiStreamMovie(HttpServletRequest)
+     */
     @DeleteMapping("/delete-digistreammovie.do")
     public ResponseEntity<String> deleteDigiStreamMovie(HttpServletRequest request){
         log.debug("DigiStreamMovieController | deleteDigiStreamMovie | Start");
