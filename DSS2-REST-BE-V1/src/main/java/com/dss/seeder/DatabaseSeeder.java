@@ -1,3 +1,9 @@
+/**
+ * @author Glen Mark T Anduiza
+ * @version 1.0
+ * @since 10/31/2022
+ */
+
 package com.dss.seeder;
 
 import com.dss.entity.actors.Actors;
@@ -21,9 +27,7 @@ import org.springframework.stereotype.Component;
 import java.util.*;
 
 /**
- * @author Glen Mark T Anduiza
- * @version 1.0
- * @since 10/31/2022
+ * This class is a Database Seeder for DSS web app
  */
 
 @Component
