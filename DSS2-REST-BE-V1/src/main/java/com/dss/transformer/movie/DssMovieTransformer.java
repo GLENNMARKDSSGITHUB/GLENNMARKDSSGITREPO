@@ -99,9 +99,9 @@ public class DssMovieTransformer {
         return dssMovie;
     }
 
-    public DssMovie transformToDssMovie(DssMovieDTO dssDto){
+    public DssMovie transformToDssMovieAdd(DssMovieDTO dssDto, String movieId){
         return new DssMovie(
-                dssDto.getMovieId(),
+                movieId,
                 dssDto.getMovieTitle(),
                 dssDto.getYear(),
                 dssDto.getWriters(),
@@ -117,6 +117,27 @@ public class DssMovieTransformer {
                 UserRoles.ROLE_ADMIN.getStrRole(),
                 dssDto.getLastModificationDate(),
                 dssDto.getLastModifiedBy()
+        );
+    }
+
+    public DssMovie transformToDssMovieUpdate(DssMovieDTO dssDto){
+        return new DssMovie(
+                dssDto.getMovieId(),
+                dssDto.getMovieTitle(),
+                dssDto.getYear(),
+                dssDto.getWriters(),
+                dssDto.getDirectedBy(),
+                dssDto.getProducedBy(),
+                dssDto.getMusicBy(),
+                dssDto.getDuration(),
+                dssDto.getMovieCost(),
+                dssDto.getCategory(),
+                dssDto.getCountry(),
+                dssDto.getLanguage(),
+                dssDto.getCreationDate(),
+                dssDto.getCreatedBy(),
+                new Date(),
+                UserRoles.ROLE_ADMIN.getStrRole()
         );
     }
 }

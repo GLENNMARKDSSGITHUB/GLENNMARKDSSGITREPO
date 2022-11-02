@@ -11,7 +11,6 @@ import com.dss.entity.movie.DssMovie;
 import com.dss.service.movie.DssMovieService;
 import com.dss.util.utils.DssCommonMessageDetails;
 import com.dss.util.utils.DssCommonUtility;
-import com.fasterxml.jackson.annotation.JsonFormat;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -20,7 +19,6 @@ import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 
 import javax.servlet.http.HttpServletRequest;
-import java.io.IOException;
 import java.util.List;
 
 /**
@@ -158,7 +156,7 @@ public class DssMovieController {
      * @see #deleteDigiStreamMovie(HttpServletRequest)
      */
     @PostMapping("/upload-image.do")
-    public ResponseEntity<String> uplaodImage(HttpServletRequest request, @RequestParam("image") MultipartFile multipartFile){
+    public ResponseEntity<String> uploadImage(HttpServletRequest request, @RequestParam("image") MultipartFile multipartFile){
         log.debug("DssMovieController | uplaodImage | Start");
         DssCommonMessageDetails commonMsgDtl = new DssCommonMessageDetails();
         try{

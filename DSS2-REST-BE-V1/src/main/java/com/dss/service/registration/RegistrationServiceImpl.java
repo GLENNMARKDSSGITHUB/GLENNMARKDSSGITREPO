@@ -51,7 +51,8 @@ public class RegistrationServiceImpl implements RegistrationService{
         logger.debug("RegistrationServiceImpl | addRegistration | Start ");
         DssCommonMessageDetails commonMsgDtl = new DssCommonMessageDetails();
         try{
-            userDto.setDssUserId(commonMethods.userIdGeneration(userRepository.maxUserId()));
+            String dssUserId = commonMethods.userIdGeneration(userRepository.maxUserId());
+            userDto.setDssUserId(dssUserId);
             Users user = transformer.populateUsersRegistration(userDto);
             userRepository.save(user);
             Roles role = transformer.populateRolesRegistration(userDto, user).get(0);
@@ -60,6 +61,7 @@ public class RegistrationServiceImpl implements RegistrationService{
             commonMsgDtl.setSuccess(true);
             logger.debug("RegistrationServiceImpl | addRegistration | getContent : " + commonMsgDtl.getContent());
         }catch(Exception ex){
+            commonMsgDtl.setSuccess(false);
             logger.error("RegistrationServiceImpl | addRegistration | Error msg : " + ex.getMessage());
         }finally{
             logger.debug("RegistrationServiceImpl | addRegistration | End ");

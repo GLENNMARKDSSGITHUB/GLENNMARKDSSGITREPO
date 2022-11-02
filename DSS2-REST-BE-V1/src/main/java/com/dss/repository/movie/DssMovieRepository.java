@@ -28,5 +28,5 @@ public interface DssMovieRepository extends JpaRepository<DssMovie, String> {
     List<DssMovie> findDssMovieByMovieId(@Param("movieId") String movieId);
 
     @Query(value = "SELECT MAX(MOVIE_ID) FROM DSS_MOVIE", nativeQuery = true)
-    String maxDssId();
+    String maxMovieId();
 }

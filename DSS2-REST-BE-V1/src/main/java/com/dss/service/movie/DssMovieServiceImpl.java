@@ -76,8 +76,8 @@ public class DssMovieServiceImpl implements DssMovieService {
                 commonMsgDtl.setContent(String.format(CommonStringUtility.ERR_CODE_001_MOVIE_EXIST, dssDto.getMovieTitle()));
                 commonMsgDtl.setSuccess(false);
             }else{
-                dssDto.setMovieId(commonMethods.dssIdGeneration(dssMovieRepository.maxDssId()));
-                dssMovieRepository.save(transformer.transformToDssMovie(dssDto));
+                String movieId = commonMethods.dssIdGeneration(dssMovieRepository.maxMovieId());
+                dssMovieRepository.save(transformer.transformToDssMovieAdd(dssDto, movieId));
                 commonMsgDtl.setContent(String.format(CommonStringUtility.SUCCESS_CODE_001_ADD_MOV, dssDto.getMovieId()));
                 commonMsgDtl.setSuccess(true);
             }
@@ -95,7 +95,8 @@ public class DssMovieServiceImpl implements DssMovieService {
         try{    
             List<DssMovie> movieList = dssMovieRepository.findAll();
             if(!movieList.isEmpty()){
-                commonMsgDtl.setObjList(transformer.transformToDssMovie((movieList)));
+                List<DssMovie> movies = transformer.transformToDssMovie((movieList));
+                commonMsgDtl.setObjList(movies);
                 commonMsgDtl.setSuccess(true);
             }else{
                 commonMsgDtl.setContent(CommonStringUtility.ERR_CODE_002_NO_DISPLAY_RECORDS);
@@ -115,7 +116,8 @@ public class DssMovieServiceImpl implements DssMovieService {
         try{
             List<DssMovie> movieList = dssMovieRepository.findDssMovieByMovieTitle(movieTitle);
             if(!movieList.isEmpty()){
-                commonMsgDtl.setObjList(transformer.transformToDssMovie((movieList)));
+                List<DssMovie> movies = transformer.transformToDssMovie((movieList));
+                commonMsgDtl.setObjList(movies);
                 commonMsgDtl.setSuccess(true);
             }else{
                 commonMsgDtl.setContent(CommonStringUtility.ERR_CODE_002_NO_DISPLAY_RECORDS);
@@ -135,9 +137,7 @@ public class DssMovieServiceImpl implements DssMovieService {
         try{
             List<DssMovie> movieList = dssMovieRepository.findDssMovieByMovieId(dssDto.getMovieId());
             if(!movieList.isEmpty()){
-                dssDto.setLastModificationDate(new Date());
-                dssDto.setLastModifiedBy(UserRoles.ROLE_ADMIN.toString());
-                dssMovieRepository.save(transformer.transformToDssMovie(dssDto));
+                dssMovieRepository.save(transformer.transformToDssMovieUpdate(dssDto));
                 commonMsgDtl.setContent(String.format(CommonStringUtility.SUCCESS_CODE_002_UPDATE_MOV, dssDto.getMovieTitle()));
                 commonMsgDtl.setSuccess(true);
             }else{
