@@ -12,9 +12,16 @@ import org.slf4j.LoggerFactory;
 public class DssCommonMethods {
     private static final Logger logger = LoggerFactory.getLogger(DssCommonMethods.class);
 
+    private final DssCommonUtility util = new DssCommonUtility();
+
     public String userIdGeneration(String maxUserId){
         String userId;
-        int count = Integer.parseInt(maxUserId.replaceAll("[^0-9 ]", ""));
+        logger.debug("DssCommonMethods | userIdGeneration | maxUserId : " + maxUserId);
+        int count = 0;
+        if(!util.isNullOrEmpty(maxUserId)){
+            count = Integer.parseInt(maxUserId.replaceAll("[^0-9 ]", ""));
+        }
+
         count = count + 1;
         int countDigit = (int)Math.floor(Math.log10(count) + 1);
         if(countDigit == 1){
@@ -32,7 +39,11 @@ public class DssCommonMethods {
 
     public String dssIdGeneration(String maxDssId){
         String dssId;
-        int count = Integer.parseInt(maxDssId.replaceAll("[^0-9 ]", ""));
+        int count = 0;
+        if(!util.isNullOrEmpty(maxDssId)){
+            count = Integer.parseInt(maxDssId.replaceAll("[^0-9 ]", ""));
+        }
+
         count = count + 1;
         int countDigit = (int)Math.floor(Math.log10(count) + 1);
         if(countDigit == 1){
@@ -50,8 +61,11 @@ public class DssCommonMethods {
 
     public String actorIdGeneration(String maxActorId){
         String actorId;
-        int count = Integer.parseInt(maxActorId.replaceAll("[^0-9 ]", ""));
-        count = count + 1;
+        int count = 0;
+        if(!util.isNullOrEmpty(maxActorId)){
+            count = Integer.parseInt(maxActorId.replaceAll("[^0-9 ]", ""));
+        }
+
         int countDigit = (int)Math.floor(Math.log10(count) + 1);
         if(countDigit == 1){
             actorId = String.format(CommonStringUtility.ACT_ID_000X, count);
@@ -68,7 +82,11 @@ public class DssCommonMethods {
 
     public String reviewIdGeneration(String maxReviewId){
         String reviewId;
-        int count = Integer.parseInt(maxReviewId.replaceAll("[^0-9 ]", ""));
+        int count = 0;
+        if(util.isNullOrEmpty(maxReviewId)){
+            count = Integer.parseInt(maxReviewId.replaceAll("[^0-9 ]", ""));
+        }
+
         count = count + 1;
         int countDigit = (int)Math.floor(Math.log10(count) + 1);
         if(countDigit == 1){
