@@ -10,7 +10,7 @@ import com.dss.dto.reviews.ReviewsDTO;
 import com.dss.util.utils.DssCommonMessageDetails;
 
 /**
- * This is a service interface for DSS Reviews
+ * This is a service layer for DSS Reviews
  */
 
 public interface ReviewsService {

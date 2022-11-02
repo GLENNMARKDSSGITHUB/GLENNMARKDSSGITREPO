@@ -8,9 +8,10 @@ package com.dss.service.movie;
 
 import com.dss.dto.movie.DssMovieDTO;
 import com.dss.util.utils.DssCommonMessageDetails;
+import org.springframework.web.multipart.MultipartFile;
 
 /**
- * This is a service interface for DSS Movie
+ * This is a service layer for DSS Movie
  */
 
 public interface DssMovieService {
@@ -47,4 +48,12 @@ public interface DssMovieService {
      * @see #deleteDssMovie(String)
      */
     DssCommonMessageDetails deleteDssMovie(String movieTitle);
+
+    /** Returns a String value if the admin user successfully uploads the image or not.
+     * @param movieTitle movie title
+     * @param multipartFile multipartFile
+     * @return DssCommonMessageDetails commonMsgDtl
+     * @see #uploadImage(String, MultipartFile)
+     */
+    DssCommonMessageDetails uploadImage(String movieTitle, MultipartFile multipartFile);
 }

@@ -9,6 +9,7 @@ package com.dss.transformer.movie;
 
 import com.dss.dto.movie.DssMovieDTO;
 import com.dss.entity.actors.Actors;
+import com.dss.entity.image.Images;
 import com.dss.entity.movie.DssMovie;
 import com.dss.entity.reviews.Reviews;
 import com.dss.util.enums.UserRoles;
@@ -63,6 +64,16 @@ public class DssMovieTransformer {
                 ));
             }
 
+            List<Images> imagesList = new ArrayList<>();
+            for(Images img : dss.getImage()){
+                imagesList.add(new Images(
+                        img.getImageId(),
+                        img.getFileName(),
+                        img.getFileSize(),
+                        img.getUrl()
+                ));
+            }
+
             dssMovie.add(new DssMovie(
                     dss.getMovieId(),
                     dss.getMovieTitle(),
@@ -76,13 +87,13 @@ public class DssMovieTransformer {
                     dss.getCategory(),
                     dss.getCountry(),
                     dss.getLanguage(),
-                    dss.getImage(),
                     dss.getCreationDate(),
                     dss.getCreatedBy(),
                     dss.getLastModificationDate(),
                     dss.getLastModifiedBy(),
                     actorsList,
-                    reviewsList
+                    reviewsList,
+                    imagesList
             ));
         }
         return dssMovie;
@@ -102,7 +113,6 @@ public class DssMovieTransformer {
                 dssDto.getCategory(),
                 dssDto.getCountry(),
                 dssDto.getLanguage(),
-                dssDto.getImage(),
                 new Date(),
                 UserRoles.ROLE_ADMIN.getStrRole(),
                 dssDto.getLastModificationDate(),

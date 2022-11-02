@@ -10,7 +10,7 @@ import com.dss.dto.actors.ActorsDTO;
 import com.dss.util.utils.DssCommonMessageDetails;
 
 /**
- * This is a service interface for DSS Actors
+ * This is a service layer for DSS Actors
  */
 
 public interface ActorsService {

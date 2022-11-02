@@ -10,7 +10,7 @@ import com.dss.dto.user.UsersDTO;
 import com.dss.util.utils.DssCommonMessageDetails;
 
 /**
- * This is a service interface for DSS Registration
+ * This is a service layer for DSS Registration
  */
 
 public interface RegistrationService {
