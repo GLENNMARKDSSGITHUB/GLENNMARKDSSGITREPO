@@ -1,3 +1,9 @@
+/**
+ * @author Glen Mark T Anduiza
+ * @version 1.0
+ * @since 10/31/2022
+ */
+
 package com.dss.configuration.security;
 
 import com.dss.service.userdetails.DssUserDetailsServiceImpl;
@@ -13,9 +19,7 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 
 /**
- * @author Glen Mark T Anduiza
- * @version 1.0
- * @since 10/31/2022
+ * This class is a security configuration for Login and Authentication
  */
 
 @Configuration
@@ -25,11 +29,20 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
     @Autowired
     private DssUserDetailsServiceImpl dssUserDetailsService;
 
+    /** Returns a BCryptPasswordEncoder with the strength of 12
+     * param strength - the log rounds to use, between 4 and 31 (in this project, I use strength of 12)
+     * @return BCryptPasswordEncoder with the strength of 12
+     * @see #passwordEncoder()
+     */
     @Bean
     PasswordEncoder passwordEncoder() {
         return new BCryptPasswordEncoder(12);
     }
 
+    /** Performs authentication with the same contract as AuthenticationManager.authenticate(Authentication) .
+     * @return a fully authenticated object including credentials.
+     * @see #authenticationProvider()
+     */
     @Bean
     AuthenticationProvider authenticationProvider(){
         DaoAuthenticationProvider provider = new DaoAuthenticationProvider();
@@ -38,6 +51,11 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
         return provider;
     }
 
+    /** Configures the authorization for the URL such as things like if it requires to be authenticated
+     *  or if only certain roles can access it etc. It only has effect for those URLs that are processed by
+     *  that SecurityFilterChain (i.e. Those URLs that are matched by requestMatchers())
+     * @see #configure(HttpSecurity)
+     */
     @Override
     protected void configure(HttpSecurity http) throws Exception {
         http.csrf().disable()
