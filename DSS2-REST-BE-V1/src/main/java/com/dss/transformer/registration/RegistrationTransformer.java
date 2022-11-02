@@ -1,3 +1,9 @@
+/**
+ * @author Glen Mark T Anduiza
+ * @version 1.0
+ * @since 10/31/2022
+ */
+
 package com.dss.transformer.registration;
 
 import com.dss.dto.user.UsersDTO;
@@ -12,9 +18,7 @@ import java.util.Date;
 import java.util.List;
 
 /**
- * @author Glen Mark T Anduiza
- * @version 1.0
- * @since 10/31/2022
+ * This class is a DSS2 Account Registration Transformer
  */
 
 public class RegistrationTransformer {
