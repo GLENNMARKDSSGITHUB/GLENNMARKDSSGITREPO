@@ -1,3 +1,9 @@
+/**
+ * @author Glen Mark T Anduiza
+ * @version 1.0
+ * @since 10/31/2022
+ */
+
 package com.dss.service.reviews;
 
 import com.dss.dto.reviews.ReviewsDTO;
@@ -19,9 +25,11 @@ import java.util.Date;
 import java.util.List;
 
 /**
- * @author Glen Mark T Anduiza
- * @version 1.0
- * @since 10/31/2022
+ * This class is a service implementation for DSS Account Registration
+ * @see #addReview(ReviewsDTO)
+ * @see #displayReviews()
+ * @see #searchReviewByMovieTitle(String)
+ * @see #updateReview(ReviewsDTO)
  */
 
 @Service

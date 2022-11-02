@@ -1,3 +1,9 @@
+/**
+ * @author Glen Mark T Anduiza
+ * @version 1.0
+ * @since 10/31/2022
+ */
+
 package com.dss.service.registration;
 
 import com.dss.dto.user.UsersDTO;
@@ -19,9 +25,12 @@ import org.springframework.stereotype.Service;
 import java.util.List;
 
 /**
- * @author Glen Mark T Anduiza
- * @version 1.0
- * @since 10/31/2022
+ * This class is a service implementation for DSS Account Registration
+ * @see #registerAccount(UsersDTO)
+ * @see #displayRegistrations()
+ * @see #searchRegistrationByEmail(String)
+ * @see #changePassword(String,String,String)
+ * @see #changePassword(String,String,String)
  */
 
 @Service

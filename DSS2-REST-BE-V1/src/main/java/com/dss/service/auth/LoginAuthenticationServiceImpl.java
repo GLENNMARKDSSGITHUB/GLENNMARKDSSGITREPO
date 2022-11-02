@@ -1,5 +1,12 @@
+/**
+ * @author Glen Mark T Anduiza
+ * @version 1.0
+ * @since 10/31/2022
+ */
+
 package com.dss.service.auth;
 
+import com.dss.dto.movie.DssMovieDTO;
 import com.dss.entity.user.Users;
 import com.dss.repository.user.UsersRepository;
 import com.dss.util.utils.CommonStringUtility;
@@ -10,9 +17,8 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 
 /**
- * @author Glen Mark T Anduiza
- * @version 1.0
- * @since 10/31/2022
+ * This class is a service implementation for DSS Login and Authentication
+ * @see #login(String , String)
  */
 
 @Service

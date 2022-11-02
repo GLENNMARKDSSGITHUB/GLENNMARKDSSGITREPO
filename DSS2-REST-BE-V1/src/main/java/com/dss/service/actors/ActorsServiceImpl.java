@@ -1,3 +1,9 @@
+/**
+ * @author Glen Mark T Anduiza
+ * @version 1.0
+ * @since 10/31/2022
+ */
+
 package com.dss.service.actors;
 
 import com.dss.dto.actors.ActorsDTO;
@@ -19,9 +25,12 @@ import java.util.Date;
 import java.util.List;
 
 /**
- * @author Glen Mark T Anduiza
- * @version 1.0
- * @since 10/31/2022
+ * This class is a service implementation for DSS Movie Actors
+ * @see #addActor(ActorsDTO)
+ * @see #displayActors()
+ * @see #searchActorByActorName(String, String)
+ * @see #updateActor(ActorsDTO)
+ * @see #deleteActor(String, String)
  */
 
 @Service
@@ -43,7 +52,6 @@ public class ActorsServiceImpl implements ActorsService{
         try{
             List<DssMovie> movieList = dssMovieRepository.findDssMovieByMovieId(actorDto.getMovieId());
             List<Actors> actorsList = actorsRepository.findActorsByActorName(actorDto.getFirstName(), actorDto.getLastName());
-            logger.debug("ActorsServiceImpl | addActor | movie ID : " + movieList.get(0).getMovieId());
             if(!movieList.isEmpty()){
                 if(actorsList.isEmpty()){
                     actorDto.setActorId(commonMethods.actorIdGeneration(actorsRepository.maxActorId()));
