@@ -1,3 +1,10 @@
+/**
+ * @author Glen Mark T Anduiza
+ * @version 1.0
+ * @since 10/31/2022
+ */
+
+
 package com.dss.util.utils;
 
 import com.google.gson.*;
@@ -11,14 +18,17 @@ import java.time.format.DateTimeFormatter;
 import java.util.List;
 
 /**
- * @author Glen Mark T Anduiza
- * @version 1.0
- * @since 10/31/2022
+ * This is an DssCommonUtility Class.
  */
 
 public class DssCommonUtility {
     private static final Logger logger = LoggerFactory.getLogger(DssCommonUtility.class);
 
+    /** Returns a String value of json object
+     * @param e List<?> e
+     * @return String json
+     * @see #gsonToJsonString(List)
+     */
     public String gsonToJsonString(List<?> e){
         Gson gson = new GsonBuilder().setPrettyPrinting().registerTypeAdapter(LocalDate.class, new LocaleDateAdapter()).create();
         return gson.toJson(e);
@@ -31,10 +41,20 @@ public class DssCommonUtility {
         }
     }
 
+    /** Returns true if the List<?> is empty, else, is false
+     * @param e List<?> e
+     * @return boolean value
+     * @see #isNullOrEmpty(List)
+     */
     public boolean isNullOrEmpty(List<?> e) {
         return e.isEmpty();
     }
 
+    /** Returns true if the String value is empty, else, is false
+     * @param param string value
+     * @return boolean value
+     * @see #isNullOrEmpty(String)
+     */
     public boolean isNullOrEmpty(String param){
         return StringUtils.isEmpty(param);
     }

@@ -1,9 +1,13 @@
-package com.dss.util.utils;
-
 /**
  * @author Glen Mark T Anduiza
  * @version 1.0
  * @since 10/31/2022
+ */
+
+package com.dss.util.utils;
+
+/**
+ * This is a CommonStringUtility Class. It contains all string messages used in the project.
  */
 
 public class CommonStringUtility {

@@ -7,16 +7,17 @@
 package com.dss.util.exceptions;
 
 /**
- * This is an Exception Class for AccountExistingException
+ * This is an Exception Class for MovieNotFoundException
  */
 
-public class AccountExistingException extends RuntimeException {
+public class MovieNotFoundException extends RuntimeException{
 
     /**
-     * Thrown this exception if the account is already existing.
+     * Thrown this exception if the movie is not found
      * @param exceptionStr the detail message. The detail message is saved for later retrieval by the getMessage() method.
      */
-    public AccountExistingException(String exceptionStr) {
+
+    public MovieNotFoundException(String exceptionStr) {
         super(exceptionStr + "\n");
     }
 }

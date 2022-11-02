@@ -1,12 +1,16 @@
+/**
+ * @author Glen Mark T Anduiza
+ * @version 1.0
+ * @since 10/31/2022
+ */
+
 package com.dss.util.utils;
 
 import java.util.List;
 import java.util.Map;
 
 /**
- * @author Glen Mark T Anduiza
- * @version 1.0
- * @since 10/31/2022
+ * This is a DssCommonMessageDetails Class.
  */
 
 public class DssCommonMessageDetails {
