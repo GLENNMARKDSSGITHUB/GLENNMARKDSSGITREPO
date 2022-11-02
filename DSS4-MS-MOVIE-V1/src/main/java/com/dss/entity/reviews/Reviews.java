@@ -1,3 +1,9 @@
+/**
+ * @author Glen Mark T Anduiza
+ * @version 1.0
+ * @since 10/31/2022
+ */
+
 package com.dss.entity.reviews;
 
 import com.dss.entity.movie.DssMovie;
@@ -10,10 +16,9 @@ import javax.persistence.*;
 import java.util.Date;
 
 /**
- * @author Glen Mark T Anduiza
- * @version 1.0
- * @since 10/31/2022
+ * This is an Entity Class for Reviews
  */
+
 
 @Entity
 @Table(name = "DSS_REVIEWS")
@@ -21,8 +26,7 @@ import java.util.Date;
 @Setter
 @NoArgsConstructor
 @ToString
-public class
-Reviews {
+public class Reviews {
 
     @Id
     @Column(name = "REVIEW_ID", length = 10, nullable = false)
@@ -52,7 +56,7 @@ Reviews {
     @Column(name = "LAST_MODIFIED_BY", length = 100)
     private String lastModifiedBy;
 
-    @ManyToOne
+    @ManyToOne(cascade = {CascadeType.MERGE, CascadeType.PERSIST, CascadeType.REFRESH})
     private DssMovie dss;
 
     public Reviews(String reviewId, String movieId, int rate, String reviewHeadline, String reviewContent, Date creationDate, String createdBy, Date lastModificationDate, String lastModifiedBy, DssMovie dss) {

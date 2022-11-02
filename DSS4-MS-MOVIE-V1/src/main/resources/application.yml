@@ -7,8 +7,18 @@ spring:
   devtools:
     restart:
       exclude: static/**,public/**
+
+  #MULTIPART FILE CONFIGURATION
+  servlet:
+    multipart:
+      max-file-size: 524288000
+      max-request-size: 524288000
+
+  #SPRING APPLICATION NAME
   application:
     name: dds4-ms-movie-v1
+
+  #SPRING BEAN DEFINITION
   main:
     allow-bean-definition-overriding: true
 
@@ -47,3 +57,5 @@ eureka:
       defaultZone: http://localhost:8761/eureka/
   instance:
     hostname: localhost
+
+dss-file-path: C:\applogs\image\

@@ -1,3 +1,9 @@
+/**
+ * @author Glen Mark T Anduiza
+ * @version 1.0
+ * @since 10/31/2022
+ */
+
 package com.dss.entity.roles;
 
 import com.dss.entity.user.Users;
@@ -9,9 +15,7 @@ import lombok.Setter;
 import javax.persistence.*;
 
 /**
- * @author Glen Mark T Anduiza
- * @version 1.0
- * @since 10/31/2022
+ * This is an Entity Class for Roles
  */
 
 @Entity
@@ -29,7 +33,7 @@ public class Roles {
     @Column(name = "USER_ROLE", length = 20, nullable = false)
     private String userRole;
 
-    @ManyToOne
+    @ManyToOne(cascade = {CascadeType.MERGE, CascadeType.PERSIST, CascadeType.REFRESH})
     private Users user;
 
     public Roles(String dssRoleId, String userRole) {

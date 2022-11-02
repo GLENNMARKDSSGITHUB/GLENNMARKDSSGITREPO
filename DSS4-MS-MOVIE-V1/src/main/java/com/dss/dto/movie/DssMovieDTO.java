@@ -1,15 +1,21 @@
+/**
+ * @author Glen Mark T Anduiza
+ * @version 1.0
+ * @since 10/31/2022
+ */
+
 package com.dss.dto.movie;
 
 import com.dss.dto.actors.ActorsDTO;
 import com.dss.dto.reviews.ReviewsDTO;
+import com.dss.entity.image.Images;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 
 import java.util.Date;
 import java.util.List;
 
 /**
- * @author Glen Mark T Anduiza
- * @version 1.0
- * @since 10/31/2022
+ * This class is a Data Transfer Object for DssMovieDTO
  */
 
 public class DssMovieDTO {
@@ -26,7 +32,6 @@ public class DssMovieDTO {
     private String category;
     private String country;
     private String language;
-    private String image;
     private Date creationDate;
     private String createdBy;
     private Date lastModificationDate;
@@ -34,11 +39,13 @@ public class DssMovieDTO {
 
     private List<ActorsDTO> movieActors;
     private List<ReviewsDTO> movieRatings;
+    @JsonIgnore
+    private List<Images> image;
 
     public DssMovieDTO() {
     }
 
-    public DssMovieDTO(String movieId, String movieTitle, String year, String writers, String directedBy, String producedBy, String musicBy, String duration, double movieCost, String category, String country, String language, String image, Date creationDate, String createdBy, Date lastModificationDate, String lastModifiedBy, List<ActorsDTO> movieActors, List<ReviewsDTO> movieRatings) {
+    public DssMovieDTO(String movieId, String movieTitle, String year, String writers, String directedBy, String producedBy, String musicBy, String duration, double movieCost, String category, String country, String language, Date creationDate, String createdBy, Date lastModificationDate, String lastModifiedBy, List<ActorsDTO> movieActors, List<ReviewsDTO> movieRatings, List<Images> image) {
         this.movieId = movieId;
         this.movieTitle = movieTitle;
         this.year = year;
@@ -51,13 +58,13 @@ public class DssMovieDTO {
         this.category = category;
         this.country = country;
         this.language = language;
-        this.image = image;
         this.creationDate = creationDate;
         this.createdBy = createdBy;
         this.lastModificationDate = lastModificationDate;
         this.lastModifiedBy = lastModifiedBy;
         this.movieActors = movieActors;
         this.movieRatings = movieRatings;
+        this.image = image;
     }
 
     public String getMovieId() {
@@ -156,14 +163,6 @@ public class DssMovieDTO {
         this.language = language;
     }
 
-    public String getImage() {
-        return image;
-    }
-
-    public void setImage(String image) {
-        this.image = image;
-    }
-
     public Date getCreationDate() {
         return creationDate;
     }
@@ -212,9 +211,17 @@ public class DssMovieDTO {
         this.movieRatings = movieRatings;
     }
 
+    public List<Images> getImage() {
+        return image;
+    }
+
+    public void setImage(List<Images> image) {
+        this.image = image;
+    }
+
     @Override
     public String toString() {
-        return "DigiStreamMovieDTO{" +
+        return "DssMovieDTO{" +
                 "movieId='" + movieId + '\'' +
                 ", movieTitle='" + movieTitle + '\'' +
                 ", year='" + year + '\'' +
@@ -227,11 +234,13 @@ public class DssMovieDTO {
                 ", category='" + category + '\'' +
                 ", country='" + country + '\'' +
                 ", language='" + language + '\'' +
-                ", image='" + image + '\'' +
                 ", creationDate=" + creationDate +
                 ", createdBy='" + createdBy + '\'' +
                 ", lastModificationDate=" + lastModificationDate +
                 ", lastModifiedBy='" + lastModifiedBy + '\'' +
+                ", movieActors=" + movieActors +
+                ", movieRatings=" + movieRatings +
+                ", image=" + image +
                 '}';
     }
 }

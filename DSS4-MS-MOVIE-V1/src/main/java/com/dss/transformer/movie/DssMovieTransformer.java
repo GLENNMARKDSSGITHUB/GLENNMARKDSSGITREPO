@@ -1,7 +1,15 @@
+/**
+ * @author Glen Mark T Anduiza
+ * @version 1.0
+ * @since 10/31/2022
+ */
+
+
 package com.dss.transformer.movie;
 
 import com.dss.dto.movie.DssMovieDTO;
 import com.dss.entity.actors.Actors;
+import com.dss.entity.image.Images;
 import com.dss.entity.movie.DssMovie;
 import com.dss.entity.reviews.Reviews;
 import com.dss.util.enums.UserRoles;
@@ -13,9 +21,7 @@ import java.util.Date;
 import java.util.List;
 
 /**
- * @author Glen Mark T Anduiza
- * @version 1.0
- * @since 10/31/2022
+ * This class is a DSS2 Movie Transformer
  */
 
 public class DssMovieTransformer {
@@ -58,6 +64,16 @@ public class DssMovieTransformer {
                 ));
             }
 
+            List<Images> imagesList = new ArrayList<>();
+            for(Images img : dss.getImage()){
+                imagesList.add(new Images(
+                        img.getImageId(),
+                        img.getFileName(),
+                        img.getFileSize(),
+                        img.getUrl()
+                ));
+            }
+
             dssMovie.add(new DssMovie(
                     dss.getMovieId(),
                     dss.getMovieTitle(),
@@ -71,19 +87,40 @@ public class DssMovieTransformer {
                     dss.getCategory(),
                     dss.getCountry(),
                     dss.getLanguage(),
-                    dss.getImage(),
                     dss.getCreationDate(),
                     dss.getCreatedBy(),
                     dss.getLastModificationDate(),
                     dss.getLastModifiedBy(),
                     actorsList,
-                    reviewsList
+                    reviewsList,
+                    imagesList
             ));
         }
         return dssMovie;
     }
 
-    public DssMovie transformToDssMovie(DssMovieDTO dssDto){
+    public DssMovie transformToDssMovieAdd(DssMovieDTO dssDto, String movieId){
+        return new DssMovie(
+                movieId,
+                dssDto.getMovieTitle(),
+                dssDto.getYear(),
+                dssDto.getWriters(),
+                dssDto.getDirectedBy(),
+                dssDto.getProducedBy(),
+                dssDto.getMusicBy(),
+                dssDto.getDuration(),
+                dssDto.getMovieCost(),
+                dssDto.getCategory(),
+                dssDto.getCountry(),
+                dssDto.getLanguage(),
+                new Date(),
+                UserRoles.ROLE_ADMIN.getStrRole(),
+                dssDto.getLastModificationDate(),
+                dssDto.getLastModifiedBy()
+        );
+    }
+
+    public DssMovie transformToDssMovieUpdate(DssMovieDTO dssDto){
         return new DssMovie(
                 dssDto.getMovieId(),
                 dssDto.getMovieTitle(),
@@ -97,11 +134,10 @@ public class DssMovieTransformer {
                 dssDto.getCategory(),
                 dssDto.getCountry(),
                 dssDto.getLanguage(),
-                dssDto.getImage(),
+                dssDto.getCreationDate(),
+                dssDto.getCreatedBy(),
                 new Date(),
-                UserRoles.ROLE_ADMIN.getStrRole(),
-                dssDto.getLastModificationDate(),
-                dssDto.getLastModifiedBy()
+                UserRoles.ROLE_ADMIN.getStrRole()
         );
     }
 }

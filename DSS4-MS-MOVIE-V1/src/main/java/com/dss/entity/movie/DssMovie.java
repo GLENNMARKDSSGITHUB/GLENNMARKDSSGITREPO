@@ -1,6 +1,13 @@
+/**
+ * @author Glen Mark T Anduiza
+ * @version 1.0
+ * @since 10/31/2022
+ */
+
 package com.dss.entity.movie;
 
 import com.dss.entity.actors.Actors;
+import com.dss.entity.image.Images;
 import com.dss.entity.reviews.Reviews;
 import lombok.*;
 
@@ -9,9 +16,7 @@ import java.util.Date;
 import java.util.List;
 
 /**
- * @author Glen Mark T Anduiza
- * @version 1.0
- * @since 10/31/2022
+ * This is an Entity Class for DssMovie
  */
 
 @Entity
@@ -60,9 +65,6 @@ public class DssMovie {
     @Column(name = "LANGUAGE", length = 25, nullable = false)
     private String language;
 
-    @Column(name = "IMAGE", nullable = false)
-    private String image;
-
     @Column(name = "CREATION_DATE", nullable = false)
     private Date creationDate;
 
@@ -83,7 +85,11 @@ public class DssMovie {
     @ToString.Exclude
     private List<Reviews> movieReviews;
 
-    public DssMovie(String movieId, String movieTitle, String year, String writers, String directedBy, String producedBy, String musicBy, String duration, double movieCost, String category, String country, String language, String image, Date creationDate, String createdBy, Date lastModificationDate, String lastModifiedBy) {
+    @OneToMany(mappedBy = "dss")
+    @ToString.Exclude
+    private List<Images> image;
+
+    public DssMovie(String movieId, String movieTitle, String year, String writers, String directedBy, String producedBy, String musicBy, String duration, double movieCost, String category, String country, String language, Date creationDate, String createdBy, Date lastModificationDate, String lastModifiedBy) {
         this.movieId = movieId;
         this.movieTitle = movieTitle;
         this.year = year;
@@ -96,7 +102,6 @@ public class DssMovie {
         this.category = category;
         this.country = country;
         this.language = language;
-        this.image = image;
         this.creationDate = creationDate;
         this.createdBy = createdBy;
         this.lastModificationDate = lastModificationDate;
@@ -117,5 +122,13 @@ public class DssMovie {
 
     public void setMovieReviews(List<Reviews> movieReviews) {
         this.movieReviews = movieReviews;
+    }
+
+    public List<Images> getImage() {
+        return image;
+    }
+
+    public void setImage(List<Images> image) {
+        this.image = image;
     }
 }

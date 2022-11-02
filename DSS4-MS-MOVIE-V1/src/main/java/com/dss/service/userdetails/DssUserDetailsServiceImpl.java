@@ -1,3 +1,9 @@
+/**
+ * @author Glen Mark T Anduiza
+ * @version 1.0
+ * @since 10/31/2022
+ */
+
 package com.dss.service.userdetails;
 
 import com.dss.entity.user.Users;
@@ -10,9 +16,8 @@ import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
 
 /**
- * @author Glen Mark T Anduiza
- * @version 1.0
- * @since 10/31/2022
+ * This class implements the UserDetailsService interface which is used
+ * throughout the framework as a user DAO and is the strategy used by the DaoAuthenticationProvider.
  */
 
 @Service
@@ -21,6 +26,11 @@ public class DssUserDetailsServiceImpl implements UserDetailsService {
     @Autowired
     private UsersRepository userRepository;
 
+    /** Locates the user based on the username.
+     * @return a fully populated user record (never null)
+     * @throws UsernameNotFoundException – if the user could not be found or the user has no GrantedAuthority
+     * @see #loadUserByUsername(String)
+     */
     @Override
     public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
         Users user = userRepository.findUserByEmailAddress(username);
