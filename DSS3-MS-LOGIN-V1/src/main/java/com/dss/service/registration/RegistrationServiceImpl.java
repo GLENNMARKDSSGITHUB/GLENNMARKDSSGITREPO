@@ -1,3 +1,9 @@
+/**
+ * @author Glen Mark T Anduiza
+ * @version 1.0
+ * @since 10/31/2022
+ */
+
 package com.dss.service.registration;
 
 import com.dss.dto.user.UsersDTO;
@@ -19,9 +25,12 @@ import org.springframework.stereotype.Service;
 import java.util.List;
 
 /**
- * @author Glen Mark T Anduiza
- * @version 1.0
- * @since 10/31/2022
+ * This class is a service implementation for DSS Account Registration
+ * @see #registerAccount(UsersDTO)
+ * @see #displayRegistrations()
+ * @see #searchRegistrationByEmail(String)
+ * @see #changePassword(String,String,String)
+ * @see #changePassword(String,String,String)
  */
 
 @Service
@@ -42,7 +51,8 @@ public class RegistrationServiceImpl implements RegistrationService{
         logger.debug("RegistrationServiceImpl | addRegistration | Start ");
         DssCommonMessageDetails commonMsgDtl = new DssCommonMessageDetails();
         try{
-            userDto.setDssUserId(commonMethods.userIdGeneration(userRepository.maxUserId()));
+            String dssUserId = commonMethods.userIdGeneration(userRepository.maxUserId());
+            userDto.setDssUserId(dssUserId);
             Users user = transformer.populateUsersRegistration(userDto);
             userRepository.save(user);
             Roles role = transformer.populateRolesRegistration(userDto, user).get(0);
@@ -51,6 +61,7 @@ public class RegistrationServiceImpl implements RegistrationService{
             commonMsgDtl.setSuccess(true);
             logger.debug("RegistrationServiceImpl | addRegistration | getContent : " + commonMsgDtl.getContent());
         }catch(Exception ex){
+            commonMsgDtl.setSuccess(false);
             logger.error("RegistrationServiceImpl | addRegistration | Error msg : " + ex.getMessage());
         }finally{
             logger.debug("RegistrationServiceImpl | addRegistration | End ");

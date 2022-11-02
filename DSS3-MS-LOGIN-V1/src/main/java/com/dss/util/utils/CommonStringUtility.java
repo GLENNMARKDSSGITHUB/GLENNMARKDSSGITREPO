@@ -1,12 +1,21 @@
-package com.dss.util.utils;
-
 /**
  * @author Glen Mark T Anduiza
  * @version 1.0
  * @since 10/31/2022
  */
 
+package com.dss.util.utils;
+
+/**
+ * This is a CommonStringUtility Class. It contains all string messages used in the project.
+ */
+
 public class CommonStringUtility {
+
+    /*==========================CUSTOM LOGIN ERROR MESSAGES FOR LOGIN ========================*/
+    public static final String  ERR_CODE_001_LOGIN_INCORRECT_PASSWORD = "The password you’ve entered is incorrect.";
+    public static final String  ERR_CODE_001_LOGIN_EMAIL_NOT_CONNECTED = "The email you entered isn’t connected to an account.";
+
 
     /*=================================CUSTOM REGEX PATTERNS==================================*/
     public static final String REGEX_PATTERN_SPECIAL_CHAR_NUM = "[^a-zA-Z\\s+]";
