@@ -1,11 +1,15 @@
+/**
+ * @author Glen Mark T Anduiza
+ * @version 1.0
+ * @since 10/31/2022
+ */
+
 package com.dss.dto.reviews;
 
 import java.util.Date;
 
 /**
- * @author Glen Mark T Anduiza
- * @version 1.0
- * @since 10/31/2022
+ * This class is a Data Transfer Object for ReviewsDTO
  */
 
 public class ReviewsDTO {

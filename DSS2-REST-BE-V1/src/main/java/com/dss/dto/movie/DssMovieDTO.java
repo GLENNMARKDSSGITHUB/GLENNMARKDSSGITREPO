@@ -1,3 +1,9 @@
+/**
+ * @author Glen Mark T Anduiza
+ * @version 1.0
+ * @since 10/31/2022
+ */
+
 package com.dss.dto.movie;
 
 import com.dss.dto.reviews.ReviewsDTO;
@@ -7,9 +13,7 @@ import java.util.Date;
 import java.util.List;
 
 /**
- * @author Glen Mark T Anduiza
- * @version 1.0
- * @since 10/31/2022
+ * This class is a Data Transfer Object for DssMovieDTO
  */
 
 public class DssMovieDTO {
