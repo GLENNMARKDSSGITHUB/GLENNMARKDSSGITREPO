@@ -81,15 +81,15 @@ public class DssMovieController {
     }
 
     /** Returns a specific movie in a form of List<DssMovie>
+     * @param movieTitle movieTitle
      * @return List<DssMovie>
-     * @see #searchDigiStreamMovie(HttpServletRequest)
+     * @see #searchDigiStreamMovie(String)
      */
-    @GetMapping("/search-digistreammovie.do")
-    public List<DssMovie> searchDigiStreamMovie(HttpServletRequest request){
+    @GetMapping("/search-digistreammovie.do/{movieTitle}")
+    public List<DssMovie> searchDigiStreamMovie(@PathVariable("movieTitle") String movieTitle){
         log.debug("DssMovieController | searchDigiStreamMovie | End");
         List<DssMovie> dssMovies = null;
         try{
-            String movieTitle = request.getParameter("movieTitle");
             DssCommonMessageDetails commonMsgDtl = dssMovieService.searchDssMovieByMovieTitle(movieTitle);
             if(commonMsgDtl.isSuccess()){
                 dssMovies = (List<DssMovie>) commonMsgDtl.getObjList();
@@ -127,15 +127,14 @@ public class DssMovieController {
     }
 
     /** Returns a String value if the admin user successfully deletes the movie or not.
-     * @param request HttpServletRequest
+     * @param movieTitle HttpServletRequest
      * @return String
-     * @see #deleteDigiStreamMovie(HttpServletRequest)
+     * @see #deleteDigiStreamMovie(String)
      */
-    @DeleteMapping("/delete-digistreammovie.do")
-    public String deleteDigiStreamMovie(HttpServletRequest request){
+    @DeleteMapping("/delete-digistreammovie.do/{movieTitle}")
+    public String deleteDigiStreamMovie(@PathVariable("movieTitle") String movieTitle){
         log.debug("DssMovieController | deleteDigiStreamMovie | Start");
         DssCommonMessageDetails commonMsgDtl = new DssCommonMessageDetails();
-        String movieTitle = request.getParameter("movieTitle");
         try{
             commonMsgDtl = dssMovieService.deleteDssMovie(movieTitle);
             log.debug(commonMsgDtl.getContent());
@@ -151,7 +150,6 @@ public class DssMovieController {
      * @param request HttpServletRequest
      * @param multipartFile MultipartFile
      * @return String
-     * @see #deleteDigiStreamMovie(HttpServletRequest)
      */
     @PostMapping("/upload-image.do")
     public String uploadImage(HttpServletRequest request, @RequestParam("image") MultipartFile multipartFile){

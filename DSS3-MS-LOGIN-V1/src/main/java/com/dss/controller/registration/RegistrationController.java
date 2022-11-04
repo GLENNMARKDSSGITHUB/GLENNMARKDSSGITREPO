@@ -95,16 +95,15 @@ public class RegistrationController {
     }
 
     /** Returns a specific user account in a form of List<Users>
-     * @param request HttpServletRequest
+     * @param email HttpServletRequest
      * @return List<Users>
-     * @see #searchRegistration(HttpServletRequest)
+     * @see #searchRegistration(String)
      */
-    @GetMapping("/search-registration.do")
-    public List<Users> searchRegistration(HttpServletRequest request){
+    @GetMapping("/search-registration.do/{email}")
+    public List<Users> searchRegistration(@PathVariable("email") String email){
         log.debug("RegistrationController | searchRegistration | Start");
         List<Users> userList = null;
         try{
-            String email = request.getParameter("email");
             DssCommonMessageDetails commonMsgDtl = registrationService.searchRegistrationByEmail(email);
             if(commonMsgDtl.isSuccess()){
                 userList = (List<Users>)commonMsgDtl.getObjList();
@@ -122,18 +121,19 @@ public class RegistrationController {
     }
 
     /** Returns a String value if the admin user successfully changes the account password or not.
-     * @param request HttpServletRequest
+     * @param email email
+     * @param newPassword new password
+     * @param confirmPassword confirmed Password
      * @return String
-     * @see #changePassword(HttpServletRequest)
+     * @see #changePassword(String, String, String)
      */
-    @PutMapping("/change-password.do")
-    public String changePassword(HttpServletRequest request){
+    @PutMapping("/change-password.do/{email}/{newPassword}/{confirmPassword}")
+    public String changePassword(@PathVariable("email") String email,
+                                 @PathVariable("newPassword") String newPassword,
+                                 @PathVariable("confirmPassword") String confirmPassword){
         log.debug("RegistrationController | changePassword | Start");
         DssCommonMessageDetails commonMsgDtl = new DssCommonMessageDetails();
         try{
-            String email = request.getParameter("email");
-            String newPassword = request.getParameter("newPassword");
-            String confirmPassword = request.getParameter("confirmPassword");
             commonMsgDtl = registrationService.changePassword(email, newPassword, confirmPassword);
             if(commonMsgDtl.isSuccess()){
                 log.debug("RegistrationController | changePassword | getContent : " + commonMsgDtl.getContent());
@@ -149,17 +149,16 @@ public class RegistrationController {
     }
 
     /** Returns a String value if the admin user successfully deletes the account registration or not.
-     * @param request HttpServletRequest
+     * @param email email
+     * @param password password
      * @return String
-     * @see #deleteAccount(HttpServletRequest)
+     * @see #deleteAccount(String, String)
      */
-    @DeleteMapping("/delete-account.do")
-    public String deleteAccount(HttpServletRequest request){
+    @DeleteMapping("/delete-account.do/{email}/{password}")
+    public String deleteAccount(@PathVariable("email") String email, @PathVariable("password") String password){
         log.debug("RegistrationController | deactivateAccount | Start");
         DssCommonMessageDetails commonMsgDtl = new DssCommonMessageDetails();
         try{
-            String email = request.getParameter("email");
-            String password = request.getParameter("password");
             commonMsgDtl = registrationService.deleteAccount(email, password);
             log.debug("RegistrationController | deactivateAccount | getContent : " + commonMsgDtl.getContent());
         }catch(Exception ex){

@@ -6,9 +6,9 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 
-@FeignClient(name = "DSS3-MS-LOGIN-V1" , url ="http://localhost:9005")
-public interface RegistrationAndAuthProxy {
-    @PostMapping("/API/login.do")
-    ResponseEntity<String> login(@RequestBody UsersDTO userDto);
+@FeignClient(name = "${feign.login-register-name}" , url ="${feign.login-register-url}")
+public interface AuthenticationProxy {
 
+    @PostMapping("/API/login.do")
+    ResponseEntity<String> login(UsersDTO userDto);
 }
