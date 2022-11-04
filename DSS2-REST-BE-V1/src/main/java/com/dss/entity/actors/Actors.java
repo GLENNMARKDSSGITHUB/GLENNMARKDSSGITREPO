@@ -21,6 +21,7 @@ import java.util.Date;
 @Table(name = "DSS_ACTORS")
 @Getter
 @Setter
+@Builder
 @NoArgsConstructor
 @ToString
 public class Actors {

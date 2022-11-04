@@ -21,8 +21,8 @@ import java.util.List;
 @Repository
 public interface UsersRepository extends JpaRepository<Users, Long> {
 
-    @Query(value = "SELECT * FROM DSS_USERS WHERE DSS_USER_ID = :dssUserId", nativeQuery = true)
-    List<Users> findUserByUserId(@Param("dssUserId") String dssUserId);
+//    @Query(value = "SELECT * FROM DSS_USERS WHERE DSS_USER_ID = :dssUserId", nativeQuery = true)
+//    List<Users> findUserByUserId(@Param("dssUserId") String dssUserId);
 
     @Query(value = "SELECT * FROM DSS_USERS WHERE EMAIL = :email", nativeQuery = true)
     List<Users> findUserByEmail(@Param("email") String email);

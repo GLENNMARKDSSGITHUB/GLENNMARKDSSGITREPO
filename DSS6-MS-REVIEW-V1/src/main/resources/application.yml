@@ -42,3 +42,21 @@ eureka:
       defaultZone: http://localhost:8761/eureka/
   instance:
     hostname: localhost
+
+# FEIGN CLIENT CONFIGURATION
+app:
+  feign:
+    config:
+      name: dss6-ms-review-v1
+      url: http://localhost:9008
+
+feign:
+  client:
+    config:
+      instantaneous:
+        connect-timeout: 20000
+        read-timeout: 20000
+      default:
+        connectTimeout: 5000
+        readTimeout: 5000
+        loggerLevel: basic

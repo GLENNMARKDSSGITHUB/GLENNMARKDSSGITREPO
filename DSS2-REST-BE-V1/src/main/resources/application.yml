@@ -1,6 +1,6 @@
 #SERVER PORT
 server:
-  port: 9000
+  port: 9004
 
 #SPRING DEVTOOLS
 spring:
@@ -17,10 +17,6 @@ spring:
   #SPRING APPLICATION NAME
   application:
     name: dds2-rest-be-v1
-
-  #SPRING BEAN DEFINITION
-  main:
-    allow-bean-definition-overriding: true
 
   #SPRING DATASOURCE CONFIGURATION
   datasource:

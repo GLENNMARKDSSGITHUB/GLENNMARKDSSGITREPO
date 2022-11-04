@@ -8,7 +8,7 @@ spring:
     restart:
       exclude: static/**,public/**
   application:
-    name: dds3-ms-login-v1
+    name: dss3-ms-login-v1
   main:
     allow-bean-definition-overriding: true
 

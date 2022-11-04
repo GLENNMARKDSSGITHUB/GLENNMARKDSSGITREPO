@@ -6,7 +6,6 @@
 
 package com.dss.service.auth;
 
-import com.dss.dto.movie.DssMovieDTO;
 import com.dss.entity.user.Users;
 import com.dss.repository.user.UsersRepository;
 import com.dss.util.utils.CommonStringUtility;
@@ -34,6 +33,7 @@ public class LoginAuthenticationServiceImpl implements LoginAuthenticationServic
     public DssCommonMessageDetails login(String email, String password) {
         log.debug("AuthUserDetailsServiceImpl | login | Start ");
         try{
+            log.debug("AuthUserDetailsServiceImpl | login | Email : " + email);
             Users user = userRepository.findUserByEmailAddress(email);
             if(user != null){
                 if(encoder.matches(password, user.getPassword())){
@@ -52,6 +52,7 @@ public class LoginAuthenticationServiceImpl implements LoginAuthenticationServic
             }
         }catch(Exception ex){
             log.error("AuthUserDetailsServiceImpl | login | Error msg : " + ex.getMessage());
+            commonMsgDtl.setSuccess(false);
         }finally {
             log.debug("AuthUserDetailsServiceImpl | login | End ");
         }

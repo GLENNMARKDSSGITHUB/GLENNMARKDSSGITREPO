@@ -15,8 +15,8 @@ spring:
       max-request-size: 524288000
 
   #SPRING APPLICATION NAME
-  application:
-    name: dds4-ms-movie-v1
+#  application:
+#    name: dss4-ms-movie-v1
 
   #SPRING BEAN DEFINITION
   main:

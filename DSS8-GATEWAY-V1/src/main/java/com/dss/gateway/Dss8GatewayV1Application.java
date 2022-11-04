@@ -1,0 +1,12 @@
+package com.dss.gateway;
+
+import org.springframework.boot.SpringApplication;
+import org.springframework.boot.autoconfigure.SpringBootApplication;
+
+@SpringBootApplication
+public class Dss8GatewayV1Application {
+
+	public static void main(String[] args) {
+		SpringApplication.run(Dss8GatewayV1Application.class, args);
+	}
+}

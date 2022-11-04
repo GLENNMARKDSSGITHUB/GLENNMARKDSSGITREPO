@@ -8,7 +8,7 @@ package com.dss.controller.movie;
 
 import com.dss.dto.movie.DssMovieDTO;
 import com.dss.entity.movie.DssMovie;
-import com.dss.service.movie.DssMovieService;
+import com.dss.service.DssMovieService;
 import com.dss.util.utils.DssCommonMessageDetails;
 import com.dss.util.utils.DssCommonUtility;
 import lombok.extern.slf4j.Slf4j;

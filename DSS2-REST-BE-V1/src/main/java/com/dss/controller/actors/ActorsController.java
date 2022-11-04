@@ -37,7 +37,7 @@ public class ActorsController {
      * @return String
      * @see #addActor(ActorsDTO)
      */
-    @PostMapping("/add-actor.do")
+    @GetMapping("/add-actor.do")
     public String addActor(@RequestBody ActorsDTO actorsDto){
         log.debug("ActorsController | addActor | Start ");
         log.debug("ActorsController | addActor | actorDTO: " + actorsDto.toString());
