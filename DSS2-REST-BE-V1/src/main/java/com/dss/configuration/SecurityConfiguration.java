@@ -4,7 +4,7 @@
  * @since 10/31/2022
  */
 
-package com.dss.configuration.security;
+package com.dss.configuration;
 
 import com.dss.service.userdetails.DssUserDetailsServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;

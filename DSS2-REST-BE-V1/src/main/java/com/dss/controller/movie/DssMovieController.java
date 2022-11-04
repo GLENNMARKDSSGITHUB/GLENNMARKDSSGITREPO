@@ -13,8 +13,6 @@ import com.dss.util.utils.DssCommonMessageDetails;
 import com.dss.util.utils.DssCommonUtility;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.HttpStatus;
-import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 
@@ -36,13 +34,13 @@ public class DssMovieController {
     @Autowired
     private DssMovieService dssMovieService;
 
-    /** Returns a ResponseEntity<String> value if the admin user successfully adds the movie or not.
+    /** Returns a String value if the admin user successfully adds the movie or not.
      * @param movieDto movieDto
-     * @return ResponseEntity<>(commonMsgDtl.getContent(), HttpStatus.OK)
+     * @return String
      * @see #addDigiStreamMovie(DssMovieDTO)
      */
     @PostMapping("/add-digistreammovie.do")
-    public ResponseEntity<String> addDigiStreamMovie(@RequestBody DssMovieDTO movieDto){
+    public String addDigiStreamMovie(@RequestBody DssMovieDTO movieDto){
         log.debug("DssMovieController | addDigiStreamMovie | Start");
         log.debug("DssMovieController | addDigiStreamMovie | userDTO: " + movieDto.toString());
         DssCommonMessageDetails commonMsgDtl = new DssCommonMessageDetails();
@@ -54,15 +52,15 @@ public class DssMovieController {
         }finally{
             log.debug("DssMovieController | addDigiStreamMovie | End");
         }
-        return new ResponseEntity<>(commonMsgDtl.getContent(), HttpStatus.OK);
+        return commonMsgDtl.getContent();
     }
 
-    /** Returns a list of ResponseEntity<List<DssMovie>>
-     * @return ResponseEntity<>(actorList, HttpStatus.OK)
+    /** Returns a list of DssMovie
+     * @return List<DssMovie>
      * @see #displayDigiStreamMovie()
      */
     @GetMapping("/display-digistreammovie.do")
-    public ResponseEntity<List<DssMovie>> displayDigiStreamMovie(){
+    public List<DssMovie> displayDigiStreamMovie(){
         log.debug("DssMovieController | displayDigiStreamMovie | Start");
         List<DssMovie> dssMovies = null;
         try{
@@ -79,15 +77,15 @@ public class DssMovieController {
         }finally{
             log.debug("DssMovieController | displayDigiStreamMovie | End");
         }
-        return new ResponseEntity<>(dssMovies, HttpStatus.OK);
+        return dssMovies;
     }
 
-    /** Returns a specific movie in a form of ResponseEntityResponseEntity<List<DssMovie>>
-     * @return ResponseEntity<>(actorList, HttpStatus.OK)
+    /** Returns a specific movie in a form of List<DssMovie>
+     * @return List<DssMovie>
      * @see #searchDigiStreamMovie(HttpServletRequest)
      */
     @GetMapping("/search-digistreammovie.do")
-    public ResponseEntity<List<DssMovie>> searchDigiStreamMovie(HttpServletRequest request){
+    public List<DssMovie> searchDigiStreamMovie(HttpServletRequest request){
         log.debug("DssMovieController | searchDigiStreamMovie | End");
         List<DssMovie> dssMovies = null;
         try{
@@ -105,16 +103,16 @@ public class DssMovieController {
         }finally{
             log.debug("DssMovieController | searchDigiStreamMovie | End");
         }
-        return new ResponseEntity<>(dssMovies, HttpStatus.OK);
+        return dssMovies;
     }
 
-    /** Returns a ResponseEntity<String> value if the admin user successfully updates the movie or not.
+    /** Returns a String value if the admin user successfully updates the movie or not.
      * @param movieDto movieDto
-     * @return ResponseEntity<>(commonMsgDtl.getContent(), HttpStatus.OK)
+     * @return String
      * @see #updateDigiStreamMovie(DssMovieDTO)
      */
     @PutMapping("/update-digistreammovie.do")
-    public ResponseEntity<String> updateDigiStreamMovie(@RequestBody DssMovieDTO movieDto){
+    public String updateDigiStreamMovie(@RequestBody DssMovieDTO movieDto){
         log.debug("DssMovieController | updateDigiStreamMovie | End");
         DssCommonMessageDetails commonMsgDtl = new DssCommonMessageDetails();
         try{
@@ -125,16 +123,16 @@ public class DssMovieController {
         }finally{
             log.debug("DssMovieController | updateDigiStreamMovie | End");
         }
-        return new ResponseEntity<>(commonMsgDtl.getContent(), HttpStatus.OK);
+        return commonMsgDtl.getContent();
     }
 
-    /** Returns a ResponseEntity<String> value if the admin user successfully deletes the movie or not.
+    /** Returns a String value if the admin user successfully deletes the movie or not.
      * @param request HttpServletRequest
-     * @return ResponseEntity<>(commonMsgDtl.getContent(), HttpStatus.OK)
+     * @return String
      * @see #deleteDigiStreamMovie(HttpServletRequest)
      */
     @DeleteMapping("/delete-digistreammovie.do")
-    public ResponseEntity<String> deleteDigiStreamMovie(HttpServletRequest request){
+    public String deleteDigiStreamMovie(HttpServletRequest request){
         log.debug("DssMovieController | deleteDigiStreamMovie | Start");
         DssCommonMessageDetails commonMsgDtl = new DssCommonMessageDetails();
         String movieTitle = request.getParameter("movieTitle");
@@ -146,17 +144,16 @@ public class DssMovieController {
         }finally{
             log.debug("DssMovieController | deleteDigiStreamMovie | End");
         }
-        return new ResponseEntity<>(commonMsgDtl.getContent(), HttpStatus.OK);
+        return commonMsgDtl.getContent();
     }
 
-    /** Returns a ResponseEntity<String> value if the admin user successfully uploads the image or not.
+    /** Returns a String value if the admin user successfully uploads the image or not.
      * @param request HttpServletRequest
-     *
-     * @return ResponseEntity<>(commonMsgDtl.getContent(), HttpStatus.OK)
+     * @return String
      * @see #deleteDigiStreamMovie(HttpServletRequest)
      */
     @PostMapping("/upload-image.do")
-    public ResponseEntity<String> uploadImage(HttpServletRequest request, @RequestParam("image") MultipartFile multipartFile){
+    public String uploadImage(HttpServletRequest request, @RequestParam("image") MultipartFile multipartFile){
         log.debug("DssMovieController | uplaodImage | Start");
         DssCommonMessageDetails commonMsgDtl = new DssCommonMessageDetails();
         try{
@@ -167,7 +164,7 @@ public class DssMovieController {
         }finally {
             log.debug("DssMovieController | uploadImage | End ");
         }
-        return new ResponseEntity<>(commonMsgDtl.getContent(), HttpStatus.OK);
+        return commonMsgDtl.getContent();
     }
 
 }

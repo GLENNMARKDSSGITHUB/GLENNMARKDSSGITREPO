@@ -11,8 +11,6 @@ import com.dss.service.auth.LoginAuthenticationService;
 import com.dss.util.utils.DssCommonMessageDetails;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.HttpStatus;
-import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -29,13 +27,13 @@ public class LoginAuthenticationController {
     @Autowired
     private LoginAuthenticationService loginAuthenticationService;
 
-    /** Returns a ResponseEntity<String> value if the admin user successfully login to the DSS web app or not
+    /** Returns a String value if the admin user successfully login to the DSS web app or not
      * @param userDto userDto
-     * @return ResponseEntity<>(commonMsgDtl.getContent(), HttpStatus.OK)
+     * @return String
      * @see #login(UsersDTO)
      */
     @GetMapping("/login.do")
-    public ResponseEntity<String> login(@RequestBody UsersDTO userDto){
+    public String login(@RequestBody UsersDTO userDto){
         log.debug("AuthenticationController | login | Start ");
         DssCommonMessageDetails commonMsgDtl = new DssCommonMessageDetails();
         try{
@@ -52,6 +50,6 @@ public class LoginAuthenticationController {
         }finally{
             log.debug("AuthenticationController | login | End ");
         }
-        return new ResponseEntity<>(commonMsgDtl.getContent(), HttpStatus.OK);
+        return commonMsgDtl.getContent();
     }
 }

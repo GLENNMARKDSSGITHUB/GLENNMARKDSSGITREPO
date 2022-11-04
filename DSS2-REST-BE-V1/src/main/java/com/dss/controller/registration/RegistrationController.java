@@ -13,8 +13,6 @@ import com.dss.util.utils.DssCommonMessageDetails;
 import com.dss.util.utils.DssCommonUtility;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.HttpStatus;
-import org.springframework.http.ResponseEntity;
 import org.springframework.validation.BindingResult;
 import org.springframework.validation.ObjectError;
 import org.springframework.web.bind.annotation.*;
@@ -37,14 +35,14 @@ public class RegistrationController {
     @Autowired
     private RegistrationService registrationService;
 
-    /** Returns a ResponseEntity<String> value if the admin user successfully adds the account registration or not.
+    /** Returns a String value if the admin user successfully adds the account registration or not.
      * @param userDto userDto
      * @param result BindingResult
-     * @return ResponseEntity<>(commonMsgDtl.getContent(), HttpStatus.OK)
+     * @return String
      * @see #addRegistration(UsersDTO, BindingResult)
      */
     @PostMapping("/add-registration.do")
-    public ResponseEntity<String> addRegistration(@Valid @RequestBody UsersDTO userDto, BindingResult result){
+    public String addRegistration(@Valid @RequestBody UsersDTO userDto, BindingResult result){
         log.debug("RegistrationController | addRegistration | Start");
         log.debug("RegistrationController | addRegistration | userDTO: " + userDto.toString());
         DssCommonMessageDetails commonMsgDtl = new DssCommonMessageDetails();
@@ -66,15 +64,15 @@ public class RegistrationController {
         }finally{
             log.debug("RegistrationController | addRegistration | End ");
         }
-        return new ResponseEntity<>(commonMsgDtl.getContent(), HttpStatus.OK);
+        return commonMsgDtl.getContent();
     }
 
-    /** Returns a list of ResponseEntity<List<Users>>
-     * @return ResponseEntity<>(userList, HttpStatus.OK);
+    /** Returns a list of Users
+     * @return List<Users>
      * @see #displayRegistration()
      */
     @GetMapping("/display-registrations.do")
-    public ResponseEntity<List<Users>> displayRegistration(){
+    public List<Users> displayRegistration(){
         log.debug("RegistrationController | displayRegistration | Start");
         List<Users> userList = null;
         try{
@@ -91,16 +89,16 @@ public class RegistrationController {
         }finally{
             log.debug("RegistrationController | displayRegistration | End ");
         }
-        return new ResponseEntity<>(userList, HttpStatus.OK);
+        return userList;
     }
 
-    /** Returns a specific user account in a form of ResponseEntity<List<Users>>
+    /** Returns a specific user account in a form of List<Users>
      * @param request HttpServletRequest
-     * @return ResponseEntity<>(userList, HttpStatus.OK);
+     * @return List<Users>
      * @see #searchRegistration(HttpServletRequest)
      */
     @GetMapping("/search-registration.do")
-    public ResponseEntity<List<Users>> searchRegistration(HttpServletRequest request){
+    public List<Users> searchRegistration(HttpServletRequest request){
         log.debug("RegistrationController | searchRegistration | Start");
         List<Users> userList = null;
         try{
@@ -118,16 +116,16 @@ public class RegistrationController {
         }finally{
             log.debug("RegistrationController | searchRegistration | End ");
         }
-        return new ResponseEntity<>(userList, HttpStatus.OK);
+        return userList;
     }
 
-    /** Returns a ResponseEntity<String> value if the admin user successfully changes the account password or not.
+    /** Returns a String value if the admin user successfully changes the account password or not.
      * @param request HttpServletRequest
-     * @return ResponseEntity<>(commonMsgDtl.getContent(), HttpStatus.OK)
+     * @return String
      * @see #changePassword(HttpServletRequest)
      */
     @PutMapping("/change-password.do")
-    public ResponseEntity<String> changePassword(HttpServletRequest request){
+    public String changePassword(HttpServletRequest request){
         log.debug("RegistrationController | changePassword | Start");
         DssCommonMessageDetails commonMsgDtl = new DssCommonMessageDetails();
         try{
@@ -145,16 +143,16 @@ public class RegistrationController {
         }finally{
             log.debug("RegistrationController | changePassword | End ");
         }
-        return new ResponseEntity<>(commonMsgDtl.getContent(), HttpStatus.OK);
+        return commonMsgDtl.getContent();
     }
 
-    /** Returns a ResponseEntity<String> value if the admin user successfully deletes the account registration or not.
+    /** Returns a String value if the admin user successfully deletes the account registration or not.
      * @param request HttpServletRequest
-     * @return ResponseEntity<>(commonMsgDtl.getContent(), HttpStatus.OK)
+     * @return String
      * @see #deleteAccount(HttpServletRequest)
      */
     @DeleteMapping("/delete-account.do")
-    public ResponseEntity<String> deleteAccount(HttpServletRequest request){
+    public String deleteAccount(HttpServletRequest request){
         log.debug("RegistrationController | deactivateAccount | Start");
         DssCommonMessageDetails commonMsgDtl = new DssCommonMessageDetails();
         try{
@@ -165,6 +163,6 @@ public class RegistrationController {
         }catch(Exception ex){
             log.error("RegistrationController | deactivateAccount | Error : " + ex.getMessage());
         }
-        return new ResponseEntity<>(commonMsgDtl.getContent(), HttpStatus.OK);
+        return commonMsgDtl.getContent();
     }
 }
