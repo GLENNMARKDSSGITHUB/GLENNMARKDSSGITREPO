@@ -1,12 +1,6 @@
 
 v
 FDSS7-EUREKA-V1/src/test/java/com/dss/Dss7EurekaV1ApplicationTests.java,0\8\083d54434034c81eb91c47d3a9bc9232d0c7ec4c
-q
-ADSS7-EUREKA-V1/src/main/java/com/dss/Dss7EurekaV1Application.java,f\6\f6d86091bcb46f520ad6e0e87488fd226d40d4ce
-G
-DSS8-GATEWAY-V1/pom.xml,2\8\2845a928f9544b839301cf03eae9bc2234fe0f9e
-
-ODSS1-CLIENT-V1/src/main/java/com/dss/client/proxy/auth/AuthenticationProxy.java,a\0\a0fdd111c393f3323befd98b22929355e596d5d4
 s
 CDSS1-CLIENT-V1/src/main/java/com/dss/client/dto/error/ErrorDTO.java,c\e\ce131c2209d3b5923d42afba05fd6e1b36c68f77
 s
@@ -19,8 +13,6 @@ WDSS1-CLIENT-V1/src/main/java/com/dss/client/util/exceptions/MovieNotFoundExcept
 _DSS1-CLIENT-V1/src/main/java/com/dss/client/controller/registration/RegistrationController.java,5\a\5ae893cdfd6185b1e49fabb98f284dd265cfde94
 ç
 ]DSS1-CLIENT-V1/src/main/java/com/dss/client/service/registration/RegistrationServiceImpl.java,3\a\3a58be883916a4427c5915cf3644e27659902312
-Ö
-UDSS1-CLIENT-V1/src/main/java/com/dss/client/proxy/registration/RegistrationProxy.java,0\e\0ed642c82b119ce5b9e9bd4d928ec01e3947ad68
 F
 DSS1-CLIENT-V1/HELP.md,a\8\a86f7e7da8f774e6ebef7f2afbfbe610cc491c3c
 I
@@ -59,8 +51,6 @@ v
 FDSS1-CLIENT-V1/src/main/java/com/dss/client/util/enums/UserStatus.java,f\7\f7bfe04914aa63b852ea0fa6d5a035fcfc5f652e
 â
 YDSS1-CLIENT-V1/src/main/java/com/dss/client/util/exceptions/AccountExistingException.java,a\4\a41245bdff472f2b38fedecdc9afb6ec9e0580ad
-x
-HDSS1-CLIENT-V1/src/main/java/com/dss/client/Dss1ClientV1Application.java,8\f\8f5e6230bc3c0c2eddbfabdaa1c0a81b993ad785
 
 ODSS2-REST-BE-V1/src/main/java/com/dss/repository/reviews/ReviewsRepository.java,e\6\e6eef074de47f52375f2cf918b408f3652724187
 G

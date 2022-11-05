@@ -1,12 +1,13 @@
 package com.dss.client.proxy.actors;
 
+import com.dss.client.configuration.CustomFeignClientConfiguration;
 import com.dss.client.dto.actors.ActorsDTO;
 import org.springframework.cloud.openfeign.FeignClient;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
-@FeignClient(name = "${feign.actor-name}" , url ="${feign.actor-url}")
+@FeignClient(name = "${feign.actor-name}" , url ="${feign.actor-url}", configuration = CustomFeignClientConfiguration.class)
 public interface ActorsProxy {
 
     @PostMapping("/API/actor/add-actor.do")

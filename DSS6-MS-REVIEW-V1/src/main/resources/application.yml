@@ -5,7 +5,7 @@ server:
 #SPRING APPLICATION NAME
 spring:
   application:
-    name: dds6-ms-review-v1
+    name: dss6-ms-review-v1
 
   #SPRING DATASOURCE CONFIGURATION
   datasource:

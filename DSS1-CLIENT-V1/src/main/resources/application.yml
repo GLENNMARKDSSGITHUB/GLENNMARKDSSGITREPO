@@ -3,7 +3,7 @@ server:
 
 #SERVER
 spring:
-  application.name: dss-client
+  application.name: dss1-client-v1
   main:
     allow-bean-definition-overriding: true
 

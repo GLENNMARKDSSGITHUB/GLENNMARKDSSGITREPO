@@ -1,5 +1,6 @@
 package com.dss.client.proxy.movie;
 
+import com.dss.client.configuration.CustomFeignClientConfiguration;
 import com.dss.client.dto.movie.DssMovieDTO;
 import com.dss.client.entity.movie.DssMovie;
 import org.springframework.cloud.openfeign.FeignClient;
@@ -7,7 +8,7 @@ import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
-@FeignClient(name = "${feign.movie-name}" , url ="${feign.movie-url}")
+@FeignClient(name = "${feign.movie-name}" , url ="${feign.movie-url}", configuration = CustomFeignClientConfiguration.class)
 public interface DssMovieProxy {
 
     @PostMapping("/API/movie-catalogue/add-digistreammovie.do")

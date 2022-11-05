@@ -5,6 +5,8 @@ server:
 spring:
   application:
     name: dss-api-gateway
+  main:
+    allow-bean-definition-overriding: true
   cloud:
     gateway:
       discovery:
