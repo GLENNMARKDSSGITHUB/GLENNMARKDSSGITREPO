@@ -22,7 +22,6 @@ import java.util.List;
  */
 
 public class DssCommonUtility {
-    private static final Logger logger = LoggerFactory.getLogger(DssCommonUtility.class);
 
     /** Returns a String value of json object
      * @param e List<?> e

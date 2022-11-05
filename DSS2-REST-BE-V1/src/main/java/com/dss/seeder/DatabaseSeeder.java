@@ -87,8 +87,9 @@ public class DatabaseSeeder {
 
         List<DssMovie> dssMovieList = dssMovieRepository.findAll();
         if(dssMovieList.isEmpty()){
+            String generated_dss_id = "DSS0001";
             DssMovie movie = new DssMovie(
-                    "DSS0001",
+                    generated_dss_id,
                     "The Avengers",
                     "2021",
                     "Stan Lee",
@@ -108,14 +109,14 @@ public class DatabaseSeeder {
             dssMovieRepository.save(movie);
 
             List<Reviews> reviewsList = Arrays.asList(
-                    new Reviews("RT0001", "DSS0001", 5, "Rating Headline 1", "Rating Content 1", new Date(),  UserRoles.ROLE_SUPER_ADMIN.getStrRole(), null, null, movie),
-                    new Reviews("RT0002", "DSS0001", 5, "Rating Headline 2", "Rating Content 2", new Date(),  UserRoles.ROLE_SUPER_ADMIN.getStrRole(), null, null, movie)
+                    new Reviews("RT0001", generated_dss_id, 5, "Rating Headline 1", "Rating Content 1", new Date(),  UserRoles.ROLE_SUPER_ADMIN.getStrRole(), null, null, movie),
+                    new Reviews("RT0002", generated_dss_id, 5, "Rating Headline 2", "Rating Content 2", new Date(),  UserRoles.ROLE_SUPER_ADMIN.getStrRole(), null, null, movie)
             );
             reviewsRepository.saveAll(reviewsList);
 
             List<Actors> actorsList = Arrays.asList(
-                    new Actors("AC0001", "DSS0001", "Robert", "Downey Jr.", "Male", 45, "Tony Stark/Iron Man", UserRoles.ROLE_SUPER_ADMIN.getStrRole(), new Date(), UserRoles.ROLE_SUPER_ADMIN.getStrRole(), null, null, movie),
-                    new Actors("AC0002", "DSS0001", "Chris", "Evans", "Male", 30, "Captain America", UserRoles.ROLE_SUPER_ADMIN.getStrRole(), new Date(), UserRoles.ROLE_SUPER_ADMIN.getStrRole(), null, null, movie)
+                    new Actors("AC0001", generated_dss_id, "Robert", "Downey Jr.", "Male", 45, "Tony Stark/Iron Man", UserRoles.ROLE_SUPER_ADMIN.getStrRole(), new Date(), UserRoles.ROLE_SUPER_ADMIN.getStrRole(), null, null, movie),
+                    new Actors("AC0002", generated_dss_id, "Chris", "Evans", "Male", 30, "Captain America", UserRoles.ROLE_SUPER_ADMIN.getStrRole(), new Date(), UserRoles.ROLE_SUPER_ADMIN.getStrRole(), null, null, movie)
             );
             actorsRepository.saveAll(actorsList);
 

@@ -8,7 +8,7 @@ package com.dss.controller;
 
 import com.dss.dto.reviews.ReviewsDTO;
 import com.dss.entity.reviews.Reviews;
-import com.dss.service.reviews.ReviewsService;
+import com.dss.service.ReviewsService;
 import com.dss.util.utils.DssCommonMessageDetails;
 import com.dss.util.utils.DssCommonUtility;
 import lombok.extern.slf4j.Slf4j;
@@ -35,13 +35,13 @@ public class ReviewsController {
     @Autowired
     private ReviewsService reviewsService;
 
-    /** Returns a ResponseEntity<String> value if the admin user successfully adds the movie review or not.
+    /** Returns a String value if the admin user successfully adds the movie review or not.
      * @param reviewsDto reviewsDto
-     * @return ResponseEntity<>(commonMsgDtl.getContent(), HttpStatus.OK)
+     * @return String
      * @see #addReview(ReviewsDTO)
      */
     @PostMapping("/add-review.do")
-    public ResponseEntity<String> addReview(@RequestBody ReviewsDTO reviewsDto){
+    public String addReview(@RequestBody ReviewsDTO reviewsDto){
         log.debug("ReviewsController | addReview | Start");
         log.debug("ReviewsController | addReview | reviewsDto : " + reviewsDto.toString());
         DssCommonMessageDetails commonMsgDtl = new DssCommonMessageDetails();
@@ -53,15 +53,15 @@ public class ReviewsController {
         }finally{
             log.debug("ReviewsController | addReview | End");
         }
-        return new ResponseEntity<>(commonMsgDtl.getContent(), HttpStatus.OK);
+        return commonMsgDtl.getContent();
     }
 
-    /** Returns a list of ResponseEntity<List<Reviews>>
-     * @return ResponseEntity<>(userList, HttpStatus.OK);
+    /** Returns a list of Reviews
+     * @return List<Reviews>
      * @see #displayReviews()
      */
     @GetMapping("/display-reviews.do")
-    public ResponseEntity<List<Reviews>> displayReviews(){
+    public List<Reviews> displayReviews(){
         log.debug("ReviewsController | displayReviews | Start");
         List<Reviews> reviewsList = null;
         try{
@@ -78,7 +78,7 @@ public class ReviewsController {
         }finally{
             log.debug("ReviewsController | displayReviews  | End");
         }
-        return new ResponseEntity<>(reviewsList, HttpStatus.OK);
+        return reviewsList;
     }
 
     /** Returns a specific movie review in a form of ResponseEntity<List<Reviews>>
@@ -106,26 +106,5 @@ public class ReviewsController {
             log.debug("ReviewsController | searchReview | End");
         }
         return new ResponseEntity<>(reviewsList, HttpStatus.OK);
-    }
-
-    /** Returns a ResponseEntity<String> value if the admin user successfully updates the movie review or not.
-     * @param reviewsDto reviewsDto
-     * @return ResponseEntity<>(commonMsgDtl.getContent(), HttpStatus.OK)
-     * @see #updateReview(ReviewsDTO)
-     */
-    @PutMapping("/update-review.do")
-    public ResponseEntity<String> updateReview(@RequestBody ReviewsDTO reviewsDto){
-        log.debug("ReviewsController | updateReview | Start");
-        log.debug("ReviewsController | updateReview | reviewsDto : " + reviewsDto.toString());
-        DssCommonMessageDetails commonMsgDtl = new DssCommonMessageDetails();
-        try{
-            commonMsgDtl = reviewsService.updateReview(reviewsDto);
-            log.debug(commonMsgDtl.getContent());
-        }catch (Exception ex){
-            log.error("ReviewsController | updateReview | Error msg : " + ex.getMessage());
-        }finally{
-            log.debug("ReviewsController | updateReview | End");
-        }
-        return new ResponseEntity<>(commonMsgDtl.getContent(), HttpStatus.OK);
     }
 }

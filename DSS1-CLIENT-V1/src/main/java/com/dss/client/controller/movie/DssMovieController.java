@@ -1,6 +1,7 @@
 package com.dss.client.controller.movie;
 
 import com.dss.client.dto.movie.DssMovieDTO;
+import com.dss.client.entity.movie.DssMovie;
 import com.dss.client.service.movie.MovieService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
@@ -20,12 +21,12 @@ public class DssMovieController {
     }
 
     @GetMapping("/display-digistreammovie.do")
-    public List<DssMovieDTO> displayDigiStreamMovie(){
+    public List<DssMovie> displayDigiStreamMovie(){
         return movieService.displayDigiStreamMovie();
     }
 
     @GetMapping("search-digistreammovie.do/{movieTitle}")
-    public List<DssMovieDTO> searchDigiStreamMovie(@PathVariable("movieTitle") String movieTitle){
+    public List<DssMovie> searchDigiStreamMovie(@PathVariable("movieTitle") String movieTitle){
         return movieService.searchDigiStreamMovie(movieTitle);
     }
 

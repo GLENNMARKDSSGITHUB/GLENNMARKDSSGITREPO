@@ -8,16 +8,13 @@ package com.dss.controller;
 
 import com.dss.dto.actors.ActorsDTO;
 import com.dss.entity.actors.Actors;
-import com.dss.service.actors.ActorsService;
+import com.dss.service.ActorsService;
 import com.dss.util.utils.DssCommonMessageDetails;
 import com.dss.util.utils.DssCommonUtility;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.HttpStatus;
-import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
-import javax.servlet.http.HttpServletRequest;
 import java.util.List;
 
 /**
@@ -34,13 +31,13 @@ public class ActorsController {
     @Autowired
     private ActorsService actorsService;
 
-    /** Returns a ResponseEntity<String> value if the admin user successfully adds the movie actor or not.
+    /** Returns a String value if the admin user successfully adds the movie actor or not.
      * @param actorsDto actorsDto
-     * @return ResponseEntity<>(commonMsgDtl.getContent(), HttpStatus.OK)
+     * @return String
      * @see #addActor(ActorsDTO)
      */
     @PostMapping("/add-actor.do")
-    public ResponseEntity<String> addActor(@RequestBody ActorsDTO actorsDto){
+    public String addActor(@RequestBody ActorsDTO actorsDto){
         log.debug("ActorsController | addActor | Start ");
         log.debug("ActorsController | addActor | actorDTO: " + actorsDto.toString());
         DssCommonMessageDetails commonMsgDtl = new DssCommonMessageDetails();
@@ -52,15 +49,15 @@ public class ActorsController {
         }finally{
             log.debug("ActorsController | addActor | End ");
         }
-        return new ResponseEntity<>(commonMsgDtl.getContent(), HttpStatus.OK);
+        return commonMsgDtl.getContent();
     }
 
-    /** Returns a list of ResponseEntity<List<Actors>>
-     * @return ResponseEntity<>(actorList, HttpStatus.OK)
+    /** Returns a list of Actors
+     * @return List<Actors>
      * @see #displayActors()
      */
     @GetMapping("/display-actors.do")
-    public ResponseEntity<List<Actors>> displayActors(){
+    public List<Actors> displayActors(){
         log.debug("ActorsController | displayActors | Start ");
         List<Actors> actorList = null;
         try{
@@ -77,19 +74,19 @@ public class ActorsController {
         }finally{
             log.debug("ActorsController | displayActors | End ");
         }
-        return new ResponseEntity<>(actorList, HttpStatus.OK);
+        return actorList;
     }
 
-    /** Returns a specific movie actor in a form of ResponseEntity<List<Actors>>
-     * @param request HttpServletRequest
-     * @return ResponseEntity<>(actorList, HttpStatus.OK)
-     * @see #searchActorByActorName(HttpServletRequest)
+    /** Returns a specific movie actor in a form of List<Actors>
+     * @param firstName User's first name
+     * @param lastName User's last name
+     * @return List<Actors>
+     * @see #searchActorByActorName(String, String)
      */
-    @GetMapping("/search-actor.do")
-    public ResponseEntity<List<Actors>> searchActorByActorName(HttpServletRequest request){
+    @GetMapping("/search-actor.do/{firstName}/{lastName}")
+    public List<Actors> searchActorByActorName(@PathVariable("firstName") String firstName,
+                                               @PathVariable("lastName") String lastName){
         log.debug("ActorsController | searchActorByActorName | Start");
-        String firstName = request.getParameter("firstName");
-        String lastName = request.getParameter("lastName");
         List<Actors> actorList = null;
         try{
             DssCommonMessageDetails commonMsgDtl = actorsService.searchActorByActorName(firstName, lastName);
@@ -105,16 +102,16 @@ public class ActorsController {
         }finally{
             log.debug("ActorsController | searchActorByActorName | End ");
         }
-        return new ResponseEntity<>(actorList, HttpStatus.OK);
+        return actorList;
     }
 
-    /** Returns a ResponseEntity<String> value if the admin user successfully updates the movie actor or not.
+    /** Returns a String value if the admin user successfully updates the movie actor or not.
      * @param actorsDto actorsDto
-     * @return ResponseEntity<>(commonMsgDtl.getContent(), HttpStatus.OK)
+     * @return String
      * @see #updateActor(ActorsDTO)
      */
     @PutMapping("/update-actor.do")
-    public ResponseEntity<String> updateActor(@RequestBody ActorsDTO actorsDto){
+    public String updateActor(@RequestBody ActorsDTO actorsDto){
         log.debug("ActorsController | updateActor | Start ");
         log.debug("ActorsController | updateActor |  : " + actorsDto.toString());
         DssCommonMessageDetails commonMsgDtl = new DssCommonMessageDetails();
@@ -126,19 +123,19 @@ public class ActorsController {
         }finally{
             log.debug("ActorsController | updateActor | End ");
         }
-        return new ResponseEntity<>(commonMsgDtl.getContent(), HttpStatus.OK);
+        return commonMsgDtl.getContent();
     }
 
-    /** Returns a ResponseEntity<String> value if the admin user successfully deletes the movie actor or not.
-     * @param request HttpServletRequest
-     * @return ResponseEntity<>(commonMsgDtl.getContent(), HttpStatus.OK)
-     * @see #updateActor(ActorsDTO)
+    /** Returns a String value if the admin user successfully deletes the movie actor or not.
+     * @param firstName User's first name
+     * @param lastName User's last name
+     * @return String
+     * @see #deleteActor(String, String)
      */
-    @DeleteMapping("/delete-actor.do")
-    public ResponseEntity<String> deleteActor(HttpServletRequest request){
+    @DeleteMapping("/delete-actor.do/{firstName}/{lastName}")
+    public String deleteActor(@PathVariable("firstName") String firstName,
+                                              @PathVariable("lastName") String lastName){
         log.debug("ActorsController | deleteActor | Start ");
-        String firstName = request.getParameter("firstName");
-        String lastName = request.getParameter("lastName");
         DssCommonMessageDetails commonMsgDtl = new DssCommonMessageDetails();
         try{
             commonMsgDtl = actorsService.deleteActor(firstName, lastName);
@@ -148,6 +145,6 @@ public class ActorsController {
         }finally{
             log.debug("ActorsController | deleteActor | End ");
         }
-        return new ResponseEntity<>(commonMsgDtl.getContent(), HttpStatus.OK);
+        return commonMsgDtl.getContent();
     }
 }

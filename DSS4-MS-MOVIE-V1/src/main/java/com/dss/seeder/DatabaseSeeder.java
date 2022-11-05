@@ -10,20 +10,14 @@ import com.dss.entity.actors.Actors;
 import com.dss.entity.image.Images;
 import com.dss.entity.movie.DssMovie;
 import com.dss.entity.reviews.Reviews;
-import com.dss.entity.roles.Roles;
-import com.dss.entity.user.Users;
 import com.dss.repository.actors.ActorsRepository;
 import com.dss.repository.image.FileStorageRepository;
 import com.dss.repository.movie.DssMovieRepository;
 import com.dss.repository.reviews.ReviewsRepository;
-import com.dss.repository.roles.RolesRepository;
-import com.dss.repository.user.UsersRepository;
 import com.dss.util.enums.UserRoles;
-import com.dss.util.enums.UserStatus;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.event.ContextRefreshedEvent;
 import org.springframework.context.event.EventListener;
-import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Component;
 
 import java.util.Arrays;
@@ -48,8 +42,6 @@ public class DatabaseSeeder {
 
     @Autowired
     private FileStorageRepository fileStorageRepository;
-
-    private final BCryptPasswordEncoder encoder = new BCryptPasswordEncoder(12);
 
     @EventListener
     public void seed(ContextRefreshedEvent event) {

@@ -7,11 +7,15 @@
 package com.dss.client.dto.image;
 
 import com.dss.client.dto.movie.DssMovieDTO;
+import lombok.Getter;
+import lombok.Setter;
 
 /**
  * This is an DTO Class for Images
  */
 
+@Getter
+@Setter
 public class ImagesDTO {
 
     private Long imageId;

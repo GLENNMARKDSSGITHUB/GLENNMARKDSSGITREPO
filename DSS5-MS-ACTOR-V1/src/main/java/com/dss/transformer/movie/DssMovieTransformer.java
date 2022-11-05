@@ -13,8 +13,6 @@ import com.dss.entity.image.Images;
 import com.dss.entity.movie.DssMovie;
 import com.dss.entity.reviews.Reviews;
 import com.dss.util.enums.UserRoles;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 
 import java.util.ArrayList;
 import java.util.Date;
@@ -25,7 +23,6 @@ import java.util.List;
  */
 
 public class DssMovieTransformer {
-    private static final Logger logger = LoggerFactory.getLogger(DssMovieTransformer.class);
 
     public List<DssMovie> transformToDssMovie(List<DssMovie> movieList){
         List<DssMovie> dssMovie = new ArrayList<>();

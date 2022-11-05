@@ -12,6 +12,7 @@ import com.dss.entity.reviews.Reviews;
 import com.dss.repository.movie.DssMovieRepository;
 import com.dss.repository.reviews.ReviewsRepository;
 import com.dss.transformer.reviews.ReviewsTransformer;
+import com.dss.util.exceptions.DssException;
 import com.dss.util.utils.CommonStringUtility;
 import com.dss.util.utils.DssCommonMessageDetails;
 import com.dss.util.utils.DssCommonMethods;
@@ -61,7 +62,8 @@ public class ReviewsServiceImpl implements ReviewsService{
                 commonMsgDtl.setSuccess(false);
             }
         }catch(Exception ex){
-            logger.error("ReviewsServiceImpl | addReview | Error msg : " + ex.getMessage());
+            commonMsgDtl.setSuccess(false);
+            throw new DssException(ex.getMessage());
         }finally {
             logger.debug("ReviewsServiceImpl | addReview | End ");
         }
@@ -81,7 +83,8 @@ public class ReviewsServiceImpl implements ReviewsService{
                 commonMsgDtl.setSuccess(false);
             }
         }catch(Exception ex){
-            logger.error("ReviewsServiceImpl | displayReviews | Error msg : " + ex.getMessage());
+            commonMsgDtl.setSuccess(false);
+            throw new DssException(ex.getMessage());
         }finally {
             logger.debug("ReviewsServiceImpl | displayReviews | End ");
         }
@@ -102,7 +105,8 @@ public class ReviewsServiceImpl implements ReviewsService{
                 commonMsgDtl.setSuccess(false);
             }
         }catch(Exception ex){
-            logger.error("ReviewsServiceImpl | searchReviewByMovieTitle | Error msg : " + ex.getMessage());
+            commonMsgDtl.setSuccess(false);
+
         }finally {
             logger.debug("ReviewsServiceImpl | searchReviewByMovieTitle | End ");
         }
@@ -126,7 +130,8 @@ public class ReviewsServiceImpl implements ReviewsService{
                 commonMsgDtl.setSuccess(false);
             }
         }catch(Exception ex){
-            logger.error("ReviewsServiceImpl | updateReview | Error msg : " + ex.getMessage());
+            commonMsgDtl.setSuccess(false);
+            throw new DssException(ex.getMessage());
         }finally {
             logger.debug("ReviewsServiceImpl | updateReview | End ");
         }

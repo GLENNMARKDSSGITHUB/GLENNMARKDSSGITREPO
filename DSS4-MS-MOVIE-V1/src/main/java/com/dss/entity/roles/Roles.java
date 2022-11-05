@@ -7,37 +7,37 @@
 package com.dss.entity.roles;
 
 import com.dss.entity.user.Users;
-import lombok.AllArgsConstructor;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
-
-import javax.persistence.*;
 
 /**
  * This is an Entity Class for Roles
  */
 
-@Entity
-@Table(name = "DSS_ROLES")
-@Getter
-@Setter
-@AllArgsConstructor
-@NoArgsConstructor
 public class Roles {
-
-    @Id
-    @Column(name = "ROLE_ID", length = 100, nullable = false)
     private String dssRoleId;
-
-    @Column(name = "USER_ROLE", length = 20, nullable = false)
     private String userRole;
-
-    @ManyToOne(cascade = {CascadeType.MERGE, CascadeType.PERSIST, CascadeType.REFRESH})
     private Users user;
 
-    public Roles(String dssRoleId, String userRole) {
+    public String getDssRoleId() {
+        return dssRoleId;
+    }
+
+    public void setDssRoleId(String dssRoleId) {
         this.dssRoleId = dssRoleId;
+    }
+
+    public String getUserRole() {
+        return userRole;
+    }
+
+    public void setUserRole(String userRole) {
         this.userRole = userRole;
+    }
+
+    public Users getUser() {
+        return user;
+    }
+
+    public void setUser(Users user) {
+        this.user = user;
     }
 }

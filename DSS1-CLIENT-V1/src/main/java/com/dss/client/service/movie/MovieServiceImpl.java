@@ -1,6 +1,7 @@
 package com.dss.client.service.movie;
 
 import com.dss.client.dto.movie.DssMovieDTO;
+import com.dss.client.entity.movie.DssMovie;
 import com.dss.client.proxy.movie.DssMovieProxy;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -19,12 +20,12 @@ public class MovieServiceImpl implements MovieService{
     }
 
     @Override
-    public List<DssMovieDTO> displayDigiStreamMovie() {
+    public List<DssMovie> displayDigiStreamMovie() {
         return dssMovieProxy.displayDigiStreamMovie();
     }
 
     @Override
-    public List<DssMovieDTO> searchDigiStreamMovie(String movieTitle) {
+    public List<DssMovie> searchDigiStreamMovie(String movieTitle) {
         return dssMovieProxy.searchDigiStreamMovie(movieTitle);
     }
 

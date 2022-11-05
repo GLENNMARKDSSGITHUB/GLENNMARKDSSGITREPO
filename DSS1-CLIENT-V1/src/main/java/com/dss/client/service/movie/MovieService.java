@@ -1,6 +1,7 @@
 package com.dss.client.service.movie;
 
 import com.dss.client.dto.movie.DssMovieDTO;
+import com.dss.client.entity.movie.DssMovie;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -9,9 +10,9 @@ public interface MovieService {
 
     String addDigiStreamMovie(@RequestBody DssMovieDTO movieDto);
 
-    List<DssMovieDTO> displayDigiStreamMovie();
+    List<DssMovie> displayDigiStreamMovie();
 
-    List<DssMovieDTO> searchDigiStreamMovie(@PathVariable("movieTitle") String movieTitle);
+    List<DssMovie> searchDigiStreamMovie(@PathVariable("movieTitle") String movieTitle);
 
     String updateDigiStreamMovie(@RequestBody DssMovieDTO movieDto);
 

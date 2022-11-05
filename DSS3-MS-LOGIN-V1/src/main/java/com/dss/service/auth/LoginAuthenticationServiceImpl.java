@@ -8,6 +8,7 @@ package com.dss.service.auth;
 
 import com.dss.entity.user.Users;
 import com.dss.repository.user.UsersRepository;
+import com.dss.util.exceptions.DssException;
 import com.dss.util.utils.CommonStringUtility;
 import com.dss.util.utils.DssCommonMessageDetails;
 import lombok.extern.slf4j.Slf4j;
@@ -38,7 +39,6 @@ public class LoginAuthenticationServiceImpl implements LoginAuthenticationServic
                 if(encoder.matches(password, user.getPassword())){
                     commonMsgDtl.setContent("Welcome to Digistream Express!");
                     commonMsgDtl.setSuccess(true);
-                    log.error("AuthUserDetailsServiceImpl | login | getContent : " + commonMsgDtl.getContent());
                 }else{
                     commonMsgDtl.setContent(CommonStringUtility.ERR_CODE_001_LOGIN_INCORRECT_PASSWORD);
                     commonMsgDtl.setSuccess(false);
@@ -50,7 +50,8 @@ public class LoginAuthenticationServiceImpl implements LoginAuthenticationServic
                 log.error("AuthUserDetailsServiceImpl | login | getContent : " + commonMsgDtl.getContent());
             }
         }catch(Exception ex){
-            log.error("AuthUserDetailsServiceImpl | login | Error msg : " + ex.getMessage());
+            commonMsgDtl.setSuccess(false);
+            throw new DssException(ex.getMessage());
         }finally {
             log.debug("AuthUserDetailsServiceImpl | login | End ");
         }

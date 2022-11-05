@@ -12,6 +12,7 @@ import com.dss.entity.movie.DssMovie;
 import com.dss.repository.actors.ActorsRepository;
 import com.dss.repository.movie.DssMovieRepository;
 import com.dss.transformer.actors.ActorsTransformer;
+import com.dss.util.exceptions.DssException;
 import com.dss.util.utils.CommonStringUtility;
 import com.dss.util.utils.DssCommonMessageDetails;
 import com.dss.util.utils.DssCommonMethods;
@@ -23,6 +24,7 @@ import org.springframework.stereotype.Service;
 
 import java.util.Date;
 import java.util.List;
+import java.util.stream.Collectors;
 
 /**
  * This class is a service implementation for DSS Movie Actors
@@ -51,8 +53,10 @@ public class ActorsServiceImpl implements ActorsService{
         logger.debug("ActorsServiceImpl | addActor | Start ");
         try{
             List<DssMovie> movieList = dssMovieRepository.findDssMovieByMovieId(actorDto.getMovieId());
-            List<Actors> actorsList = actorsRepository.findActorsByActorName(actorDto.getFirstName(), actorDto.getLastName());
             if(!movieList.isEmpty()){
+                List<Actors> actorsList = movieList.get(0).getMovieActors().stream()
+                        .filter(actors -> actors.getFirstName().equalsIgnoreCase(actorDto.getFirstName()) || actors.getLastName().equalsIgnoreCase(actorDto.getLastName()))
+                        .collect(Collectors.toList());
                 if(actorsList.isEmpty()){
                     actorDto.setActorId(commonMethods.actorIdGeneration(actorsRepository.maxActorId()));
                     actorsRepository.save(transformer.transformToActor(actorDto,  movieList.get(0)));
@@ -67,7 +71,7 @@ public class ActorsServiceImpl implements ActorsService{
                 commonMsgDtl.setSuccess(false);
             }
         }catch(Exception ex){
-            logger.error("ActorsServiceImpl | addActor | Error msg : " + ex.getMessage());
+            throw new DssException(ex.getMessage());
         }finally{
             logger.debug("ActorsServiceImpl | addActor | End ");
         }
@@ -87,7 +91,7 @@ public class ActorsServiceImpl implements ActorsService{
                 commonMsgDtl.setSuccess(false);
             }
         }catch(Exception ex){
-            logger.error("ActorsServiceImpl | displayActors | Error msg : " + ex.getMessage());
+            throw new DssException(ex.getMessage());
         }finally{
             logger.debug("ActorsServiceImpl | displayActors | End ");
         }
@@ -107,7 +111,8 @@ public class ActorsServiceImpl implements ActorsService{
                 commonMsgDtl.setSuccess(false);
             }
         }catch(Exception ex){
-            logger.error("ActorsServiceImpl | searchActorByActorName | Error msg : " + ex.getMessage());
+            commonMsgDtl.setSuccess(false);
+            throw new DssException(ex.getMessage());
         }finally{
             logger.debug("ActorsServiceImpl | searchActorByActorName | End ");
         }
@@ -119,8 +124,10 @@ public class ActorsServiceImpl implements ActorsService{
         logger.debug("ActorsServiceImpl | updateActor | Start ");
         try{
             List<DssMovie> movieList = dssMovieRepository.findDssMovieByMovieId(actorDto.getMovieId());
-            List<Actors> actorsList = actorsRepository.findActorByActorId(actorDto.getActorId());
             if(!movieList.isEmpty()){
+                List<Actors> actorsList = movieList.get(0).getMovieActors().stream()
+                    .filter(actors -> actors.getFirstName().equalsIgnoreCase(actorDto.getFirstName()) || actors.getLastName().equalsIgnoreCase(actorDto.getLastName()))
+                    .collect(Collectors.toList());
                 if(!actorsList.isEmpty()){
                     actorDto.setLastModificationDate(new Date());
                     actorDto.setLastModifiedBy(UserRoles.ROLE_ADMIN.toString());
@@ -136,7 +143,7 @@ public class ActorsServiceImpl implements ActorsService{
                 commonMsgDtl.setSuccess(false);
             }
         }catch(Exception ex){
-            logger.error("ActorsServiceImpl | updateActor | Error msg : " + ex.getMessage());
+            throw new DssException(ex.getMessage());
         }finally{
             logger.debug("ActorsServiceImpl | updateActor | End ");
         }
@@ -157,7 +164,7 @@ public class ActorsServiceImpl implements ActorsService{
                 commonMsgDtl.setSuccess(false);
             }
         }catch(Exception ex){
-            logger.error("ActorsServiceImpl | updateActor | Error msg : " + ex.getMessage());
+            throw new DssException(ex.getMessage());
         }finally{
             logger.debug("ActorsServiceImpl | updateActor | End ");
         }

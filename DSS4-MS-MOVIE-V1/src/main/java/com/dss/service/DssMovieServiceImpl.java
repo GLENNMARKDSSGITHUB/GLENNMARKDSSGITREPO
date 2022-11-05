@@ -17,6 +17,7 @@ import com.dss.repository.movie.DssMovieRepository;
 import com.dss.repository.reviews.ReviewsRepository;
 import com.dss.transformer.image.ImageTransformer;
 import com.dss.transformer.movie.DssMovieTransformer;
+import com.dss.util.exceptions.DssException;
 import com.dss.util.utils.CommonStringUtility;
 import com.dss.util.utils.DssCommonMessageDetails;
 import com.dss.util.utils.DssCommonMethods;
@@ -79,7 +80,8 @@ public class DssMovieServiceImpl implements DssMovieService {
                 commonMsgDtl.setSuccess(true);
             }
         }catch(Exception ex){
-            logger.error("DssMovieServiceImpl | addDssMovie | Error msg : " + ex.getMessage());
+            commonMsgDtl.setSuccess(false);
+            throw new DssException(ex.getMessage());
         }finally{
             logger.debug("DssMovieServiceImpl | addDssMovie | End ");
         }
@@ -100,7 +102,8 @@ public class DssMovieServiceImpl implements DssMovieService {
                 commonMsgDtl.setSuccess(false);
             }
         }catch(Exception ex){
-            logger.error("DssMovieServiceImpl | displayDssMovies | Error msg : " + ex.getMessage());
+            commonMsgDtl.setSuccess(false);
+            throw new DssException(ex.getMessage());
         }finally {
             logger.debug("DssMovieServiceImpl | displayDssMovies | End ");
         }
@@ -121,7 +124,8 @@ public class DssMovieServiceImpl implements DssMovieService {
                 commonMsgDtl.setSuccess(false);
             }
         }catch(Exception ex){
-            logger.error("DssMovieServiceImpl | searchDssMovieByMovieTitle | Error msg : " + ex.getMessage());
+            commonMsgDtl.setSuccess(false);
+            throw new DssException(ex.getMessage());
         }finally {
             logger.debug("DssMovieServiceImpl | searchDssMovieByMovieTitle | End ");
         }
@@ -142,7 +146,8 @@ public class DssMovieServiceImpl implements DssMovieService {
                 commonMsgDtl.setSuccess(false);
             }
         }catch(Exception ex){
-            logger.error("DssMovieServiceImpl | updateDssMovie | Error msg : " + ex.getMessage());
+            commonMsgDtl.setSuccess(false);
+            throw new DssException(ex.getMessage());
         }finally {
             logger.debug("DssMovieServiceImpl | updateDssMovie | End");
         }
@@ -172,7 +177,8 @@ public class DssMovieServiceImpl implements DssMovieService {
                 commonMsgDtl.setSuccess(false);
             }
         }catch(Exception ex){
-            logger.error("DssMovieServiceImpl | deleteDssMovie | Error msg : " + ex.getMessage());
+            commonMsgDtl.setSuccess(false);
+            throw new DssException(ex.getMessage());
         }finally {
             logger.debug("DssMovieServiceImpl | deleteDssMovie | End ");
         }
@@ -191,7 +197,6 @@ public class DssMovieServiceImpl implements DssMovieService {
             List<DssMovie> movieList = dssMovieRepository.findDssMovieByMovieTitle(movieTitle);
             if(!movieList.isEmpty()){
                 String filePath = pathName + multipartFile.getOriginalFilename();
-                logger.debug("DssMovieServiceImpl | uploadImage | file path : " + filePath);
                 multipartFile.transferTo(new File(filePath));
                 logger.debug("DssMovieServiceImpl | uploadImage | Transfer file successfully!");
 
@@ -202,7 +207,8 @@ public class DssMovieServiceImpl implements DssMovieService {
                 commonMsgDtl.setContent(CommonStringUtility.ERR_CODE_002_NO_DISPLAY_RECORDS);
             }
         }catch(IOException ex){
-            logger.error("DssMovieServiceImpl | uploadImage | Error msg : " + ex.getMessage());
+            commonMsgDtl.setSuccess(false);
+            throw new DssException(ex.getMessage());
         }finally {
             logger.debug("DssMovieServiceImpl | uploadImage | End ");
         }

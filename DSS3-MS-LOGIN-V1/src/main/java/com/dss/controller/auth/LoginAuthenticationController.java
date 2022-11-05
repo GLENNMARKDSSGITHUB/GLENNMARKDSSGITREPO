@@ -29,7 +29,7 @@ public class LoginAuthenticationController {
      * @return String
      * @see #login(UsersDTO)
      */
-    @PostMapping("/login.do")
+    @PostMapping ("/login.do")
     public String login(@RequestBody UsersDTO userDto){
         log.debug("AuthenticationController | login | Start ");
         DssCommonMessageDetails commonMsgDtl = new DssCommonMessageDetails();

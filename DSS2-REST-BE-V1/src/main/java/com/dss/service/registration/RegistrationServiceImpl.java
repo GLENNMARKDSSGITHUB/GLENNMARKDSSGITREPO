@@ -12,6 +12,7 @@ import com.dss.entity.user.Users;
 import com.dss.repository.user.UsersRepository;
 import com.dss.repository.roles.RolesRepository;
 import com.dss.transformer.registration.RegistrationTransformer;
+import com.dss.util.exceptions.DssException;
 import com.dss.util.utils.DssCommonMessageDetails;
 import com.dss.util.utils.CommonStringUtility;
 import com.dss.util.utils.DssCommonMethods;
@@ -59,10 +60,9 @@ public class RegistrationServiceImpl implements RegistrationService{
             rolesRepository.save(role);
             commonMsgDtl.setContent(String.format(CommonStringUtility.SUCCESS_CODE_001_ADD_REG, userDto.getEmail()));
             commonMsgDtl.setSuccess(true);
-            logger.debug("RegistrationServiceImpl | addRegistration | getContent : " + commonMsgDtl.getContent());
         }catch(Exception ex){
             commonMsgDtl.setSuccess(false);
-            logger.error("RegistrationServiceImpl | addRegistration | Error msg : " + ex.getMessage());
+            throw new DssException(ex.getMessage());
         }finally{
             logger.debug("RegistrationServiceImpl | addRegistration | End ");
         }
@@ -81,10 +81,10 @@ public class RegistrationServiceImpl implements RegistrationService{
             }else{
                 commonMsgDtl.setContent(CommonStringUtility.ERR_CODE_002_NO_DISPLAY_RECORDS);
                 commonMsgDtl.setSuccess(false);
-                logger.debug("RegistrationServiceImpl | displayRegistrations | getContent : " + commonMsgDtl.getContent());
             }
         }catch (Exception ex){
-            logger.error("RegistrationServiceImpl | displayRegistrations | Error msg : " + ex.getMessage());
+            commonMsgDtl.setSuccess(false);
+            throw new DssException(ex.getMessage());
         }finally{
             logger.debug("RegistrationServiceImpl | displayRegistrations | End ");
         }
@@ -103,10 +103,10 @@ public class RegistrationServiceImpl implements RegistrationService{
             }else{
                 commonMsgDtl.setContent(String.format(CommonStringUtility.ERR_CODE_003_NO_RECORDS_FOUND, email));
                 commonMsgDtl.setSuccess(false);
-                logger.debug("RegistrationServiceImpl | searchRegistrationByEmail | getContent : " + commonMsgDtl.getContent());
             }
         }catch (Exception ex){
-            logger.error("RegistrationServiceImpl | searchRegistrationByEmail | Error msg : " + ex.getMessage());
+            commonMsgDtl.setSuccess(false);
+            throw new DssException(ex.getMessage());
         }finally{
             logger.debug("RegistrationServiceImpl | searchRegistrationByEmail | End ");
         }
@@ -128,33 +128,29 @@ public class RegistrationServiceImpl implements RegistrationService{
                         userRepository.save(transformer.populateUsersRegistration(user));
                         commonMsgDtl.setContent(String.format(CommonStringUtility.SUCCESS_CODE_004_UPDATE_REG));
                         commonMsgDtl.setSuccess(true);
-                        logger.debug("RegistrationServiceImpl | updateRegistration | getContent : " + commonMsgDtl.getContent());
                     }else{
                         if(encoder.matches(newPassword, user.getOldPassword())){
                             commonMsgDtl.setContent(String.format(CommonStringUtility.SUCCESS_CODE_003_SAME_PASSWORD));
                             commonMsgDtl.setSuccess(false);
-                            logger.error("RegistrationServiceImpl | updateRegistration | getContent : " + commonMsgDtl.getContent());
                         }else{
                             user.setPassword(newPassword);
                             user.setOldPassword(confirmPassword);
                             userRepository.save(transformer.populateUsersRegistration(user));
                             commonMsgDtl.setContent(String.format(CommonStringUtility.SUCCESS_CODE_004_UPDATE_REG));
                             commonMsgDtl.setSuccess(true);
-                            logger.debug("RegistrationServiceImpl | updateRegistration | getContent : " + commonMsgDtl.getContent());
                         }
                     }
                 }else{
                     commonMsgDtl.setContent(String.format(CommonStringUtility.ERR_CODE_005_PASSWORD_NOT_MATCH));
                     commonMsgDtl.setSuccess(false);
-                    logger.error("RegistrationServiceImpl | updateRegistration | getContent : " + commonMsgDtl.getContent());
                 }
             }else{
                 commonMsgDtl.setContent(String.format(CommonStringUtility.ERR_CODE_004_ACCT_NOT_EXISTING));
                 commonMsgDtl.setSuccess(false);
-                logger.error("RegistrationServiceImpl | updateRegistration | getContent : " + commonMsgDtl.getContent());
             }
         }catch(Exception ex){
-            logger.error("RegistrationServiceImpl | updateUsersPassword | Error msg : " + ex.getMessage());
+            commonMsgDtl.setSuccess(false);
+            throw new DssException(ex.getMessage());
         }finally{
             logger.debug("RegistrationServiceImpl | updateUsersPassword | End ");
         }
@@ -175,19 +171,17 @@ public class RegistrationServiceImpl implements RegistrationService{
                     userRepository.delete(user);
                     commonMsgDtl.setContent(String.format(CommonStringUtility.SUCCESS_CODE_003_DELETE_REG, email));
                     commonMsgDtl.setSuccess(true);
-                    logger.debug("RegistrationServiceImpl | deactivateAccount | getContent : " + commonMsgDtl.getContent());
                 }else{
                     commonMsgDtl.setSuccess(false);
                     commonMsgDtl.setContent(CommonStringUtility.ERR_CODE_005_PASSWORD_NOT_MATCH);
-                    logger.error("RegistrationServiceImpl | deactivateAccount | getContent : " + commonMsgDtl.getContent());
                 }
             }else{
                 commonMsgDtl.setSuccess(false);
                 commonMsgDtl.setContent(String.format(CommonStringUtility.ERR_CODE_003_NO_RECORDS_FOUND, email));
-                logger.error("RegistrationServiceImpl | deactivateAccount | getContent : " + commonMsgDtl.getContent());
             }
         }catch(Exception ex){
-            logger.error("RegistrationServiceImpl | deactivateAccount | Error msg : " + ex.getMessage());
+            commonMsgDtl.setSuccess(false);
+            throw new DssException(ex.getMessage());
         }finally{
             logger.debug("RegistrationServiceImpl | deactivateAccount | End ");
         }

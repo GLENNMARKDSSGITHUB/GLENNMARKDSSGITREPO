@@ -25,7 +25,6 @@ import java.util.List;
  */
 
 public class DssMovieTransformer {
-    private static final Logger logger = LoggerFactory.getLogger(DssMovieTransformer.class);
 
     public List<DssMovie> transformToDssMovie(List<DssMovie> movieList){
         List<DssMovie> dssMovie = new ArrayList<>();

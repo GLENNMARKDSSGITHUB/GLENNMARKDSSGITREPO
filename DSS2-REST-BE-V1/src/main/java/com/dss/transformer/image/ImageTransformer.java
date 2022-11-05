@@ -8,7 +8,6 @@ package com.dss.transformer.image;
 
 import com.dss.entity.image.Images;
 import com.dss.entity.movie.DssMovie;
-import org.springframework.beans.factory.annotation.Value;
 import org.springframework.web.multipart.MultipartFile;
 
 /**

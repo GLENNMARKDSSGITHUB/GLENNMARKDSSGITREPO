@@ -44,8 +44,6 @@ public class DatabaseSeeder {
     @Autowired
     private FileStorageRepository fileStorageRepository;
 
-    private final BCryptPasswordEncoder encoder = new BCryptPasswordEncoder(12);
-
     @EventListener
     public void seed(ContextRefreshedEvent event) {
         seedUser();

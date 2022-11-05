@@ -6,15 +6,13 @@
 
 package com.dss.util.utils;
 
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
-
 /**
  * This is a DssCommonMethods Class.
  */
 
 public class DssCommonMethods {
-    private static final Logger logger = LoggerFactory.getLogger(DssCommonMethods.class);
+
+    private static final String REGEX_GET_NUMBERS = "[^0-9 ]";
 
     private final DssCommonUtility util = new DssCommonUtility();
 
@@ -26,10 +24,9 @@ public class DssCommonMethods {
      */
     public String userIdGeneration(String maxUserId){
         String userId;
-        logger.debug("DssCommonMethods | userIdGeneration | maxUserId : " + maxUserId);
         int count = 0;
         if(!util.isNullOrEmpty(maxUserId)){
-            count = Integer.parseInt(maxUserId.replaceAll("[^0-9 ]", ""));
+            count = Integer.parseInt(maxUserId.replaceAll(REGEX_GET_NUMBERS, ""));
         }
 
         count = count + 1;
@@ -43,7 +40,6 @@ public class DssCommonMethods {
         } else{
             userId = String.format(CommonStringUtility.US_ID_XXXX, count);
         }
-        logger.debug("DssCommonMethods | dssIdGeneration | Generated userId : " + userId);
         return userId;
     }
 
@@ -58,7 +54,7 @@ public class DssCommonMethods {
         String dssId;
         int count = 0;
         if(!util.isNullOrEmpty(maxDssId)){
-            count = Integer.parseInt(maxDssId.replaceAll("[^0-9 ]", ""));
+            count = Integer.parseInt(maxDssId.replaceAll(REGEX_GET_NUMBERS, ""));
         }
 
         count = count + 1;
@@ -72,7 +68,6 @@ public class DssCommonMethods {
         } else{
             dssId = String.format(CommonStringUtility.DSS_ID_XXXX, count);
         }
-        logger.debug("DssCommonMethods | dssIdGeneration | Generated dssId : " + dssId);
         return dssId;
     }
 
@@ -87,9 +82,10 @@ public class DssCommonMethods {
         String actorId;
         int count = 0;
         if(!util.isNullOrEmpty(maxActorId)){
-            count = Integer.parseInt(maxActorId.replaceAll("[^0-9 ]", ""));
+            count = Integer.parseInt(maxActorId.replaceAll(REGEX_GET_NUMBERS, ""));
         }
 
+        count = count + 1;
         int countDigit = (int)Math.floor(Math.log10(count) + 1);
         if(countDigit == 1){
             actorId = String.format(CommonStringUtility.ACT_ID_000X, count);
@@ -100,7 +96,6 @@ public class DssCommonMethods {
         } else{
             actorId = String.format(CommonStringUtility.ACT_ID_XXXX, count);
         }
-        logger.debug("DssCommonMethods | actorIdGeneration | Generated actorId : " + actorId);
         return actorId;
     }
 
@@ -113,8 +108,8 @@ public class DssCommonMethods {
     public String reviewIdGeneration(String maxReviewId){
         String reviewId;
         int count = 0;
-        if(util.isNullOrEmpty(maxReviewId)){
-            count = Integer.parseInt(maxReviewId.replaceAll("[^0-9 ]", ""));
+        if(!util.isNullOrEmpty(maxReviewId)){
+            count = Integer.parseInt(maxReviewId.replaceAll(REGEX_GET_NUMBERS, ""));
         }
 
         count = count + 1;
@@ -128,7 +123,6 @@ public class DssCommonMethods {
         } else{
             reviewId = String.format(CommonStringUtility.REV_ID_XXXX, count);
         }
-        logger.debug("DssCommonMethods | actorIdGeneration | Generated reviewId : " + reviewId);
         return reviewId;
     }
 }
