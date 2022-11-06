@@ -51,7 +51,7 @@ public class LoginAuthenticationServiceImpl implements LoginAuthenticationServic
             }
         }catch(Exception ex){
             commonMsgDtl.setSuccess(false);
-            throw new DssException(ex.getMessage());
+            log.error("AuthUserDetailsServiceImpl | login | Error : {}", ex.getMessage());
         }finally {
             log.debug("AuthUserDetailsServiceImpl | login | End ");
         }

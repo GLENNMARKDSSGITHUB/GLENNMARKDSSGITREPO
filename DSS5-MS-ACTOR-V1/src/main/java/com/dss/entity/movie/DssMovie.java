@@ -77,7 +77,7 @@ public class DssMovie {
     @Column(name = "LAST_MODIFIED_BY", length = 100)
     private String lastModifiedBy;
 
-    @OneToMany(mappedBy = "dss")
+    @OneToMany(mappedBy = "dss", fetch = FetchType.EAGER)
     @ToString.Exclude
     private List<Actors> movieActors;
 

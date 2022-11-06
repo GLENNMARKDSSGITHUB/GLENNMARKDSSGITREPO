@@ -81,7 +81,7 @@ public class DssMovieServiceImpl implements DssMovieService {
             }
         }catch(Exception ex){
             commonMsgDtl.setSuccess(false);
-            throw new DssException(ex.getMessage());
+            logger.error("DssMovieServiceImpl | addDssMovie | Error : {}", ex.getMessage());
         }finally{
             logger.debug("DssMovieServiceImpl | addDssMovie | End ");
         }
@@ -103,7 +103,7 @@ public class DssMovieServiceImpl implements DssMovieService {
             }
         }catch(Exception ex){
             commonMsgDtl.setSuccess(false);
-            throw new DssException(ex.getMessage());
+            logger.error("DssMovieServiceImpl | displayDssMovies | Error : {}", ex.getMessage());
         }finally {
             logger.debug("DssMovieServiceImpl | displayDssMovies | End ");
         }
@@ -125,7 +125,7 @@ public class DssMovieServiceImpl implements DssMovieService {
             }
         }catch(Exception ex){
             commonMsgDtl.setSuccess(false);
-            throw new DssException(ex.getMessage());
+            logger.error("DssMovieServiceImpl | searchDssMovieByMovieTitle | Error : {}", ex.getMessage());
         }finally {
             logger.debug("DssMovieServiceImpl | searchDssMovieByMovieTitle | End ");
         }
@@ -147,7 +147,7 @@ public class DssMovieServiceImpl implements DssMovieService {
             }
         }catch(Exception ex){
             commonMsgDtl.setSuccess(false);
-            throw new DssException(ex.getMessage());
+            logger.error("DssMovieServiceImpl | updateDssMovie | Error : {}", ex.getMessage());
         }finally {
             logger.debug("DssMovieServiceImpl | updateDssMovie | End");
         }
@@ -178,7 +178,7 @@ public class DssMovieServiceImpl implements DssMovieService {
             }
         }catch(Exception ex){
             commonMsgDtl.setSuccess(false);
-            throw new DssException(ex.getMessage());
+            logger.error("DssMovieServiceImpl | deleteDssMovie | Error : {}", ex.getMessage());
         }finally {
             logger.debug("DssMovieServiceImpl | deleteDssMovie | End ");
         }
@@ -208,7 +208,7 @@ public class DssMovieServiceImpl implements DssMovieService {
             }
         }catch(IOException ex){
             commonMsgDtl.setSuccess(false);
-            throw new DssException(ex.getMessage());
+            logger.error("DssMovieServiceImpl | uploadImage | Error : {}", ex.getMessage());
         }finally {
             logger.debug("DssMovieServiceImpl | uploadImage | End ");
         }

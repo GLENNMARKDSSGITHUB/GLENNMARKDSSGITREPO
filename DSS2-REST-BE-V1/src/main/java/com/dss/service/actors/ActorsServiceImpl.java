@@ -71,7 +71,8 @@ public class ActorsServiceImpl implements ActorsService{
                 commonMsgDtl.setSuccess(false);
             }
         }catch(Exception ex){
-            throw new DssException(ex.getMessage());
+            commonMsgDtl.setSuccess(false);
+            logger.error("ActorsServiceImpl | addActor | Error : {}", ex.getMessage());
         }finally{
             logger.debug("ActorsServiceImpl | addActor | End ");
         }
@@ -91,7 +92,8 @@ public class ActorsServiceImpl implements ActorsService{
                 commonMsgDtl.setSuccess(false);
             }
         }catch(Exception ex){
-            throw new DssException(ex.getMessage());
+            commonMsgDtl.setSuccess(false);
+            logger.error("ActorsServiceImpl | displayActors | Error : {}", ex.getMessage());
         }finally{
             logger.debug("ActorsServiceImpl | displayActors | End ");
         }
@@ -112,7 +114,7 @@ public class ActorsServiceImpl implements ActorsService{
             }
         }catch(Exception ex){
             commonMsgDtl.setSuccess(false);
-            throw new DssException(ex.getMessage());
+            logger.error("ActorsServiceImpl | searchActorByActorName | Error : {}", ex.getMessage());
         }finally{
             logger.debug("ActorsServiceImpl | searchActorByActorName | End ");
         }
@@ -143,7 +145,8 @@ public class ActorsServiceImpl implements ActorsService{
                 commonMsgDtl.setSuccess(false);
             }
         }catch(Exception ex){
-            throw new DssException(ex.getMessage());
+            commonMsgDtl.setSuccess(false);
+            logger.error("ActorsServiceImpl | updateActor | Error : {}", ex.getMessage());
         }finally{
             logger.debug("ActorsServiceImpl | updateActor | End ");
         }
@@ -152,7 +155,7 @@ public class ActorsServiceImpl implements ActorsService{
 
     @Override
     public DssCommonMessageDetails deleteActor(String firstName, String lastName) {
-        logger.debug("ActorsServiceImpl | updateActor | Start ");
+        logger.debug("ActorsServiceImpl | deleteActor | Start ");
         try{
             List<Actors> actorsList = actorsRepository.findActorsByActorName(firstName, lastName);
             if(!actorsList.isEmpty()){
@@ -164,9 +167,10 @@ public class ActorsServiceImpl implements ActorsService{
                 commonMsgDtl.setSuccess(false);
             }
         }catch(Exception ex){
-            throw new DssException(ex.getMessage());
+            commonMsgDtl.setSuccess(false);
+            logger.error("ActorsServiceImpl | deleteActor | Error : {}", ex.getMessage());
         }finally{
-            logger.debug("ActorsServiceImpl | updateActor | End ");
+            logger.debug("ActorsServiceImpl | deleteActor | End ");
         }
         return commonMsgDtl;
     }

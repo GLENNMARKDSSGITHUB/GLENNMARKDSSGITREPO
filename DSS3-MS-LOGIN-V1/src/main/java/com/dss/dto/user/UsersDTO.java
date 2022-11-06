@@ -46,4 +46,19 @@ public class UsersDTO {
     private String lastModifiedBy;
 
     private List<RolesDTO> userRoles;
+
+    public UsersDTO(String dssUserId, String firstName, String lastName, String email, String password, String oldPassword, String status, String cellphoneNumber, Date creationDate, String createdBy, Date lastModificationDate, String lastModifiedBy) {
+        this.dssUserId = dssUserId;
+        this.firstName = firstName;
+        this.lastName = lastName;
+        this.email = email;
+        this.password = password;
+        this.oldPassword = oldPassword;
+        this.status = status;
+        this.cellphoneNumber = cellphoneNumber;
+        this.creationDate = creationDate;
+        this.createdBy = createdBy;
+        this.lastModificationDate = lastModificationDate;
+        this.lastModifiedBy = lastModifiedBy;
+    }
 }

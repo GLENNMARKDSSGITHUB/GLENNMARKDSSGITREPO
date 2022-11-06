@@ -62,7 +62,7 @@ public class RegistrationServiceImpl implements RegistrationService{
             commonMsgDtl.setSuccess(true);
         }catch(Exception ex){
             commonMsgDtl.setSuccess(false);
-            throw new DssException(ex.getMessage());
+            logger.error("RegistrationServiceImpl | addRegistration | Error : {}", ex.getMessage());
         }finally{
             logger.debug("RegistrationServiceImpl | addRegistration | End ");
         }
@@ -84,7 +84,7 @@ public class RegistrationServiceImpl implements RegistrationService{
             }
         }catch (Exception ex){
             commonMsgDtl.setSuccess(false);
-            throw new DssException(ex.getMessage());
+            logger.error("RegistrationServiceImpl | displayRegistrations | Error : {}", ex.getMessage());
         }finally{
             logger.debug("RegistrationServiceImpl | displayRegistrations | End ");
         }
@@ -106,7 +106,7 @@ public class RegistrationServiceImpl implements RegistrationService{
             }
         }catch (Exception ex){
             commonMsgDtl.setSuccess(false);
-            throw new DssException(ex.getMessage());
+            logger.error("RegistrationServiceImpl | searchRegistrationByEmail | Error : {}", ex.getMessage());
         }finally{
             logger.debug("RegistrationServiceImpl | searchRegistrationByEmail | End ");
         }
@@ -115,7 +115,7 @@ public class RegistrationServiceImpl implements RegistrationService{
 
     @Override
     public DssCommonMessageDetails changePassword(String email, String newPassword, String confirmPassword) {
-        logger.debug("RegistrationServiceImpl | updateUsersPassword | Start ");
+        logger.debug("RegistrationServiceImpl | changePassword | Start ");
         DssCommonMessageDetails commonMsgDtl = new DssCommonMessageDetails();
         try{
             List<Users> userList = userRepository.findUserByEmail(email);
@@ -150,9 +150,9 @@ public class RegistrationServiceImpl implements RegistrationService{
             }
         }catch(Exception ex){
             commonMsgDtl.setSuccess(false);
-            throw new DssException(ex.getMessage());
+            logger.error("RegistrationServiceImpl | changePassword | Error : {}", ex.getMessage());
         }finally{
-            logger.debug("RegistrationServiceImpl | updateUsersPassword | End ");
+            logger.debug("RegistrationServiceImpl | changePassword | End ");
         }
         return commonMsgDtl;
     }
@@ -181,7 +181,7 @@ public class RegistrationServiceImpl implements RegistrationService{
             }
         }catch(Exception ex){
             commonMsgDtl.setSuccess(false);
-            throw new DssException(ex.getMessage());
+            logger.error("RegistrationServiceImpl | deactivateAccount | Error : {}", ex.getMessage());
         }finally{
             logger.debug("RegistrationServiceImpl | deactivateAccount | End ");
         }

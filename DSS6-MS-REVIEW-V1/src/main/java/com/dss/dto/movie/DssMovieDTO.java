@@ -48,4 +48,23 @@ public class DssMovieDTO {
     private List<ReviewsDTO> movieRatings;
     @JsonIgnore
     private List<Images> image;
+
+    public DssMovieDTO(String movieId, String movieTitle, String year, String writers, String directedBy, String producedBy, String musicBy, String duration, double movieCost, String category, String country, String language, Date creationDate, String createdBy, Date lastModificationDate, String lastModifiedBy) {
+        this.movieId = movieId;
+        this.movieTitle = movieTitle;
+        this.year = year;
+        this.writers = writers;
+        this.directedBy = directedBy;
+        this.producedBy = producedBy;
+        this.musicBy = musicBy;
+        this.duration = duration;
+        this.movieCost = movieCost;
+        this.category = category;
+        this.country = country;
+        this.language = language;
+        this.creationDate = creationDate;
+        this.createdBy = createdBy;
+        this.lastModificationDate = lastModificationDate;
+        this.lastModifiedBy = lastModifiedBy;
+    }
 }

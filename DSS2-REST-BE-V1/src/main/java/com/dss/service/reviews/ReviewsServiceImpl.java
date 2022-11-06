@@ -63,7 +63,7 @@ public class ReviewsServiceImpl implements ReviewsService{
             }
         }catch(Exception ex){
             commonMsgDtl.setSuccess(false);
-            throw new DssException(ex.getMessage());
+            logger.error("ReviewsServiceImpl | addReview | Error : {}", ex.getMessage());
         }finally {
             logger.debug("ReviewsServiceImpl | addReview | End ");
         }
@@ -84,7 +84,7 @@ public class ReviewsServiceImpl implements ReviewsService{
             }
         }catch(Exception ex){
             commonMsgDtl.setSuccess(false);
-            throw new DssException(ex.getMessage());
+            logger.error("ReviewsServiceImpl | displayReviews | Error : {}", ex.getMessage());
         }finally {
             logger.debug("ReviewsServiceImpl | displayReviews | End ");
         }
@@ -106,7 +106,7 @@ public class ReviewsServiceImpl implements ReviewsService{
             }
         }catch(Exception ex){
             commonMsgDtl.setSuccess(false);
-
+            logger.error("ReviewsServiceImpl | searchReviewByMovieTitle | Error : {}", ex.getMessage());
         }finally {
             logger.debug("ReviewsServiceImpl | searchReviewByMovieTitle | End ");
         }
@@ -131,7 +131,7 @@ public class ReviewsServiceImpl implements ReviewsService{
             }
         }catch(Exception ex){
             commonMsgDtl.setSuccess(false);
-            throw new DssException(ex.getMessage());
+            logger.error("ReviewsServiceImpl | updateReview | Error : {}", ex.getMessage());
         }finally {
             logger.debug("ReviewsServiceImpl | updateReview | End ");
         }
