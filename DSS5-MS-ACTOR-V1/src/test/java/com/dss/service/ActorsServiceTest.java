@@ -1,6 +1,6 @@
 package com.dss.service;
 
-import com.dss.dto.actors.ActorsDTO;
+import com.dss.dto.ActorsDTO;
 import com.dss.entity.actors.Actors;
 import com.dss.repository.actors.ActorsRepository;
 import com.dss.transformer.ActorsTransformerTest;

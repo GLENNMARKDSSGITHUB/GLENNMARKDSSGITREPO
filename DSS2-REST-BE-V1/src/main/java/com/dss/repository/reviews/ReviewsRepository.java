@@ -21,9 +21,6 @@ import java.util.List;
 @Repository
 public interface ReviewsRepository extends JpaRepository<Reviews, String> {
 
-    @Query(value = "SELECT * FROM DSS_REVIEWS WHERE REVIEW_ID = :reviewId", nativeQuery = true)
-    List<Reviews> findReviewByReviewId(@Param("reviewId") String reviewId);
-
     @Query(value = "SELECT MAX(REVIEW_ID) FROM DSS_REVIEWS", nativeQuery = true)
     String maxReviewId();
 }

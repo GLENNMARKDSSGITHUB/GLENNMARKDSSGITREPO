@@ -7,11 +7,9 @@
 package com.dss.seeder;
 
 import com.dss.entity.actors.Actors;
-import com.dss.entity.image.Images;
 import com.dss.entity.movie.DssMovie;
 import com.dss.entity.reviews.Reviews;
 import com.dss.repository.actors.ActorsRepository;
-import com.dss.repository.image.FileStorageRepository;
 import com.dss.repository.movie.DssMovieRepository;
 import com.dss.repository.reviews.ReviewsRepository;
 import com.dss.util.enums.UserRoles;
@@ -39,9 +37,6 @@ public class DatabaseSeeder {
 
     @Autowired
     private ReviewsRepository reviewsRepository;
-
-    @Autowired
-    private FileStorageRepository fileStorageRepository;
 
     @EventListener
     public void seed(ContextRefreshedEvent event) {
@@ -83,8 +78,6 @@ public class DatabaseSeeder {
                     new Actors("AC0002", "DSS0001", "Chris", "Evans", "Male", 30, "Captain America", UserRoles.ROLE_SUPER_ADMIN.getStrRole(), new Date(), UserRoles.ROLE_SUPER_ADMIN.getStrRole(), null, null, movie)
             );
             actorsRepository.saveAll(actorsList);
-
-            fileStorageRepository.save(new Images("sample-image.jpg", "1024" ,"C:\\applogs\\image\\sample-image.jpg", movie));
         }
     }
 

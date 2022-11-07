@@ -1,18 +1,16 @@
 package com.dss.client.service.actors;
 
-import com.dss.client.dto.actors.ActorsDTO;
-
 import java.util.List;
 
 public interface ActorsService {
 
-    String addActor(ActorsDTO actorsDto);
+    String addActor(Object obj);
 
-    List<ActorsDTO> displayActors();
+    List<Object> displayActors();
 
-    List<ActorsDTO> searchActorByActorName(String firstName, String lastName);
+    List<Object> searchActorByActorName(String firstName, String lastName);
 
-    String updateActor(ActorsDTO actorsDto);
+    String updateActor(Object obj);
 
     String deleteActor(String firstName, String lastName);
 }

@@ -1,6 +1,6 @@
 package com.dss.transformer;
 
-import com.dss.dto.actors.ActorsDTO;
+import com.dss.dto.ActorsDTO;
 import com.dss.entity.actors.Actors;
 
 public class ActorsTransformerTest {

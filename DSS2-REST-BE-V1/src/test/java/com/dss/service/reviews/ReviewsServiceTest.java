@@ -4,7 +4,7 @@ import com.dss.dto.movie.DssMovieDTO;
 import com.dss.dto.reviews.ReviewsDTO;
 import com.dss.entity.reviews.Reviews;
 import com.dss.repository.reviews.ReviewsRepository;
-import com.dss.transformer.movie.DssMovieTransformerTest;
+import com.dss.transformer.DssMovieTransformerTest;
 import com.dss.transformer.reviews.ReviewsTransformer;
 import com.dss.util.enums.UserRoles;
 import com.dss.util.utils.DssCommonMessageDetails;

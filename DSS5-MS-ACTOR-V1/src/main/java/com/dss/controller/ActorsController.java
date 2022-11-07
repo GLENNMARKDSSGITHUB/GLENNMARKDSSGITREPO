@@ -6,7 +6,7 @@
 
 package com.dss.controller;
 
-import com.dss.dto.actors.ActorsDTO;
+import com.dss.dto.ActorsDTO;
 import com.dss.entity.actors.Actors;
 import com.dss.service.ActorsService;
 import com.dss.util.utils.DssCommonMessageDetails;

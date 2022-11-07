@@ -43,7 +43,7 @@ public class LoginAuthenticationController {
                 log.error("AuthenticationController | login | getContent : " + commonMsgDtl.getContent());
             }
         }catch(Exception ex){
-            log.error("AuthenticationController | login | Error msg : " + ex.getMessage());
+            log.error("AuthenticationController | login | Error msg {}", ex.getMessage());
         }finally{
             log.debug("AuthenticationController | login | End ");
         }

@@ -8,7 +8,6 @@ package com.dss.service.auth;
 
 import com.dss.entity.user.Users;
 import com.dss.repository.user.UsersRepository;
-import com.dss.util.exceptions.DssException;
 import com.dss.util.utils.CommonStringUtility;
 import com.dss.util.utils.DssCommonMessageDetails;
 import lombok.extern.slf4j.Slf4j;

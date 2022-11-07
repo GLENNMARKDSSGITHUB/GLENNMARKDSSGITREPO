@@ -1,7 +1,5 @@
 package com.dss.client.service.reviews;
 
-import com.dss.client.dto.reviews.ReviewsDTO;
-import com.dss.client.entity.reviews.Reviews;
 import com.dss.client.proxy.reviews.ReviewsProxy;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -15,12 +13,12 @@ public class ReviewsServiceImpl implements ReviewsService{
     ReviewsProxy reviewsProxy;
 
     @Override
-    public String addReview(ReviewsDTO reviewsDto) {
-        return reviewsProxy.addReview(reviewsDto);
+    public String addReview(Object obj) {
+        return reviewsProxy.addReview(obj);
     }
 
     @Override
-    public List<Reviews> displayReviews() {
+    public List<Object> displayReviews() {
         return reviewsProxy.displayReviews();
     }
 }

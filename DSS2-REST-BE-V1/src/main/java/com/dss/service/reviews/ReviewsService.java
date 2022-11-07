@@ -27,17 +27,4 @@ public interface ReviewsService {
      * @see #displayReviews()
      */
     DssCommonMessageDetails displayReviews();
-
-    /** Returns a specific movie review record the form of a List <Reviews>
-     * @return DssCommonMessageDetails commonMsgDtl
-     * @see #searchReviewByMovieTitle(String)
-     */
-    DssCommonMessageDetails searchReviewByMovieTitle(String movieTitle);
-
-    /** Returns a String value if the admin user successfully updates the movie review or not.
-     * @param reviewsDto reviewsDto
-     * @return DssCommonMessageDetails commonMsgDtl
-     * @see #updateReview(ReviewsDTO)
-     */
-    DssCommonMessageDetails updateReview(ReviewsDTO reviewsDto);
 }

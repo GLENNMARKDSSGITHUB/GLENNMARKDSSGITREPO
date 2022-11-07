@@ -4,7 +4,7 @@
  * @since 10/31/2022
  */
 
-package com.dss.dto.actors;
+package com.dss.dto;
 
 import lombok.*;
 
@@ -13,7 +13,12 @@ import java.util.Date;
 /**
  * This class is a Data Transfer Object for ActorsDTO
  */
+
 @Getter
+@Setter
+@AllArgsConstructor
+@NoArgsConstructor
+@ToString
 public class ActorsDTO {
 
     private String actorId;

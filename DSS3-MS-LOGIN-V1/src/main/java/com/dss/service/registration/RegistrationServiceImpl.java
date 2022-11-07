@@ -12,7 +12,6 @@ import com.dss.entity.user.Users;
 import com.dss.repository.roles.RolesRepository;
 import com.dss.repository.user.UsersRepository;
 import com.dss.transformer.RegistrationTransformer;
-import com.dss.util.exceptions.DssException;
 import com.dss.util.utils.CommonStringUtility;
 import com.dss.util.utils.DssCommonMessageDetails;
 import com.dss.util.utils.DssCommonMethods;
@@ -28,10 +27,6 @@ import java.util.List;
 /**
  * This class is a service implementation for DSS Account Registration
  * @see #registerAccount(UsersDTO)
- * @see #displayRegistrations()
- * @see #searchRegistrationByEmail(String)
- * @see #changePassword(String,String,String)
- * @see #changePassword(String,String,String)
  */
 
 @Service
@@ -65,125 +60,6 @@ public class RegistrationServiceImpl implements RegistrationService{
             logger.error("RegistrationServiceImpl | addRegistration | Error : {}", ex.getMessage());
         }finally{
             logger.debug("RegistrationServiceImpl | addRegistration | End ");
-        }
-        return commonMsgDtl;
-    }
-
-    @Override
-    public DssCommonMessageDetails displayRegistrations() {
-        logger.debug("RegistrationServiceImpl | displayRegistrations | Start ");
-        DssCommonMessageDetails commonMsgDtl = new DssCommonMessageDetails();
-        try{
-            List<Users> userList = userRepository.findAll();
-            if(!userList.isEmpty()){
-                commonMsgDtl.setObjList(transformer.populateUsersRegistration(userList));
-                commonMsgDtl.setSuccess(true);
-            }else{
-                commonMsgDtl.setContent(CommonStringUtility.ERR_CODE_002_NO_DISPLAY_RECORDS);
-                commonMsgDtl.setSuccess(false);
-            }
-        }catch (Exception ex){
-            commonMsgDtl.setSuccess(false);
-            logger.error("RegistrationServiceImpl | displayRegistrations | Error : {}", ex.getMessage());
-        }finally{
-            logger.debug("RegistrationServiceImpl | displayRegistrations | End ");
-        }
-        return commonMsgDtl;
-    }
-
-    @Override
-    public DssCommonMessageDetails searchRegistrationByEmail(String email){
-        logger.debug("RegistrationServiceImpl | searchRegistrationByEmail | Start ");
-        DssCommonMessageDetails commonMsgDtl = new DssCommonMessageDetails();
-        try{
-            List<Users> userList = userRepository.findUserByEmail(email);
-            if(!userList.isEmpty()){
-                commonMsgDtl.setObjList(transformer.populateUsersRegistration((userList)));
-                commonMsgDtl.setSuccess(true);
-            }else{
-                commonMsgDtl.setContent(String.format(CommonStringUtility.ERR_CODE_003_NO_RECORDS_FOUND, email));
-                commonMsgDtl.setSuccess(false);
-            }
-        }catch (Exception ex){
-            commonMsgDtl.setSuccess(false);
-            logger.error("RegistrationServiceImpl | searchRegistrationByEmail | Error : {}", ex.getMessage());
-        }finally{
-            logger.debug("RegistrationServiceImpl | searchRegistrationByEmail | End ");
-        }
-        return commonMsgDtl;
-    }
-
-    @Override
-    public DssCommonMessageDetails changePassword(String email, String newPassword, String confirmPassword) {
-        logger.debug("RegistrationServiceImpl | changePassword | Start ");
-        DssCommonMessageDetails commonMsgDtl = new DssCommonMessageDetails();
-        try{
-            List<Users> userList = userRepository.findUserByEmail(email);
-            if(!userList.isEmpty()){
-                if(newPassword.equalsIgnoreCase(confirmPassword)){
-                    Users user = userList.get(0);
-                    if(util.isNullOrEmpty(user.getOldPassword())){
-                        user.setPassword(newPassword);
-                        user.setOldPassword(confirmPassword);
-                        userRepository.save(transformer.populateUsersRegistration(user));
-                        commonMsgDtl.setContent(String.format(CommonStringUtility.SUCCESS_CODE_004_UPDATE_REG));
-                        commonMsgDtl.setSuccess(true);
-                    }else{
-                        if(encoder.matches(newPassword, user.getOldPassword())){
-                            commonMsgDtl.setContent(String.format(CommonStringUtility.SUCCESS_CODE_003_SAME_PASSWORD));
-                            commonMsgDtl.setSuccess(false);
-                        }else{
-                            user.setPassword(newPassword);
-                            user.setOldPassword(confirmPassword);
-                            userRepository.save(transformer.populateUsersRegistration(user));
-                            commonMsgDtl.setContent(String.format(CommonStringUtility.SUCCESS_CODE_004_UPDATE_REG));
-                            commonMsgDtl.setSuccess(true);
-                        }
-                    }
-                }else{
-                    commonMsgDtl.setContent(String.format(CommonStringUtility.ERR_CODE_005_PASSWORD_NOT_MATCH));
-                    commonMsgDtl.setSuccess(false);
-                }
-            }else{
-                commonMsgDtl.setContent(String.format(CommonStringUtility.ERR_CODE_004_ACCT_NOT_EXISTING));
-                commonMsgDtl.setSuccess(false);
-            }
-        }catch(Exception ex){
-            commonMsgDtl.setSuccess(false);
-            logger.error("RegistrationServiceImpl | changePassword | Error : {}", ex.getMessage());
-        }finally{
-            logger.debug("RegistrationServiceImpl | changePassword | End ");
-        }
-        return commonMsgDtl;
-    }
-
-    @Override
-    public DssCommonMessageDetails deleteAccount(String email, String password){
-        logger.debug("RegistrationServiceImpl | deactivateAccount | Start ");
-        DssCommonMessageDetails commonMsgDtl = new DssCommonMessageDetails();
-        try{
-            List<Users> userList = userRepository.findUserByEmail(email);
-            if(!userList.isEmpty()){
-                if(encoder.matches(password, userList.get(0).getPassword())){
-                    Roles role = userList.get(0).getUserRoles().get(0);
-                    rolesRepository.delete(role);
-                    Users user = userList.get(0);
-                    userRepository.delete(user);
-                    commonMsgDtl.setContent(String.format(CommonStringUtility.SUCCESS_CODE_003_DELETE_REG, email));
-                    commonMsgDtl.setSuccess(true);
-                }else{
-                    commonMsgDtl.setSuccess(false);
-                    commonMsgDtl.setContent(CommonStringUtility.ERR_CODE_005_PASSWORD_NOT_MATCH);
-                }
-            }else{
-                commonMsgDtl.setSuccess(false);
-                commonMsgDtl.setContent(String.format(CommonStringUtility.ERR_CODE_003_NO_RECORDS_FOUND, email));
-            }
-        }catch(Exception ex){
-            commonMsgDtl.setSuccess(false);
-            logger.error("RegistrationServiceImpl | deactivateAccount | Error : {}", ex.getMessage());
-        }finally{
-            logger.debug("RegistrationServiceImpl | deactivateAccount | End ");
         }
         return commonMsgDtl;
     }

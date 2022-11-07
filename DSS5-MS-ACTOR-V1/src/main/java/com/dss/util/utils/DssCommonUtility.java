@@ -40,15 +40,6 @@ public class DssCommonUtility {
         }
     }
 
-    /** Returns true if the List<?> is empty, else, is false
-     * @param e List<?> e
-     * @return boolean value
-     * @see #isNullOrEmpty(List)
-     */
-    public boolean isNullOrEmpty(List<?> e) {
-        return e.isEmpty();
-    }
-
     /** Returns true if the String value is empty, else, is false
      * @param param string value
      * @return boolean value

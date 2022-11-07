@@ -12,25 +12,20 @@ import com.dss.entity.reviews.Reviews;
 import com.dss.repository.movie.DssMovieRepository;
 import com.dss.repository.reviews.ReviewsRepository;
 import com.dss.transformer.reviews.ReviewsTransformer;
-import com.dss.util.exceptions.DssException;
 import com.dss.util.utils.CommonStringUtility;
 import com.dss.util.utils.DssCommonMessageDetails;
 import com.dss.util.utils.DssCommonMethods;
-import com.dss.util.enums.UserRoles;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import java.util.Date;
 import java.util.List;
 
 /**
  * This class is a service implementation for DSS Account Registration
  * @see #addReview(ReviewsDTO)
  * @see #displayReviews()
- * @see #searchReviewByMovieTitle(String)
- * @see #updateReview(ReviewsDTO)
  */
 
 @Service
@@ -87,53 +82,6 @@ public class ReviewsServiceImpl implements ReviewsService{
             logger.error("ReviewsServiceImpl | displayReviews | Error : {}", ex.getMessage());
         }finally {
             logger.debug("ReviewsServiceImpl | displayReviews | End ");
-        }
-        return commonMsgDtl;
-    }
-
-    @Override
-    public DssCommonMessageDetails searchReviewByMovieTitle(String movieTitle) {
-        logger.debug("ReviewsServiceImpl | searchReviewByMovieTitle | Start ");
-        try{
-            List<DssMovie> movieList = dssMovieRepository.findDssMovieByMovieTitle(movieTitle);
-            if(!movieList.isEmpty()){
-                List<Reviews> reviewsList = movieList.get(0).getMovieReviews();
-                commonMsgDtl.setObjList(transformer.transformToReviews(reviewsList));
-                commonMsgDtl.setSuccess(true);
-            }else{
-                commonMsgDtl.setContent(String.format(CommonStringUtility.ERR_CODE_002_MOVIE_NOT_EXIST));
-                commonMsgDtl.setSuccess(false);
-            }
-        }catch(Exception ex){
-            commonMsgDtl.setSuccess(false);
-            logger.error("ReviewsServiceImpl | searchReviewByMovieTitle | Error : {}", ex.getMessage());
-        }finally {
-            logger.debug("ReviewsServiceImpl | searchReviewByMovieTitle | End ");
-        }
-        return commonMsgDtl;
-    }
-
-    @Override
-    public DssCommonMessageDetails updateReview(ReviewsDTO reviewsDto) {
-        logger.debug("ReviewsServiceImpl | updateReview | Start ");
-        try{
-            String movieId = reviewsDto.getMovieId();
-            List<DssMovie> movieList = dssMovieRepository.findDssMovieByMovieId(movieId);
-            if(!movieList.isEmpty()){
-                reviewsDto.setLastModificationDate(new Date());
-                reviewsDto.setLastModifiedBy(UserRoles.ROLE_USER.toString());
-                reviewsRepository.save(transformer.transformToReviews(reviewsDto, movieList.get(0)));
-                commonMsgDtl.setContent(String.format(CommonStringUtility.SUCCESS_CODE_002_UPDATE_REVIEW));
-                commonMsgDtl.setSuccess(true);
-            }else{
-                commonMsgDtl.setContent(String.format(CommonStringUtility.ERR_CODE_002_MOVIE_NOT_EXIST));
-                commonMsgDtl.setSuccess(false);
-            }
-        }catch(Exception ex){
-            commonMsgDtl.setSuccess(false);
-            logger.error("ReviewsServiceImpl | updateReview | Error : {}", ex.getMessage());
-        }finally {
-            logger.debug("ReviewsServiceImpl | updateReview | End ");
         }
         return commonMsgDtl;
     }

@@ -13,11 +13,8 @@ import com.dss.util.utils.DssCommonMessageDetails;
 import com.dss.util.utils.DssCommonUtility;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.HttpStatus;
-import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
-import javax.servlet.http.HttpServletRequest;
 import java.util.List;
 
 /**
@@ -79,32 +76,5 @@ public class ReviewsController {
             log.debug("ReviewsController | displayReviews  | End");
         }
         return reviewsList;
-    }
-
-    /** Returns a specific movie review in a form of ResponseEntity<List<Reviews>>
-     * @param request HttpServletRequest
-     * @return ResponseEntity<>(userList, HttpStatus.OK);
-     * @see #searchReview(HttpServletRequest request)
-     */
-    @GetMapping("/search-review.do")
-    public ResponseEntity<List<Reviews>> searchReview(HttpServletRequest request){
-        log.debug("ReviewsController | searchReview | Start");
-        List<Reviews> reviewsList = null;
-        try{
-            String movieTitle = request.getParameter("movieTitle");
-            DssCommonMessageDetails commonMsgDtl = reviewsService.searchReviewByMovieTitle(movieTitle);
-            if(commonMsgDtl.isSuccess()){
-                reviewsList = (List<Reviews>) commonMsgDtl.getObjList();
-                commonMsgDtl.setContent(commonUtil.gsonToJsonString(reviewsList));
-                log.debug("ReviewsController | searchReview | review : \n" + commonUtil.gsonToJsonString(reviewsList));
-            }else{
-                log.error("ReviewsController | searchReview | review : " + commonMsgDtl.getContent());
-            }
-        }catch(Exception ex){
-            log.error("ReviewsController | searchReview | Error msg : " + ex.getMessage());
-        }finally{
-            log.debug("ReviewsController | searchReview | End");
-        }
-        return new ResponseEntity<>(reviewsList, HttpStatus.OK);
     }
 }

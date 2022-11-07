@@ -9,10 +9,7 @@ import lombok.*;
  */
 
 @Getter
-@Setter
-@AllArgsConstructor
 @NoArgsConstructor
-@ToString
 public class RolesDTO {
 
     private String dssRoleId;

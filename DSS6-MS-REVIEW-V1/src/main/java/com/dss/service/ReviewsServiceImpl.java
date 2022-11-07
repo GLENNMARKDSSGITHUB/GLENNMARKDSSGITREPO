@@ -12,7 +12,6 @@ import com.dss.entity.reviews.Reviews;
 import com.dss.repository.movie.DssMovieRepository;
 import com.dss.repository.reviews.ReviewsRepository;
 import com.dss.transformer.ReviewsTransformer;
-import com.dss.util.exceptions.DssException;
 import com.dss.util.utils.CommonStringUtility;
 import com.dss.util.utils.DssCommonMessageDetails;
 import com.dss.util.utils.DssCommonMethods;
@@ -27,7 +26,6 @@ import java.util.List;
  * This class is a service implementation for DSS Account Registration
  * @see #addReview(ReviewsDTO)
  * @see #displayReviews()
- * @see #searchReviewByMovieTitle(String)
 // * @see #updateReview(ReviewsDTO)
  */
 
@@ -61,7 +59,7 @@ public class ReviewsServiceImpl implements ReviewsService{
             }
         }catch(Exception ex){
             commonMsgDtl.setSuccess(false);
-            throw new DssException(ex.getMessage());
+            logger.error("ReviewsServiceImpl | addReview | Error : {}", ex.getMessage());
         }finally {
             logger.debug("ReviewsServiceImpl | addReview | End ");
         }
@@ -82,31 +80,9 @@ public class ReviewsServiceImpl implements ReviewsService{
             }
         }catch(Exception ex){
             commonMsgDtl.setSuccess(false);
-            throw new DssException(ex.getMessage());
+            logger.error("ReviewsServiceImpl | displayReviews | Error : {}", ex.getMessage());
         }finally {
             logger.debug("ReviewsServiceImpl | displayReviews | End ");
-        }
-        return commonMsgDtl;
-    }
-
-    @Override
-    public DssCommonMessageDetails searchReviewByMovieTitle(String movieTitle) {
-        logger.debug("ReviewsServiceImpl | searchReviewByMovieTitle | Start ");
-        try{
-            List<DssMovie> movieList = dssMovieRepository.findDssMovieByMovieTitle(movieTitle);
-            if(!movieList.isEmpty()){
-                List<Reviews> reviewsList = movieList.get(0).getMovieReviews();
-                commonMsgDtl.setObjList(transformer.transformToReviews(reviewsList));
-                commonMsgDtl.setSuccess(true);
-            }else{
-                commonMsgDtl.setContent(String.format(CommonStringUtility.ERR_CODE_002_MOVIE_NOT_EXIST));
-                commonMsgDtl.setSuccess(false);
-            }
-        }catch(Exception ex){
-            commonMsgDtl.setSuccess(false);
-            throw new DssException(ex.getMessage());
-        }finally {
-            logger.debug("ReviewsServiceImpl | searchReviewByMovieTitle | End ");
         }
         return commonMsgDtl;
     }

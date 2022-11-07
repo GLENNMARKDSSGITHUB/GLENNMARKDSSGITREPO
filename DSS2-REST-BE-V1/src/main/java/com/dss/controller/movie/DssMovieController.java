@@ -14,7 +14,6 @@ import com.dss.util.utils.DssCommonUtility;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
-import org.springframework.web.multipart.MultipartFile;
 
 import javax.servlet.http.HttpServletRequest;
 import java.util.List;
@@ -146,25 +145,4 @@ public class DssMovieController {
         }
         return commonMsgDtl.getContent();
     }
-
-    /** Returns a String value if the admin user successfully uploads the image or not.
-     * @param request HttpServletRequest
-     * @return String
-     * @see #deleteDigiStreamMovie(HttpServletRequest)
-     */
-    @PostMapping("/upload-image.do")
-    public String uploadImage(HttpServletRequest request, @RequestParam("image") MultipartFile multipartFile){
-        log.debug("DssMovieController | uplaodImage | Start");
-        DssCommonMessageDetails commonMsgDtl = new DssCommonMessageDetails();
-        try{
-            String movieTitle = request.getParameter("movieTitle");
-            commonMsgDtl = dssMovieService.uploadImage(movieTitle, multipartFile);
-        }catch(Exception ex){
-            log.error("DssMovieController| uploadImage | Error msg : " + ex.getMessage());
-        }finally {
-            log.debug("DssMovieController | uploadImage | End ");
-        }
-        return commonMsgDtl.getContent();
-    }
-
 }

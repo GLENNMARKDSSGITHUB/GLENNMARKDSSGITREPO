@@ -18,7 +18,6 @@ import javax.persistence.*;
 @Entity
 @Table(name = "DSS_ROLES")
 @Getter
-@Setter
 @AllArgsConstructor
 @NoArgsConstructor
 public class Roles {

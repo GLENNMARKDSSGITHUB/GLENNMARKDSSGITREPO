@@ -1,6 +1,5 @@
 package com.dss.client.service.actors;
 
-import com.dss.client.dto.actors.ActorsDTO;
 import com.dss.client.proxy.actors.ActorsProxy;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -14,23 +13,23 @@ public class ActorsServiceImpl implements ActorsService{
     ActorsProxy actorsProxy;
 
     @Override
-    public String addActor(ActorsDTO actorsDto) {
-        return actorsProxy.addActor(actorsDto);
+    public String addActor(Object obj) {
+        return actorsProxy.addActor(obj);
     }
 
     @Override
-    public List<ActorsDTO> displayActors() {
+    public List<Object> displayActors() {
         return actorsProxy.displayActors();
     }
 
     @Override
-    public List<ActorsDTO> searchActorByActorName(String firstName, String lastName) {
+    public List<Object> searchActorByActorName(String firstName, String lastName) {
         return actorsProxy.searchActorByActorName(firstName, lastName);
     }
 
     @Override
-    public String updateActor(ActorsDTO actorsDto) {
-        return actorsProxy.updateActor(actorsDto);
+    public String updateActor(Object obj) {
+        return actorsProxy.updateActor(obj);
     }
 
     @Override

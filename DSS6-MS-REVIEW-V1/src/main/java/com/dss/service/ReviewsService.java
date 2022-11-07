@@ -27,11 +27,4 @@ public interface ReviewsService {
      * @see #displayReviews()
      */
     DssCommonMessageDetails displayReviews();
-
-    /** Returns a specific movie review record the form of a List <Reviews>
-     * @return DssCommonMessageDetails commonMsgDtl
-     * @see #searchReviewByMovieTitle(String)
-     */
-    DssCommonMessageDetails searchReviewByMovieTitle(String movieTitle);
-
 }

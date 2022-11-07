@@ -8,8 +8,6 @@ package com.dss.dto.movie;
 
 import com.dss.dto.actors.ActorsDTO;
 import com.dss.dto.reviews.ReviewsDTO;
-import com.dss.entity.image.Images;
-import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.*;
 
 import java.util.Date;
@@ -46,8 +44,6 @@ public class DssMovieDTO {
 
     private List<ActorsDTO> movieActors;
     private List<ReviewsDTO> movieRatings;
-    @JsonIgnore
-    private List<Images> image;
 
     public DssMovieDTO(String movieId, String movieTitle, String year, String writers, String directedBy, String producedBy, String musicBy, String duration, double movieCost, String category, String country, String language, Date creationDate, String createdBy, Date lastModificationDate, String lastModifiedBy) {
         this.movieId = movieId;

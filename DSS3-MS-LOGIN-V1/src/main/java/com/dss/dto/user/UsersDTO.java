@@ -16,9 +16,6 @@ import java.util.List;
 
 @Getter
 @Setter
-@AllArgsConstructor
-@NoArgsConstructor
-@ToString
 public class UsersDTO {
 
     private String dssUserId;

@@ -15,10 +15,6 @@ import java.util.Date;
  */
 
 @Getter
-@Setter
-@AllArgsConstructor
-@NoArgsConstructor
-@ToString
 public class ReviewsDTO {
 
     private String reviewId;

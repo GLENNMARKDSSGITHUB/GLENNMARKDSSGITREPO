@@ -2,8 +2,6 @@ package com.dss.client.proxy.reviews;
 
 
 import com.dss.client.configuration.CustomFeignClientConfiguration;
-import com.dss.client.dto.reviews.ReviewsDTO;
-import com.dss.client.entity.reviews.Reviews;
 import org.springframework.cloud.openfeign.FeignClient;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -15,8 +13,8 @@ import java.util.List;
 public interface ReviewsProxy {
 
     @PostMapping("/API/reviews/add-review.do")
-    String addReview(@RequestBody ReviewsDTO reviewsDto);
+    String addReview(@RequestBody Object obj);
 
     @GetMapping("/API/reviews/display-reviews.do")
-    List<Reviews> displayReviews();
+    List<Object> displayReviews();
 }

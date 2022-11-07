@@ -7,7 +7,6 @@
 package com.dss.entity.movie;
 
 import com.dss.entity.actors.Actors;
-import com.dss.entity.image.Images;
 import com.dss.entity.reviews.Reviews;
 import lombok.*;
 
@@ -23,9 +22,8 @@ import java.util.List;
 @Table(name = "DSS_MOVIE")
 @Getter
 @Setter
-@AllArgsConstructor
 @NoArgsConstructor
-@ToString
+@AllArgsConstructor
 public class DssMovie {
 
     @Id
@@ -85,10 +83,6 @@ public class DssMovie {
     @ToString.Exclude
     private List<Reviews> movieReviews;
 
-    @OneToMany(mappedBy = "dss")
-    @ToString.Exclude
-    private List<Images> image;
-
     public DssMovie(String movieId, String movieTitle, String year, String writers, String directedBy, String producedBy, String musicBy, String duration, double movieCost, String category, String country, String language, Date creationDate, String createdBy, Date lastModificationDate, String lastModifiedBy) {
         this.movieId = movieId;
         this.movieTitle = movieTitle;
@@ -112,23 +106,7 @@ public class DssMovie {
         return movieActors;
     }
 
-    public void setMovieActors(List<Actors> movieActors) {
-        this.movieActors = movieActors;
-    }
-
     public List<Reviews> getMovieReviews() {
         return movieReviews;
-    }
-
-    public void setMovieReviews(List<Reviews> movieReviews) {
-        this.movieReviews = movieReviews;
-    }
-
-    public List<Images> getImage() {
-        return image;
-    }
-
-    public void setImage(List<Images> image) {
-        this.image = image;
     }
 }

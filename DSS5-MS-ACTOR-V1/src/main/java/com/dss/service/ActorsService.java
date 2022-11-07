@@ -6,7 +6,7 @@
 
 package com.dss.service;
 
-import com.dss.dto.actors.ActorsDTO;
+import com.dss.dto.ActorsDTO;
 import com.dss.util.utils.DssCommonMessageDetails;
 
 /**

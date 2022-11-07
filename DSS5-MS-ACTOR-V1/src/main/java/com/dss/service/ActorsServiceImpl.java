@@ -6,14 +6,13 @@
 
 package com.dss.service;
 
-import com.dss.dto.actors.ActorsDTO;
+import com.dss.dto.ActorsDTO;
 import com.dss.entity.actors.Actors;
 import com.dss.entity.movie.DssMovie;
 import com.dss.repository.actors.ActorsRepository;
 import com.dss.repository.movie.DssMovieRepository;
-import com.dss.transformer.actors.ActorsTransformer;
+import com.dss.transformer.ActorsTransformer;
 import com.dss.util.enums.UserRoles;
-import com.dss.util.exceptions.DssException;
 import com.dss.util.utils.CommonStringUtility;
 import com.dss.util.utils.DssCommonMessageDetails;
 import com.dss.util.utils.DssCommonMethods;
@@ -72,7 +71,7 @@ public class ActorsServiceImpl implements ActorsService{
             }
         }catch(Exception ex){
             commonMsgDtl.setSuccess(false);
-            throw new DssException(ex.getMessage());
+            logger.error("ActorsServiceImpl | addActor | Error msg : {}", ex.getMessage());
         }finally{
             logger.debug("ActorsServiceImpl | addActor | End ");
         }
@@ -93,7 +92,7 @@ public class ActorsServiceImpl implements ActorsService{
             }
         }catch(Exception ex){
             commonMsgDtl.setSuccess(false);
-            throw new DssException(ex.getMessage());
+            logger.error("ActorsServiceImpl | displayActors | Error : {}", ex.getMessage());
         }finally{
             logger.debug("ActorsServiceImpl | displayActors | End ");
         }
@@ -114,7 +113,7 @@ public class ActorsServiceImpl implements ActorsService{
             }
         }catch(Exception ex){
             commonMsgDtl.setSuccess(false);
-            throw new DssException(ex.getMessage());
+            logger.error("ActorsServiceImpl | searchActorByActorName | Error : {}", ex.getMessage());
         }finally{
             logger.debug("ActorsServiceImpl | searchActorByActorName | End ");
         }
@@ -144,7 +143,7 @@ public class ActorsServiceImpl implements ActorsService{
             }
         }catch(Exception ex){
             commonMsgDtl.setSuccess(false);
-            throw new DssException(ex.getMessage());
+            logger.error("ActorsServiceImpl | updateActor | Error : {}", ex.getMessage());
         }finally{
             logger.debug("ActorsServiceImpl | updateActor | End ");
         }
@@ -153,7 +152,7 @@ public class ActorsServiceImpl implements ActorsService{
 
     @Override
     public DssCommonMessageDetails deleteActor(String firstName, String lastName) {
-        logger.debug("ActorsServiceImpl | updateActor | Start ");
+        logger.debug("ActorsServiceImpl | deleteActor | Start ");
         try{
             List<Actors> actorsList = actorsRepository.findActorsByActorName(firstName, lastName);
             if(!actorsList.isEmpty()){
@@ -166,9 +165,9 @@ public class ActorsServiceImpl implements ActorsService{
             }
         }catch(Exception ex){
             commonMsgDtl.setSuccess(false);
-            throw new DssException(ex.getMessage());
+            logger.error("ActorsServiceImpl | deleteActor | Error : {}", ex.getMessage());
         }finally{
-            logger.debug("ActorsServiceImpl | updateActor | End ");
+            logger.debug("ActorsServiceImpl | deleteActor | End ");
         }
         return commonMsgDtl;
     }

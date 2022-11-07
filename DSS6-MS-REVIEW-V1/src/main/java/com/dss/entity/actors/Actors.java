@@ -8,9 +8,6 @@ package com.dss.entity.actors;
 
 import com.dss.entity.movie.DssMovie;
 import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
-import lombok.ToString;
 
 import javax.persistence.*;
 import java.util.Date;
@@ -23,9 +20,6 @@ import java.util.Date;
 @Entity
 @Table(name = "DSS_ACTORS")
 @Getter
-@Setter
-@NoArgsConstructor
-@ToString
 public class Actors {
 
     @Id
@@ -67,35 +61,4 @@ public class Actors {
 
     @ManyToOne(cascade = {CascadeType.MERGE, CascadeType.PERSIST, CascadeType.REFRESH})
     private DssMovie dss;
-
-    public Actors(String actorId, String movieId, String firstName, String lastName, String gender, int age, String movieCast, String role, Date creationDate, String createdBy, Date lastModificationDate, String lastModifiedBy, DssMovie dss) {
-        this.actorId = actorId;
-        this.movieId = movieId;
-        this.firstName = firstName;
-        this.lastName = lastName;
-        this.gender = gender;
-        this.age = age;
-        this.movieCast = movieCast;
-        this.role = role;
-        this.creationDate = creationDate;
-        this.createdBy = createdBy;
-        this.lastModificationDate = lastModificationDate;
-        this.lastModifiedBy = lastModifiedBy;
-        this.dss = dss;
-    }
-
-    public Actors(String actorId, String movieId, String firstName, String lastName, String gender, int age, String movieCast, String role, Date creationDate, String createdBy, Date lastModificationDate, String lastModifiedBy) {
-        this.actorId = actorId;
-        this.movieId = movieId;
-        this.firstName = firstName;
-        this.lastName = lastName;
-        this.gender = gender;
-        this.age = age;
-        this.movieCast = movieCast;
-        this.role = role;
-        this.creationDate = creationDate;
-        this.createdBy = createdBy;
-        this.lastModificationDate = lastModificationDate;
-        this.lastModifiedBy = lastModifiedBy;
-    }
 }

@@ -58,29 +58,4 @@ public class Reviews {
 
     @ManyToOne(cascade = {CascadeType.MERGE, CascadeType.PERSIST, CascadeType.REFRESH})
     private DssMovie dss;
-
-    public Reviews(String reviewId, String movieId, int rate, String reviewHeadline, String reviewContent, Date creationDate, String createdBy, Date lastModificationDate, String lastModifiedBy, DssMovie dss) {
-        this.reviewId = reviewId;
-        this.movieId = movieId;
-        this.rate = rate;
-        this.reviewHeadline = reviewHeadline;
-        this.reviewContent = reviewContent;
-        this.creationDate = creationDate;
-        this.createdBy = createdBy;
-        this.lastModificationDate = lastModificationDate;
-        this.lastModifiedBy = lastModifiedBy;
-        this.dss = dss;
-    }
-
-    public Reviews(String reviewId, String movieId, int rate, String reviewHeadline, String reviewContent, Date creationDate, String createdBy, Date lastModificationDate, String lastModifiedBy) {
-        this.reviewId = reviewId;
-        this.movieId = movieId;
-        this.rate = rate;
-        this.reviewHeadline = reviewHeadline;
-        this.reviewContent = reviewContent;
-        this.creationDate = creationDate;
-        this.createdBy = createdBy;
-        this.lastModificationDate = lastModificationDate;
-        this.lastModifiedBy = lastModifiedBy;
-    }
 }

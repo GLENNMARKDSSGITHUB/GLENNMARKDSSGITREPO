@@ -9,8 +9,6 @@ package com.dss.util.utils;
 
 import com.google.gson.*;
 import org.apache.commons.lang.StringUtils;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 
 import java.lang.reflect.Type;
 import java.time.LocalDate;
@@ -38,15 +36,6 @@ public class DssCommonUtility {
         public JsonElement serialize(LocalDate date, Type type, JsonSerializationContext jsonSerializationContext) {
             return new JsonPrimitive(date.format(DateTimeFormatter.ISO_DATE));
         }
-    }
-
-    /** Returns true if the List<?> is empty, else, is false
-     * @param e List<?> e
-     * @return boolean value
-     * @see #isNullOrEmpty(List)
-     */
-    public boolean isNullOrEmpty(List<?> e) {
-        return e.isEmpty();
     }
 
     /** Returns true if the String value is empty, else, is false

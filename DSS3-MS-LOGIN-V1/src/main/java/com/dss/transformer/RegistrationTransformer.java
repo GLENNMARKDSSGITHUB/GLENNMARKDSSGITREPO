@@ -12,7 +12,6 @@ import com.dss.entity.user.Users;
 import com.dss.util.enums.UserRoles;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 
-import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Date;
 import java.util.List;
@@ -47,53 +46,5 @@ public class RegistrationTransformer {
                 userDto.getLastModificationDate(),
                 userDto.getLastModifiedBy()
         );
-    }
-
-    public Users populateUsersRegistration(Users user){
-        return new Users(
-                user.getDssUserId(),
-                user.getFirstName(),
-                user.getLastName(),
-                user.getEmail(),
-                encoder.encode(user.getPassword()),
-                encoder.encode(user.getOldPassword()),
-                user.getStatus(),
-                user.getCellphoneNumber(),
-                user.getCreationDate(),
-                user.getCreatedBy(),
-                user.getLastModificationDate(),
-                user.getLastModifiedBy()
-        );
-    }
-
-    public List<Users> populateUsersRegistration(List<Users> userList){
-        List<Users> users = new ArrayList<>();
-
-        for (Users user : userList) {
-            List<Roles> rolesList = new ArrayList<>();
-            for(Roles r : user.getUserRoles()){
-                rolesList.add(new Roles(
-                        r.getDssRoleId(),
-                        r.getUserRole()
-                ));
-            }
-
-            users.add(new Users(
-                    user.getDssUserId(),
-                    user.getFirstName(),
-                    user.getLastName(),
-                    user.getEmail(),
-                    user.getPassword(),
-                    user.getOldPassword(),
-                    user.getStatus(),
-                    user.getCellphoneNumber(),
-                    user.getCreationDate(),
-                    user.getCreatedBy(),
-                    user.getLastModificationDate(),
-                    user.getLastModifiedBy(),
-                    rolesList
-            ));
-        }
-        return users;
     }
 }

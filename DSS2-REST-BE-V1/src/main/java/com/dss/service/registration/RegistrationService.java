@@ -27,28 +27,4 @@ public interface RegistrationService {
      * @see #displayRegistrations()
      */
     DssCommonMessageDetails displayRegistrations();
-
-    /** Returns a specific user record the form of a List <Users>
-     * @return DssCommonMessageDetails commonMsgDtl
-     * @see #searchRegistrationByEmail(String)
-     */
-    DssCommonMessageDetails searchRegistrationByEmail(String email);
-
-    /** Returns a String value if the admin user successfully changes the account password or not.
-     * @param email User's email
-     * @param newPassword User's new password
-     * @param confirmPassword User's confirmation password
-     * @return DssCommonMessageDetails commonMsgDtl
-     * @see #changePassword(String,String,String)
-     */
-    DssCommonMessageDetails changePassword(String email, String newPassword, String confirmPassword);
-
-    /** Returns a String value if the admin user successfully deletes the account or not.
-     * The user requires to enter the email and password to delete the account.
-     * @param email User's email
-     * @param password User's password
-     * @return DssCommonMessageDetails commonMsgDtl
-     * @see #changePassword(String,String,String)
-     */
-    DssCommonMessageDetails deleteAccount(String email, String password);
 }

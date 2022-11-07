@@ -12,7 +12,6 @@ import com.dss.entity.movie.DssMovie;
 import com.dss.repository.actors.ActorsRepository;
 import com.dss.repository.movie.DssMovieRepository;
 import com.dss.transformer.actors.ActorsTransformer;
-import com.dss.util.exceptions.DssException;
 import com.dss.util.utils.CommonStringUtility;
 import com.dss.util.utils.DssCommonMessageDetails;
 import com.dss.util.utils.DssCommonMethods;

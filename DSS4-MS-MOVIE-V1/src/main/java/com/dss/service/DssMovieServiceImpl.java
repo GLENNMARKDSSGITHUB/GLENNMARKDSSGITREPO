@@ -8,16 +8,12 @@ package com.dss.service;
 
 import com.dss.dto.movie.DssMovieDTO;
 import com.dss.entity.actors.Actors;
-import com.dss.entity.image.Images;
 import com.dss.entity.movie.DssMovie;
 import com.dss.entity.reviews.Reviews;
 import com.dss.repository.actors.ActorsRepository;
-import com.dss.repository.image.FileStorageRepository;
 import com.dss.repository.movie.DssMovieRepository;
 import com.dss.repository.reviews.ReviewsRepository;
-import com.dss.transformer.image.ImageTransformer;
-import com.dss.transformer.movie.DssMovieTransformer;
-import com.dss.util.exceptions.DssException;
+import com.dss.transformer.DssMovieTransformer;
 import com.dss.util.utils.CommonStringUtility;
 import com.dss.util.utils.DssCommonMessageDetails;
 import com.dss.util.utils.DssCommonMethods;
@@ -26,10 +22,7 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
-import org.springframework.web.multipart.MultipartFile;
 
-import java.io.File;
-import java.io.IOException;
 import java.util.List;
 
 /**
@@ -39,14 +32,12 @@ import java.util.List;
  * @see #searchDssMovieByMovieTitle(String)
  * @see #updateDssMovie(DssMovieDTO)
  * @see #deleteDssMovie(String)
- * @see #uploadImage(String, MultipartFile)
  */
 
 @Service
 public class DssMovieServiceImpl implements DssMovieService {
     private static final Logger logger = LoggerFactory.getLogger(DssMovieServiceImpl.class);
     private final DssMovieTransformer transformer = new DssMovieTransformer();
-    private final ImageTransformer imageTransformer = new ImageTransformer();
     private final DssCommonMessageDetails commonMsgDtl = new DssCommonMessageDetails();
     private final DssCommonMethods commonMethods = new DssCommonMethods();
 
@@ -61,9 +52,6 @@ public class DssMovieServiceImpl implements DssMovieService {
 
     @Autowired
     private ActorsRepository actorsRepository;
-
-    @Autowired
-    private FileStorageRepository fileStorage;
 
     @Override
     public DssCommonMessageDetails addDssMovie(DssMovieDTO dssDto){
@@ -166,9 +154,6 @@ public class DssMovieServiceImpl implements DssMovieService {
                 List<Actors> actorsList = movieList.get(0).getMovieActors();
                 actorsRepository.deleteAll(actorsList);
 
-                List<Images> imagesList = movieList.get(0).getImage();
-                fileStorage.deleteAll(imagesList);
-
                 dssMovieRepository.delete(movieList.get(0));
                 commonMsgDtl.setContent(String.format(CommonStringUtility.SUCCESS_CODE_003_DELETE_MOV, movieTitle));
                 commonMsgDtl.setSuccess(true);
@@ -184,35 +169,4 @@ public class DssMovieServiceImpl implements DssMovieService {
         }
         return commonMsgDtl;
     }
-
-    @Override
-    public DssCommonMessageDetails uploadImage(String movieTitle, MultipartFile multipartFile){
-        logger.debug("DssMovieServiceImpl | uplaodImage | Start ");
-        try{
-            File f = new File(pathName);
-            if(!f.mkdir()){
-                logger.error("DssMovieServiceImpl | uploadImage | Folder not created.");
-            }
-
-            List<DssMovie> movieList = dssMovieRepository.findDssMovieByMovieTitle(movieTitle);
-            if(!movieList.isEmpty()){
-                String filePath = pathName + multipartFile.getOriginalFilename();
-                multipartFile.transferTo(new File(filePath));
-                logger.debug("DssMovieServiceImpl | uploadImage | Transfer file successfully!");
-
-                Images image = imageTransformer.transformToImage(multipartFile, movieList.get(0), filePath);
-                fileStorage.save(image);
-                commonMsgDtl.setContent("Image uploaded successfully!");
-            }else{
-                commonMsgDtl.setContent(CommonStringUtility.ERR_CODE_002_NO_DISPLAY_RECORDS);
-            }
-        }catch(IOException ex){
-            commonMsgDtl.setSuccess(false);
-            logger.error("DssMovieServiceImpl | uploadImage | Error : {}", ex.getMessage());
-        }finally {
-            logger.debug("DssMovieServiceImpl | uploadImage | End ");
-        }
-        return  commonMsgDtl;
-    }
-
 }
